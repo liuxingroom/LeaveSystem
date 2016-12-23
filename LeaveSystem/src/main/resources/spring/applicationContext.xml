@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>    
+<beans xmlns="http://www.springframework.org/schema/beans"    
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
+    xmlns:p="http://www.springframework.org/schema/p"  
+    xmlns:aop="http://www.springframework.org/schema/aop"   
+    xmlns:context="http://www.springframework.org/schema/context"  
+    xmlns:jee="http://www.springframework.org/schema/jee"  
+    xmlns:tx="http://www.springframework.org/schema/tx"  
+    xsi:schemaLocation="    
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd  
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd  
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd  
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd  
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">  
+  	
+  	<!-- 扫描com.xing.leaveSystem.service 下面的注解 （@Service @Repository）-->
+  	<context:component-scan base-package="com.xing.leaveSystem.service"></context:component-scan>
+  	
+  	<!-- 加载数据库配置文件 -->
+  	<context:property-placeholder location="classpath:jdbc.properties"/>
+  	
+  	<!-- 配置数据库连接池 -->
+  	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+  		<property name="driverClassName" value="${jdbc.driverClassName}"></property>
+  		<property name="url" value="${jdbc.url}"></property>
+  		<property name="username" value="${jdbc.username}"></property>
+  		<property name="password" value="${jdbc.password}"></property>
+  	</bean>
+  	
+  	<!-- 配置数据库连接  sqlSessionFactory -->
+  	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+  		<!-- 配置数据源 -->
+  		<property name="dataSource" ref="dataSource"></property>
+  		<!-- 加载SqlMapConfig.xml -->
+  		<property name="configLocation" value="classpath:mybatis/sqlMapConfig.xml"></property>
+  	</bean>
+  	
+  	<!-- 事务配置 -->
+  	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+  		<property name="dataSource" ref="dataSource"></property>
+  	</bean>
+  	
+  	<!--引入工作流的配置文件 -->
+  	<import resource="../activiti.cfg.xml"/>
+  		
+  	<!-- 配置事务 -->
+  	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+  		<tx:attributes>
+  			<tx:method name="insert*" propagation="REQUIRED" />  
+            <tx:method name="update*" propagation="REQUIRED" />  
+            <tx:method name="edit*" propagation="REQUIRED" />  
+            <tx:method name="save*" propagation="REQUIRED" />  
+            <tx:method name="add*" propagation="REQUIRED" />  
+            <tx:method name="new*" propagation="REQUIRED" />  
+            <tx:method name="set*" propagation="REQUIRED" />  
+            <tx:method name="remove*" propagation="REQUIRED" />  
+            <tx:method name="delete*" propagation="REQUIRED" />  
+            <tx:method name="change*" propagation="REQUIRED" />  
+            <tx:method name="check*" propagation="REQUIRED" />  
+            <tx:method name="get*" propagation="REQUIRED" read-only="true" />  
+            <tx:method name="find*" propagation="REQUIRED" read-only="true" />  
+            <tx:method name="load*" propagation="REQUIRED" read-only="true" />  
+            <tx:method name="*" propagation="REQUIRED" read-only="true" />
+  		</tx:attributes>
+  	</tx:advice>
+  	
+  	<!-- 配置切点 -->
+  	<aop:config>
+  		<aop:pointcut expression="execution(* com.xing.leaveSystem.service.*.*(..))" id="txPointCut"/>
+  		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
+  	</aop:config>
+  	
+  	<!-- 配置 mapper 文件 -->
+	<!-- 
+		使用mapper批量扫描器扫描mapper借口 
+		规则:mapper.xml 和mapper.java在一个目录下，且同名   扫描出来的mapper，自动上spring容器注册，bean的id就是mapper的类名（首字母小写）
+	 -->
+	 <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	 	<!-- 注入会话工厂 -->
+	 	<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+	 	<!-- 扫描包路径，多个包中用半角逗号分隔 -->
+	 	<property name="basePackage" value="com.xing.leaveSystem.dao"></property>
+	 </bean>
+  
+  </beans> 
