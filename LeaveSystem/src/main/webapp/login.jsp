@@ -14,20 +14,20 @@
 
 	function submitData(){
 		$("#fm").form("submit",{
-			url:"${pageContext.request.contextPath}/user/login.do",
+			url:"${pageContext.request.contextPath}/user/login.action",
 			onSubmit:function(){
-				if($("#groupId").combobox("getValue")=="-1"){
+				/* if($("#groupId").combobox("getValue")=="-1"){
 					$.messager.alert("系统提示","请选择用户角色！");
 					return false;
-				}
-				return $(this).form("validate");
+				} */
+				/* return $(this).form("validate"); */
 			},
-			success:function(result){
-				var result=eval('('+result+')');
-				if(result.success){
+			success:function(data){
+				var data=eval('('+data+')');
+				if(data.result=='1'){
 					window.location.href="${pageContext.request.contextPath}/main.jsp";
 				}else{
-					$.messager.alert("系统提示",result.errorInfo);
+					$.messager.alert("系统提示",data.errorInfo);
 					return;
 				}
 			}
@@ -65,10 +65,10 @@
 				</td>
 			</tr>
 			<tr>
-				<td>角色：</td>
-				<td>
+				<%--<td>角色：</td>
+				 <td>
 					<input  id="groupId" name="groupId" class="easyui-combobox" data-options="panelHeight:'auto',valueField:'id',textField:'name',url:'${pageContext.request.contextPath}/group/groupComboList.do'" value="-1"/>
-				</td>
+				</td> --%>
 			</tr>
 			<tr>
 				<td colspan="2"></td>

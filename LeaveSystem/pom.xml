@@ -5,6 +5,9 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   
+  	<properties>
+	    <json.version>2.6.0-rc3</json.version>
+	 </properties>
    <dependencies>
 	    <!-- 添加Servlet支持 -->
 	  	<dependency>
@@ -204,6 +207,26 @@
 		    <artifactId>activiti-spring</artifactId>
 		    <version>5.19.0.3</version>
 		</dependency>
+		
+		<!-- json jack core annotation databind 
+			作用：springMVC  在使用@ResponseBody时能够将json格式的数据带到浏览器上显示（否者将报406错误）
+		-->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${json.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${json.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${json.version}</version>
+		</dependency>
+		<!-- json end -->
   </dependencies>
   
   <build>  
