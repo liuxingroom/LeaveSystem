@@ -50,4 +50,11 @@ public interface GroupMapper {
 	 */
 	public void delete(@Param("id")String id);
 
+	/**
+	 * 通过用户id来获取角色信息
+	 * @param userId
+	 * @return
+	 */
+	List<Group> findGroupByUserId(@Param("userId")String userId);
+
 }

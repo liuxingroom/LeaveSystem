@@ -50,4 +50,11 @@ public interface GroupService {
 	 */
 	public void delete(String id);
 
+	/**
+	 * 通过用户id来获取组（角色）信息
+	 * @param userId
+	 * @return
+	 */
+	List<Group> findGroupByUserId(String userId);
+
 }

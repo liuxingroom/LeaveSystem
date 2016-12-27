@@ -10,8 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.xing.leaveSystem.entity.Group;
 import com.xing.leaveSystem.entity.PageBean;
 import com.xing.leaveSystem.entity.User;
+import com.xing.leaveSystem.service.GroupService;
 import com.xing.leaveSystem.service.UserService;
 import com.xing.leaveSystem.utils.MessageObj;
 import com.xing.leaveSystem.utils.ResultObj;
@@ -23,6 +25,9 @@ public class UserController {
 
 	@Resource
 	UserService userService;
+	
+	@Resource
+	GroupService groupService;
 	
 	/***
 	 * 用户登录
@@ -118,6 +123,43 @@ public class UserController {
 			 userService.delete(id[i]);
 		}
 		obj.setSuccess();
+		return obj;
+	}
+	
+	/**
+	 * 分页查询用户角色信息
+	 * @param page  当前页
+	 * @param rows  当前页的记录数
+	 * @param user  封装查询条件的bean
+	 * @return
+	 */
+	@RequestMapping("/listWithGroups")
+	@ResponseBody
+	public ResultObj listWithGroups(String page,String rows,User user){
+		ResultObj obj=new ResultObj();
+		PageBean pageBean=new PageBean(Integer.parseInt(page),Integer.parseInt(rows));
+		//封装查询条件
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("userName",StringUtil.formatLike(user.getUserName())); // 查询用户名获取
+		map.put("start", pageBean.getStart());
+		map.put("size", pageBean.getPageSize());
+		List<User> userList=userService.find(map);
+		for(User users:userList){
+			StringBuffer  buffer=new StringBuffer();
+			//根据用户id获取角色信息
+			List<Group> groupList=groupService.findGroupByUserId(users.getUserId());
+			for(Group group:groupList){//遍历角色信息
+				buffer.append(group.getName()+",");
+			}
+			if(buffer.length()>0){//删除角色拼装后的逗号
+				users.setGroups(buffer.deleteCharAt(buffer.length()-1).toString());
+			}else{
+				users.setGroups(buffer.toString());
+			}
+		}
+		Long total=userService.getTotal(map);
+		obj.setRows(userList);
+		obj.setTotal(total);
 		return obj;
 	}
 }

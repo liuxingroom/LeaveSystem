@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.xing.leaveSystem.entity.Group;
 import com.xing.leaveSystem.entity.PageBean;
 import com.xing.leaveSystem.service.GroupService;
+import com.xing.leaveSystem.utils.DataMessageObj;
 import com.xing.leaveSystem.utils.MessageObj;
 import com.xing.leaveSystem.utils.ResultObj;
 
@@ -106,6 +107,41 @@ public class GroupController {
 			groupService.delete(id[i]);
 		}
 		obj.setSuccess();
+		return obj;
+	}
+	
+	/**
+	 * 加载所有的角色信息
+	 * @return
+	 */
+	@RequestMapping("/listAllGroups")
+	@ResponseBody
+	public DataMessageObj<List<Group>> listAllGroups(){
+		DataMessageObj<List<Group>> obj=new DataMessageObj<List<Group>>();
+		List<Group> groupList=groupService.find(null);
+		obj.setDataObject(groupList);
+		return obj;
+	}
+	
+	
+	/**
+	 * 通过用户id来获取组信息
+	 * @return
+	 */
+	@RequestMapping("/findGroupByUserId")
+	@ResponseBody
+	public DataMessageObj<String> findGroupByUserId(String userId){
+		DataMessageObj<String> obj=new DataMessageObj<String>();
+		List<Group> groupList=groupService.findGroupByUserId(userId);
+		StringBuffer buffer=new StringBuffer();
+		for(Group g:groupList){
+			buffer.append(g.getId()+",");
+		}
+		if(buffer.length()>0){
+			 obj.setDataObject(buffer.deleteCharAt(buffer.length()-1).toString());
+		}else{
+			obj.setDataObject(buffer.toString());
+		}
 		return obj;
 	}
 }

@@ -15,7 +15,7 @@
 	/**查询用户信息*/
 	function searchUser(){
 		$("#dg").datagrid('load',{
-			"id":$("#s_id").val()
+			"userName":$("#s_id").val()
 		});
 	}
 
@@ -29,14 +29,15 @@
 		var row=selectRows[0];
 		$("#dlg").dialog("open").dialog("setTitle","设置用户权限");
 		loadAllGroups(); // 加载所有角色
-		setRoles(selectRows[0].id);
+		setRoles(selectRows[0].userId);
 		url="${pageContext.request.contextPath}/memberShip/update.action?userId="+selectRows[0].id;
 	}
 	
 	/**在对话框中对该用户所属的角色回显*/
 	function setRoles(userId){
 		$.post("${pageContext.request.contextPath}/group/findGroupByUserId.action",{userId:userId},function(result){
-			var groups=result.groups;
+			var groups=result.dataObject;
+			console.log(groups)
 			var groupsArr=groups.split(",");
 			for(var i=0;i<groupsArr.length;i++){
 				$("[value="+groupsArr[i]+"]:checkbox").attr("checked",true);
@@ -47,7 +48,7 @@
 	/**加载所有的角色*/
 	function loadAllGroups(){
 		$.post("${pageContext.request.contextPath}/group/listAllGroups.action",{},function(result){
-			var groupList=result.groupList;
+			var groupList=result.dataObject;
 			$("#groupsList").empty();
 			for(var key in groupList){
 				var cbStr='<input type="checkbox" name="groupId" value="'+groupList[key].id+'" />'+'<font>'+groupList[key].name+'</font>'+'&nbsp;';
@@ -90,7 +91,7 @@
  <thead>
  	<tr>
  		<th field="cb" checkbox="true" align="center"></th>
- 		<th field="id" width="80" align="center">权限id</th>
+ 		<th field="userId" width="80" align="center">权限id</th>
  		<th field="userName" width="50" align="center">用户名</th>
  		<th field="password" width="80" align="center">密码</th>
  		<th field="email" width="100" align="center">邮箱</th>

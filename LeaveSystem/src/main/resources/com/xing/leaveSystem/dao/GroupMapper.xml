@@ -58,4 +58,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			group_id=#{id}
 		</where>
 	</delete>
+	
+	<!-- 通过用户id来获取角色信息 -->
+	<select id="findGroupByUserId" resultMap="GroupResult">
+		SELECT p.group_id,name FROM leave_system_group g 
+		LEFT JOIN leave_system_membership p ON  g.group_id=p.group_id 
+		WHERE p.user_id=#{userId}
+	</select>
 </mapper>

@@ -115,6 +115,12 @@ public class GroupServiceImpl implements GroupService{
 		//删除工作流系统中的角色信息
 		identityService.deleteGroup(id);
 	}
+
+	@Override
+	public List<Group> findGroupByUserId(String userId) {
+		List<Group> groupList=groupMapper.findGroupByUserId(userId);
+		return groupList;
+	}
 	
 	
 }
