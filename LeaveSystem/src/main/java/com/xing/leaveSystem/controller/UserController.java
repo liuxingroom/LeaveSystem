@@ -103,4 +103,21 @@ public class UserController {
 		
 		return obj;
 	}
+	
+	/**
+	 * 根据用户id来删除用户信息
+	 * @param ids
+	 * @return
+	 */
+	@RequestMapping("/delete")
+	@ResponseBody
+	public MessageObj delete(String ids){
+		MessageObj obj=new MessageObj();
+		String [] id=ids.split(",");
+		for(int i=0;i<id.length;i++){
+			 userService.delete(id[i]);
+		}
+		obj.setSuccess();
+		return obj;
+	}
 }

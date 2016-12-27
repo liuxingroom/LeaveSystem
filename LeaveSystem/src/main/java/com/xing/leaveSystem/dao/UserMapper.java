@@ -43,5 +43,11 @@ public interface UserMapper {
 	 * @return
 	 */
 	User findByUserName(@Param("userName")String userName);
+
+	/**
+	 * 通过用户的id来删除普通用户的信息
+	 * @param userId
+	 */
+	public void delete(@Param("userId")String userId);
 	
 }

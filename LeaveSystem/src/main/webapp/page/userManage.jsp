@@ -25,14 +25,15 @@
 			return;
 		}
 		var strIds=[];
+		console.log(selectRows)
 		for(var i=0;i<selectRows.length;i++){
-			strIds.push(selectRows[i].id);
+			strIds.push(selectRows[i].userId);
 		}
 		var ids=strIds.join(",");
 		$.messager.confirm("系统提示","您确定要删除这<font color=red>"+selectRows.length+"</font>条数据吗?",function(r){
 			if(r){
 				$.post("${pageContext.request.contextPath}/user/delete.action",{ids:ids},function(result){
-					if(result.success){
+					if(result.result=="1"){
 						$.messager.alert("系统提示","数据已经成功删除！");
 						$("#dg").datagrid("reload");
 					}else{

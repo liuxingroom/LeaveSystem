@@ -42,4 +42,10 @@ public interface UserService {
 	 */
 	User findByUserName(String userName);
 
+	/**
+	 * 根据用户id来删除用户信息
+	 * @param string
+	 */
+    public void  delete(String userId);
+
 }

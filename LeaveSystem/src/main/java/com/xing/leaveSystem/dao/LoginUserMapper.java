@@ -1,5 +1,7 @@
 package com.xing.leaveSystem.dao;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.xing.leaveSystem.entity.User;
 
 public interface LoginUserMapper {
@@ -16,4 +18,10 @@ public interface LoginUserMapper {
 	 * @return
 	 */
 	public int update(User user);
+
+	/**
+	 * 根据用户id来删除登录的用户信息
+	 * @param userId
+	 */
+	public void delete(@Param("userId")String userId);
 }

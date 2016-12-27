@@ -107,5 +107,25 @@ public class UserServiceImpl implements UserService{
 		User user=userMapper.findByUserName(userName);
 		return user;
 	}
+
+	@Override
+	public void delete(String userId) {
+		//删除普通用户信息
+		userMapper.delete(userId);
+		//删除登录用户信息
+		loginUserMapper.delete(userId);
+		//删除工作流系统中的用户信息
+		
+		List<Group> groupList=identityService.createGroupQuery().groupMember(userId).list();
+		if(groupList.size()>0){//如果该用户存在组关系
+			for(int i=0;i<groupList.size();i++){
+				//根据用户id和组id删除用户和组的关系
+				identityService.deleteMembership(userId,groupList.get(i).getId());
+			}
+		}
+		//删除工作流重用户的信息
+		identityService.deleteUser(userId);
+		
+	}
 	
 }
