@@ -30,12 +30,12 @@
 		$("#dlg").dialog("open").dialog("setTitle","设置用户权限");
 		loadAllGroups(); // 加载所有角色
 		setRoles(selectRows[0].id);
-		url="${pageContext.request.contextPath}/memberShip/update.do?userId="+selectRows[0].id;
+		url="${pageContext.request.contextPath}/memberShip/update.action?userId="+selectRows[0].id;
 	}
 	
 	/**在对话框中对该用户所属的角色回显*/
 	function setRoles(userId){
-		$.post("${pageContext.request.contextPath}/group/findGroupByUserId.do",{userId:userId},function(result){
+		$.post("${pageContext.request.contextPath}/group/findGroupByUserId.action",{userId:userId},function(result){
 			var groups=result.groups;
 			var groupsArr=groups.split(",");
 			for(var i=0;i<groupsArr.length;i++){
@@ -46,7 +46,7 @@
 	
 	/**加载所有的角色*/
 	function loadAllGroups(){
-		$.post("${pageContext.request.contextPath}/group/listAllGroups.do",{},function(result){
+		$.post("${pageContext.request.contextPath}/group/listAllGroups.action",{},function(result){
 			var groupList=result.groupList;
 			$("#groupsList").empty();
 			for(var key in groupList){
@@ -86,14 +86,13 @@
 <body style="margin: 1px">
 <table id="dg" title="权限管理" class="easyui-datagrid"
   fitColumns="true" pagination="true" rownumbers="true"
-  url="${pageContext.request.contextPath}/user/listWithGroups.do" fit="true" toolbar="#tb">
+  url="${pageContext.request.contextPath}/user/listWithGroups.action" fit="true" toolbar="#tb">
  <thead>
  	<tr>
  		<th field="cb" checkbox="true" align="center"></th>
- 		<th field="id" width="80" align="center">权限名</th>
+ 		<th field="id" width="80" align="center">权限id</th>
+ 		<th field="userName" width="50" align="center">用户名</th>
  		<th field="password" width="80" align="center">密码</th>
- 		<th field="firstName" width="50" align="center">姓</th>
- 		<th field="lastName" width="50" align="center">名</th>
  		<th field="email" width="100" align="center">邮箱</th>
  		<th field="groups" width="150" align="center">拥有权限</th>
  	</tr>

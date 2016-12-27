@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xing.leaveSystem.dao.GroupMapper">
+	<resultMap type="com.xing.leaveSystem.entity.Group" id="GroupResult">
+		<id  property="id" column="group_id" jdbcType="VARCHAR"/>
+		<result property="name" column="name" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<!-- 分页查询角色信息 -->
+	<select id="find" parameterType="Map" resultMap="GroupResult">
+		select * from leave_system_group 
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
+	
+	<!-- 获取角色信息的总记录数 -->
+	<select id="getTotal" resultType="Long">
+		select count(*) from leave_system_group
+	</select>
+	
+	<!-- 通过角色名查看角色信息 -->
+	<select id="findByGroupName" resultMap="GroupResult">
+		select * from leave_system_group where name=#{groupName}
+	</select>
+	
+	<!-- 添加角色信息 -->
+	<insert id="add" parameterType="com.xing.leaveSystem.entity.Group">
+		insert into leave_system_group(group_id,name) values
+		(
+			<trim suffixOverrides=",">
+				<if test="id!=null and id!=''">#{id,jdbcType=VARCHAR},</if>
+				<if test="name!=null and name!=''">#{name,jdbcType=VARCHAR},</if>
+			</trim>
+			
+		)
+	</insert>
+	
+	<!-- 更新角色信息 -->
+	<update id="update" parameterType="com.xing.leaveSystem.entity.Group">
+		update leave_system_group
+		<set>
+			<trim suffixOverrides=",">
+				<if test="name!=null and name!=''">name=#{name,jdbcType=VARCHAR},</if>
+			</trim>
+		</set>
+		<where>
+			group_id=#{id}
+		</where>
+	</update>
+	
+	<!-- 根据角色id来删除角色信息 -->
+	<delete id="delete" >
+		delete from leave_system_group 
+		<where>
+			group_id=#{id}
+		</where>
+	</delete>
+</mapper>

@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService{
 			}
 			
 		} catch (Exception e) {
-			logger.error("用户信息复制失败");
+			logger.error("添加时用户信息复制失败");
 			e.printStackTrace();
 		} 
 		return resultTotal;
@@ -81,6 +81,7 @@ public class UserServiceImpl implements UserService{
 				BeanUtils.copyProperties(entity, user);
 				entity.setId(user.getUserId());
 				entity.setFirstName(user.getUserName());
+				//查询该用户下的所有角色信息
 				List<Group> groupList=identityService.createGroupQuery().groupMember(entity.getId()).list();
 				if(groupList.size()>0){//如果该用户存在组关系
 					for(int i=0;i<groupList.size();i++){
@@ -96,7 +97,7 @@ public class UserServiceImpl implements UserService{
 			}
 			
 		} catch (Exception e) {
-			logger.error("用户信息复制失败");
+			logger.error("更新时用户信息复制失败");
 			e.printStackTrace();
 		} 
 		return resultTotal;

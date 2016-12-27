@@ -26,8 +26,8 @@
 		var ids=strIds.join(",");
 		$.messager.confirm("系统提示","您确定要删除这<font color=red>"+selectRows.length+"</font>条数据吗?",function(r){
 			if(r){
-				$.post("${pageContext.request.contextPath}/group/delete.do",{ids:ids},function(result){
-					if(result.success){
+				$.post("${pageContext.request.contextPath}/group/delete.action",{ids:ids},function(result){
+					if(result.result=="1"){
 						$.messager.alert("系统提示","数据已经成功删除！");
 						$("#dg").datagrid("reload");
 					}else{
@@ -42,7 +42,7 @@
 	function openGroupAddDiglog(){
 		$("#dlg").dialog("open").dialog("setTitle","添加角色信息");
 		$("#flag").val(1);
-		$("#id").attr("readonly",false);
+		$("#id").attr("readonly",true);
 	}
 	
 	function openGroupModifyDiglog(){
@@ -60,17 +60,17 @@
 	
 	
 	function checkData(){
-		if($("#id").val()==''){
+		if($("#name").val()==''){
 			$.messager.alert("系统系统","请输入角色名！");
-			$("#id").focus();
+			$("#name").focus();
 			return;
 		}
 		var flag=$("#flag").val();
 		if(flag==1){
-			$.post("${pageContext.request.contextPath}/group/existGroupName.do",{groupName:$("#id").val()},function(result){
+			$.post("${pageContext.request.contextPath}/group/existGroupName.action",{groupName:$("#name").val()},function(result){
 				if(result.exist){
 					$.messager.alert("系统系统","该角色名已存在，请更换下！");
-					$("#id").focus();
+					$("#name").focus();
 				}else{
 					saveGroup();
 				}
@@ -82,13 +82,13 @@
 	
 	function saveGroup(){
 		$("#fm").form("submit",{
-			url:'${pageContext.request.contextPath}/group/save.do',
+			url:'${pageContext.request.contextPath}/group/save.action',
 			onSubmit:function(){
 				return $(this).form("validate");
 			},
 			success:function(result){
 				var result=eval('('+result+')');
-				if(result.success){
+				if(result.result=="1"){
 					$.messager.alert("系统系统","保存成功！");
 					resetValue();
 					$("#dlg").dialog("close");
@@ -116,11 +116,11 @@
 <body style="margin: 1px">
 <table id="dg" title="角色管理" class="easyui-datagrid"
   fitColumns="true" pagination="true" rownumbers="true"
-  url="${pageContext.request.contextPath}/group/list.do" fit="true" toolbar="#tb">
+  url="${pageContext.request.contextPath}/group/list.action" fit="true" toolbar="#tb">
  <thead>
  	<tr>
  		<th field="cb" checkbox="true" align="center"></th>
- 		<th field="id" width="80" align="center">角色名</th>
+ 		<th field="id" width="80" align="center">角色id</th>
  		<th field="name" width="80" align="center">角色名称</th>
  	</tr>
  </thead>
@@ -138,9 +138,9 @@
  	<form id="fm" method="post">
  		<table cellpadding="8px">
  			<tr>
- 				<td>角色名：</td>
+ 				<td>角色id：</td>
  				<td>
- 					<input type="text" id="id" name="id" class="easyui-validatebox" required="true"/>
+ 					<input type="text" id="id" name="id"  required="true"/>
  				</td>
  				<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
  				<td>角色名称：</td>
