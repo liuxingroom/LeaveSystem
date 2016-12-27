@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xing.leaveSystem.dao.MemberShipMapper">
+	
+	
+	<!-- 根据用户信息删除所有的角色信息 -->
+	<delete id="deleteAllGroupsByUserId">
+		delete from leave_system_membership where user_id=#{userId}
+	</delete>
+	
+	<!-- 添加用户和角色的关联关系 -->
+	<insert id="add" parameterType="com.xing.leaveSystem.entity.MemberShip">
+		insert into leave_system_membership (group_id,user_id) value(#{groupId},#{userId})
+	</insert>
+</mapper>

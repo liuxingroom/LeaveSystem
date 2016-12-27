@@ -30,7 +30,7 @@
 		$("#dlg").dialog("open").dialog("setTitle","设置用户权限");
 		loadAllGroups(); // 加载所有角色
 		setRoles(selectRows[0].userId);
-		url="${pageContext.request.contextPath}/memberShip/update.action?userId="+selectRows[0].id;
+		url="${pageContext.request.contextPath}/memberShip/update.action?userId="+selectRows[0].userId;
 	}
 	
 	/**在对话框中对该用户所属的角色回显*/
@@ -72,7 +72,7 @@
 			}
 		}
 		$.post(url,{groupsIds:s.substring(0,s.length-1)},function(result){
-			if(result.success){
+			if(result.result=="1"){
 				$.messager.alert("系统提示","提交成功！");
 				closeAuthDialog();
 				$("#dg").datagrid("reload");
