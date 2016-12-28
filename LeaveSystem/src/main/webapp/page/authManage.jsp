@@ -22,6 +22,7 @@
 	/**弹出对话框*/
 	function openAuthDiglog(){
 		var selectRows=$("#dg").datagrid("getSelections");
+		console.log(selectRows);
 		if(selectRows.length!=1){
 			$.messager.alert("系统提示","请选择一条要设置的用户！");
 			return;

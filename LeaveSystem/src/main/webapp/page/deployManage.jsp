@@ -22,7 +22,7 @@
 	
 	function openDeployAddDiglog(){
 		$("#dlg").dialog("open").dialog("setTitle","添加流程部署");
-		url="${pageContext.request.contextPath}/deploy/deploy.do"
+		url="${pageContext.request.contextPath}/deploy/deploy.action"
 	}
 	
 	function saveDeploy(){
@@ -33,7 +33,7 @@
 			},
 			success:function(result){
 				var result=eval('('+result+')');
-				if(result.success){
+				if(result.result=="1"){
 					$.messager.alert("系统系统","部署成功！");
 					$("#dlg").dialog("close");
 					$("#dg").datagrid("reload");
@@ -62,8 +62,8 @@
 		var ids=strIds.join(",");
 		$.messager.confirm("系统提示","您确定要删除这<font color=red>"+selectRows.length+"</font>条数据吗?",function(r){
 			if(r){
-				$.post("${pageContext.request.contextPath}/deploy/delete.do",{ids:ids},function(result){
-					if(result.success){
+				$.post("${pageContext.request.contextPath}/deploy/delete.action",{ids:ids},function(result){
+					if(result.result=="1"){
 						$.messager.alert("系统提示","数据已经成功删除！");
 						$("#dg").datagrid("reload");
 					}else{
@@ -79,7 +79,7 @@
 <body style="margin: 1px">
 <table id="dg" title="部署管理" class="easyui-datagrid"
   fitColumns="true" pagination="true" rownumbers="true"
-  url="${pageContext.request.contextPath}/deploy/list.do" fit="true" toolbar="#tb">
+  url="${pageContext.request.contextPath}/deploy/list.action" fit="true" toolbar="#tb">
  <thead>
  	<tr>
  		<th field="cb" checkbox="true" align="center"></th>
@@ -99,10 +99,12 @@
  	<a href="javascript:searchDeploy()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
  </div>
 </div>
-<div id="dlg" class="easyui-dialog" style="width: 320px;height: 150px;padding: 10px 20px" closed="true" buttons="#dlg-buttons">
+<div id="dlg" class="easyui-dialog" style="width: 320px;height: 180px;padding: 10px 20px" closed="true" buttons="#dlg-buttons">
  
  	<form id="fm" method="post" enctype="multipart/form-data">
- 		<input type="file" name="deployFile" class="easyui-validatebox" required="true"/>
+ 		bpmn文件：<input type="file" name="deployFileBpmn" class="easyui-validatebox" required="true"/>
+ 		<br/>
+ 		png文件：<input type="file" name="deployFilePng" class="easyui-validatebox" required="true"/>
  	</form>
  
 </div>

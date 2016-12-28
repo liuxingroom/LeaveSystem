@@ -20,7 +20,7 @@
 	}
 	
 	function formatAction(val,row){
-		return "<a href='${pageContext.request.contextPath}/processDefinition/showView.do?deploymentId="+row.deploymentId+"&diagramResourceName="+row.diagramResourceName+"' target='_blank'>查看流程图</a>"
+		return "<a href='${pageContext.request.contextPath}/processDefinition/showView.action?deploymentId="+row.deploymentId+"&diagramResourceName="+row.diagramResourceName+"' target='_blank'>查看流程图</a>"
 	}
 	
 </script>
@@ -28,7 +28,7 @@
 <body style="margin: 1px">
 <table id="dg" title="流程定义管理" class="easyui-datagrid"
   fitColumns="true" pagination="true" rownumbers="true"
-  url="${pageContext.request.contextPath}/processDefinition/list.do" fit="true" toolbar="#tb">
+  url="${pageContext.request.contextPath}/processDefinition/list.action" fit="true" toolbar="#tb">
  <thead>
  	<tr>
  		<th field="cb" checkbox="true" align="center"></th>

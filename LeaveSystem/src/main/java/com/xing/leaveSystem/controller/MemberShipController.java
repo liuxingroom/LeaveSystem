@@ -1,7 +1,11 @@
 package com.xing.leaveSystem.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
+import org.activiti.engine.IdentityService;
+import org.activiti.engine.identity.Group;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,6 +21,9 @@ public class MemberShipController {
 	@Resource
 	MemberShipService memberShipService;
 	
+	@Resource
+	IdentityService identityService;
+	
 	/**
 	 * 更新用户权限 先删除 后批量添加
 	 * @param userId
@@ -27,13 +34,27 @@ public class MemberShipController {
 	@ResponseBody
 	public MessageObj update(String userId,String groupsIds){
 		MessageObj obj=new MessageObj();
+		//删除本地数据库中用户和角色的关系
 		memberShipService.deleteAllGroupsByUserId(userId);
+		//查询工作流系统中该用户对应的角色信息
+		List<Group> groupList=identityService.createGroupQuery().groupMember(userId).list();
+		//删除该工作流系统中改用户和角色的关联关系
+		for(int i=0;i<groupList.size();i++){
+			identityService.deleteMembership(userId,groupList.get(i).getId() );
+		}
+		
+		/**向用户系统和工作流系统中添加用户和角色的相关信息*/
 		String gIds[] =groupsIds.split(",");
 		for(int i=0;i<gIds.length;i++){
 			MemberShip memberShip=new MemberShip();
 			memberShip.setUserId(userId);
 			memberShip.setGroupId(gIds[i]);
 			memberShipService.add(memberShip);
+			
+			//删除工作流中用户角色的关联关系
+			identityService.deleteMembership(userId, gIds[i]);
+			//添加工作流中用户角色的关联关系
+			identityService.createMembership(userId, gIds[i]);
 		}
 		obj.setSuccess();
 		return obj;
