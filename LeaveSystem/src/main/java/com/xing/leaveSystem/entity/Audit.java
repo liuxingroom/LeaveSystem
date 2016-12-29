@@ -1,7 +1,7 @@
 package com.xing.leaveSystem.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 public class Audit implements Serializable{
 	
@@ -57,8 +57,8 @@ public class Audit implements Serializable{
 	public Date getCreateTime() {
 		return createTime;
 	}
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
+	public void setCreateTime(Date date) {
+		this.createTime = date;
 	}
 	public String getStatus() {
 		return status;

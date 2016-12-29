@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>待办任务管理</title>
+<title>拾取待办任务</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/jquery-easyui-1.3.3/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/jquery-easyui-1.3.3/themes/icon.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/jquery-easyui-1.3.3/jquery.min.js"></script>
@@ -21,7 +21,21 @@
 	}
 
 	function formatAction(val,row){
-		return "<a href='#'>办理任务</a>&nbsp;<a href='#'>查看当前流程图</a>"
+		var userId=$("#userId").val();
+		return "<a href=\"javascript:claimTask('"+row.id+"','"+userId+"')\">拾取任务</a>&nbsp;<a href='#'>查看当前流程图</a>";
+		
+	}
+	
+	/**拾取任务*/
+	function claimTask(taskId,userId){
+		$.post("${pageContext.request.contextPath}/task/claimTask.action",{taskId:taskId,userId:userId},function(result){
+			if(result.result=="1"){//如果储存在同名的用户
+				$("#dg").datagrid("reload");
+				$.messager.alert("任务拾取","拾取任务成功");
+			}else{
+				$.messager.alert("任务拾取","任务拾取失败");
+			}
+		},"json");
 	}
 
 </script>
@@ -29,7 +43,7 @@
 <body style="margin: 1px">
 <table id="dg" title="待办任务管理" class="easyui-datagrid"
   fitColumns="true" pagination="true" rownumbers="true"
-  url="${pageContext.request.contextPath}/task/list.do?userId=${currentMemberShip.user.id }" fit="true" toolbar="#tb">
+  url="${pageContext.request.contextPath}/task/list.action?userId=${userId}&flag=0" fit="true" toolbar="#tb">
  <thead>
  	<tr>
  		<th field="cb" checkbox="true" align="center"></th>
@@ -44,6 +58,7 @@
  <div>
  	&nbsp;任务名称&nbsp;<input type="text" id="s_name" size="20" onkeydown="if(event.keyCode==13) searchTask()"/>
  	<a href="javascript:searchTask()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
+ 	<input type="hidden" id="userId" value="${userId} "/>
  </div>
 </div>
 

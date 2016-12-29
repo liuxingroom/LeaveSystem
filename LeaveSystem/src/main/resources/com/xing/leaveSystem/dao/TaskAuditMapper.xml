@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xing.leaveSystem.dao.TaskAuditMapper">
+	<!-- <resultMap type="com.xing.leaveSystem.entity.Audit" id="AuditResult">
+		
+	</resultMap> -->
+	
+	<!-- 添加审核信息 -->
+	<insert id="add" parameterType="com.xing.leaveSystem.entity.Audit">
+		insert into leave_system_audit (audit_id,leave_id,user_id,audit_info,audit_type,createtime,status)
+		values
+		(
+			#{auditId,jdbcType=VARCHAR},
+			#{leaveId,jdbcType=VARCHAR},
+			#{userId,jdbcType=VARCHAR},
+			#{auditInfo,jdbcType=VARCHAR},
+			#{auditType,jdbcType=VARCHAR},
+			#{status,jdbcType=VARCHAR},
+			#{createTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	
+</mapper>

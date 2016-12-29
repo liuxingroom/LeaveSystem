@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.activiti.engine.IdentityService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.runtime.ProcessInstance;
@@ -31,6 +32,9 @@ public class LeaveServiceImpl implements LeaveService{
 	@Resource
 	TaskService taskService;
 	
+	@Resource
+	IdentityService identityService;
+	
 	@Override
 	public int add(Leave leave ,String userId) {
 		
@@ -43,6 +47,10 @@ public class LeaveServiceImpl implements LeaveService{
 		/**完善请假信息*/
 		leave.setUserId(userId);
 		String processDefinitionKey=ResourceUtil.getValue("diagram.leavesystem", "studentLeaveProcess");
+		
+		//设置流程启动人
+		identityService.setAuthenticatedUserId(userId);
+		
 		//启动流程实例
 		ProcessInstance processinstance=runtimeService.startProcessInstanceByKey(processDefinitionKey, leaveId);
 		//向请假对象中设置流程实例id

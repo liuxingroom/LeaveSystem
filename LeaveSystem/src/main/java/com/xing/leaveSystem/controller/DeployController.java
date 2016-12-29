@@ -49,8 +49,6 @@ public class DeployController {
 			//获取上传文件png  文件信息
 			String resourceName_png=deployFilePng.getOriginalFilename();
 			InputStream inputStream_png=deployFilePng.getInputStream();
-			//设置流程启动人
-			identityService.setAuthenticatedUserId((String)session.getAttribute("userId"));
 			
 			Deployment deployment=repositoryService.createDeployment()
 					.name(resourceName_bpmn)

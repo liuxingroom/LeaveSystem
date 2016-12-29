@@ -1,0 +1,14 @@
+package com.xing.leaveSystem.dao;
+
+import com.xing.leaveSystem.entity.Audit;
+
+public interface TaskAuditMapper {
+
+	/**
+	 * ÃÌº”…Û∫À–≈œ¢
+	 * @param audit
+	 * @return
+	 */
+	int add(Audit audit);
+
+}
