@@ -36,11 +36,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 分页查询请假信息 -->
 	<select id="list" resultMap="LeaveResult">
 			select * from leave_system_leave
-		<!-- <where>
+	    <where>
 			<if test="userId!=null and userId!='' ">
 				 and userId = #{userId}
 			</if>
-		</where> -->
+		</where>
 		order by createtime desc
 		<if test="start!=null and size!=null">
 			limit #{start},#{size}

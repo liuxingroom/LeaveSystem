@@ -32,7 +32,7 @@ public class LeaveServiceImpl implements LeaveService{
 	TaskService taskService;
 	
 	@Override
-	public int add(Leave leave) {
+	public int add(Leave leave ,String userId) {
 		
 		/**设置默认的请假信息*/
 		leave.setCreateTime(new Date());
@@ -41,9 +41,7 @@ public class LeaveServiceImpl implements LeaveService{
 		leave.setStatus(CommonConstants.NOT_SUBMIT);
 				
 		/**完善请假信息*/
-		// TODO  
-		//		String userId=(String) request.getSession().getAttribute("userId");
-		//		leave.setUserId(userId);
+		leave.setUserId(userId);
 		String processDefinitionKey=ResourceUtil.getValue("diagram.leavesystem", "studentLeaveProcess");
 		//启动流程实例
 		ProcessInstance processinstance=runtimeService.startProcessInstanceByKey(processDefinitionKey, leaveId);

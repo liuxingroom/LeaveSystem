@@ -7,11 +7,16 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.activiti.engine.impl.util.json.HTTPTokener;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+
+
 
 
 
@@ -43,9 +48,9 @@ public class LeaveController {
 		PageBean pageBean=new PageBean(Integer.parseInt(page),Integer.parseInt(rows));
 		Map<String,Object> map=new HashMap<String,Object>();
 		
-		// TODO
-//		String userId=(String) request.getSession().getAttribute("userId");
-//		map.put("userId",userId); // 用户名
+		//获取去登录人的信息
+		String userId=(String) request.getSession().getAttribute("userId");
+		map.put("userId",userId); // 用户名
 		map.put("start", pageBean.getStart());
 		map.put("size", pageBean.getPageSize());
 		List<Leave> leaveList=leaveService.find(map);
@@ -65,10 +70,12 @@ public class LeaveController {
 	 */
 	@RequestMapping("/save")
 	@ResponseBody
-	public MessageObj save(Leave leave,Integer flag,HttpServletRequest request){
+	public MessageObj save(Leave leave,Integer flag,HttpSession session){
 		MessageObj obj=new MessageObj();
 		int resultTotal=0;
-		resultTotal=leaveService.add(leave);
+		//获取登录人的信息
+		String userId=(String) session.getAttribute("userId");
+		resultTotal=leaveService.add(leave,userId);
 		if(resultTotal>0){//操作成功
 			obj.setSuccess();
 		}else{//操作失败

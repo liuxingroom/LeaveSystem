@@ -13,7 +13,7 @@ public interface LeaveService {
 	 * @param leave  封装请加信息的Javabean
  	 * @return
 	 */
-	int  add(Leave leave);
+	int  add(Leave leave,String userId);
 
 	/**
 	 * 分页查询请假信息
