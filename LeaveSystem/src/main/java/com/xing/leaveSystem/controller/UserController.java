@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,9 +36,35 @@ public class UserController {
 	 */
 	@RequestMapping("/login")
 	@ResponseBody
-	public MessageObj login(){
+	public MessageObj login(User user,String groupId,HttpSession session){
 		MessageObj result=new  MessageObj();
-		result.setSuccess();
+		List<Group> groups=null;
+		
+		//用户记录组（角色）名
+		String groupName="";
+		//根据用户名和密码查询用户
+		User users=userService.finUserByNameAndPwd(user);
+		//判断该用户是否有该权限  如果有登录成功
+		
+		if(users!=null && StringUtils.isNotEmpty(users.getGroups()) && users.getGroups().contains(groupId)){
+			StringBuffer buffer=new StringBuffer();
+			result.setSuccess();
+			groups=userService.findGroupByUserId(users.getUserId());
+			for(Group group:groups){
+				//拼接角色名
+				buffer.append(group.getName()+",");
+			}
+			//设置角色信息
+			session.setAttribute("groupName", buffer.toString());
+			//设置用户已登录的标记
+			session.setAttribute("userId", users.getUserId());
+			
+			//设置登录成功
+			result.setSuccess();
+			
+		}else{//如果没有登录失败
+			result.setFail();
+		}
 		return result;
 	}
 	

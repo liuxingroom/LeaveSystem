@@ -13,9 +13,11 @@
 <script type="text/javascript">
 
 	function formatAction(val,row){
-		if(row.state=='未提交'){
-			return "<a href='javascript:startApply("+row.id+")'>提交申请</a>";
-		}else if(row.state=='审核通过' || row.state=='审核未通过'){
+		console.log(row);
+		if(row.status=='未提交'){
+			alert("ss")
+			return "<a href=\"javascript:startApply('"+row.processinstanceId+"','"+row.leaveId+"')\">提交申请</a>";
+		}else if(row.status=='审核通过' || row.status=='审核未通过'){
 			return "<a href=''>查看历史批注</a>";
 		}
 	}
@@ -26,13 +28,13 @@
 	
 	function saveLeave(){
 		$("#fm").form("submit",{
-			url:'${pageContext.request.contextPath}/leave/save.do',
+			url:'${pageContext.request.contextPath}/leave/save.action',
 			onSubmit:function(){
 				return $(this).form("validate");
 			},
 			success:function(result){
 				var result=eval('('+result+')');
-				if(result.success){
+				if(result.result=="1"){
 					$.messager.alert("系统系统","保存成功！");
 					resetValue();
 					$("#dlg").dialog("close");
@@ -56,9 +58,10 @@
 		resetValue();
 	}
 	
-	function startApply(leaveId){
-		$.post("${pageContext.request.contextPath}/leave/startApply.do",{leaveId:leaveId},function(result){
-			if(result.success){
+	function startApply(processinstanceId,leaveId){
+		alert("ss");
+		$.post("${pageContext.request.contextPath}/leave/startApply.action",{'processinstanceId':processinstanceId,'leaveId':leaveId},function(result){
+			if(result.result=="1"){
 				$.messager.alert("系统系统","请假申请提交成功，目前审核中，请耐心等待！");
 				$("#dg").datagrid("reload");
 			}else{
@@ -72,16 +75,16 @@
 <body style="margin: 1px">
 <table id="dg" title="请假管理" class="easyui-datagrid"
   fitColumns="true" pagination="true" rownumbers="true"
-  url="${pageContext.request.contextPath}/leave/list.do" fit="true" toolbar="#tb">
+  url="${pageContext.request.contextPath}/leave/list.action" fit="true" toolbar="#tb">
  <thead>
  	<tr>
  		<th field="cb" checkbox="true" align="center"></th>
- 		<th field="id" width="30" align="center">编号</th>
- 		<th field="leaveDate" width="80" align="center">请假日期</th>
+ 		<th field="leaveId" width="30" align="center">编号</th>
+ 		<th field="createTime" width="80" align="center">请假日期</th>
  		<th field="leaveDays" width="30" align="center">请假天数</th>
  		<th field="leaveReason" width="200" align="center">请假原因</th>
- 		<th field="state" width="30" align="center">审核状态</th>
- 		<th field="processInstanceId" width="30" hidden="true" align="center">流程实例Id</th>
+ 		<th field="status" width="30" align="center">审核状态</th>
+ 		<th field="processinstanceId" width="30" hidden="true" align="center">流程实例Id</th>
  		<th field="action" width="50" align="center" formatter="formatAction">操作</th>
  	</tr>
  </thead>
@@ -105,8 +108,8 @@
  			<tr>
  				<td valign="top">请假原因：</td>
  				<td>
- 					<input type="hidden" name="user.id" value="${currentMemberShip.user.id }"/>
- 					<input type="hidden" name="state" value="未提交"/>
+ 					<%-- <input type="hidden" name="user.id" value="${currentMemberShip.user.id }"/> --%>
+ 					<!-- <input type="hidden" name="status" value="未提交"/> -->
  					<textarea type="text" id="leaveReason" name="leaveReason"  rows="5" cols="49" class="easyui-validatebox" required="true"></textarea>
  				</td>
  			</tr>

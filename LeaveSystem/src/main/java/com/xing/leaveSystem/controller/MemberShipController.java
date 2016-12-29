@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xing.leaveSystem.entity.MemberShip;
+import com.xing.leaveSystem.entity.User;
 import com.xing.leaveSystem.service.MemberShipService;
+import com.xing.leaveSystem.service.UserService;
 import com.xing.leaveSystem.utils.MessageObj;
 
 @Controller
@@ -24,6 +26,9 @@ public class MemberShipController {
 	@Resource
 	IdentityService identityService;
 	
+	@Resource
+	UserService userService;
+	
 	/**
 	 * 更新用户权限 先删除 后批量添加
 	 * @param userId
@@ -34,6 +39,7 @@ public class MemberShipController {
 	@ResponseBody
 	public MessageObj update(String userId,String groupsIds){
 		MessageObj obj=new MessageObj();
+		User user=null;
 		//删除本地数据库中用户和角色的关系
 		memberShipService.deleteAllGroupsByUserId(userId);
 		//查询工作流系统中该用户对应的角色信息
@@ -56,6 +62,12 @@ public class MemberShipController {
 			//添加工作流中用户角色的关联关系
 			identityService.createMembership(userId, gIds[i]);
 		}
+		/**更新用户表中groups字段信息*/
+		//获取用户对象
+		user=userService.findUserById(userId);
+		user.setGroups(groupsIds);
+		userService.update(user);
+		
 		obj.setSuccess();
 		return obj;
 	}

@@ -5,10 +5,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.xing.leaveSystem.dao.UserMapper">
 
 	<resultMap type="com.xing.leaveSystem.entity.User" id="UserResult">
-		<result property="userId" column="user_id"/>
-		<result property="userName" column="username"/>
-		<result property="email" column="email"/>
-		<result property="password" column="password"/>
+		<result property="userId" column="user_id" jdbcType="VARCHAR"/>
+		<result property="userName" column="username" jdbcType="VARCHAR"/>
+		<result property="email" column="email" jdbcType="VARCHAR"/>
+		<result property="password" column="password" jdbcType="VARCHAR"/>
+		<result property="groups" column="groups" jdbcType="VARCHAR"/>
 	</resultMap>
 	
 	<!-- 根据 用户名分页查询用户信息-->
@@ -63,6 +64,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				<if test="userName!=null and userName!=''">username=#{userName,jdbcType=VARCHAR},</if>
 				<if test="password!=null and password!=''">password=#{password,jdbcType=VARCHAR},</if>
 				<if test="email!=null and email!=''">email=#{email,jdbcType=VARCHAR},</if>
+				<if test="groups!=null and groups!=''">groups=#{groups,jdbcType=VARCHAR},</if>
 			</trim>
 		</set>
 		<where>
@@ -78,4 +80,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 	</delete>
 	
+	<!-- 通过用户id来获取用户信息 -->
+	<select id="findUserById" resultMap="UserResult">
+		select * from leave_system_user 
+		<where>
+			 user_id=#{userId}
+		</where>
+	</select>
+	
+	<!-- 通过用户名和密码来获取用户信息 -->
+	<select id="finUserByNameAndPwd" resultMap="UserResult" parameterType="com.xing.leaveSystem.entity.User">
+		select * from leave_system_user 
+		<where>
+			<if test="userName!=null and userName!=''">
+				and username=#{userName}
+			</if>
+			<if test="password!=null and password!=''">
+				and password=#{password}
+			</if>
+		</where>
+	</select>
 </mapper> 

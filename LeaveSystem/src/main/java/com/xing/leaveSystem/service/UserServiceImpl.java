@@ -30,6 +30,9 @@ public class UserServiceImpl implements UserService{
 	@Resource
 	IdentityService identityService;
 	
+	@Resource
+	GroupService groupService;
+	
 	@Override
 	public List<User> find(Map<String, Object> map) {
 		List<User> userList=userMapper.find(map);
@@ -127,6 +130,25 @@ public class UserServiceImpl implements UserService{
 		//删除工作流重用户的信息
 		identityService.deleteUser(userId);
 		
+	}
+
+	@Override
+	public User findUserById(String userId) {
+		User user=userMapper.findUserById(userId);
+		return user;
+	}
+
+	@Override
+	public User finUserByNameAndPwd(User user) {
+		User user2=userMapper.finUserByNameAndPwd(user);
+		return user2;
+	}
+
+	@Override
+	public List<com.xing.leaveSystem.entity.Group> findGroupByUserId(
+			String userId) {
+		List<com.xing.leaveSystem.entity.Group> groups=groupService.findGroupByUserId(userId);
+		return groups;
 	}
 	
 }

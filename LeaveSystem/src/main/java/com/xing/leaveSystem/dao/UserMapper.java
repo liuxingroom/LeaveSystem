@@ -49,5 +49,19 @@ public interface UserMapper {
 	 * @param userId
 	 */
 	public void delete(@Param("userId")String userId);
+
+	/**
+	 * 通过用户id来获取用户信息
+	 * @param userId
+	 * @return
+	 */
+	User findUserById(@Param("userId")String userId);
+
+	/**
+	 * 通过用户名和密码来获取用户信息
+	 * @param user
+	 * @return
+	 */
+	User finUserByNameAndPwd(User user);
 	
 }

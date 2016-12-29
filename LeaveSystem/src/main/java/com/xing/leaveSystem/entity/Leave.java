@@ -1,7 +1,8 @@
 package com.xing.leaveSystem.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
+
 
 /**
  * Çë¼Ù¼ÇÂ¼±í
@@ -70,8 +71,8 @@ public class Leave implements Serializable{
 	public Date getCreateTime() {
 		return createTime;
 	}
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
+	public void setCreateTime(Date date) {
+		this.createTime = date;
 	}
 	public Date getEndTime() {
 		return endTime;

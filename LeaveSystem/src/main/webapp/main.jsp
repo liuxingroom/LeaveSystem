@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,10 +9,11 @@
 <title>Insert title here</title>
 <%
 	// 权限验证
-	/* if(session.getAttribute("currentMemberShip")==null){
+    if(session.getAttribute("userId")==null){
+    	System.out.println("----------------------------------------------"+session.getAttribute("userId"));
 		response.sendRedirect("login.jsp");
 		return;
-	} */
+	} 
 %>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/jquery-easyui-1.3.3/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/jquery-easyui-1.3.3/themes/icon.css">
@@ -46,10 +48,10 @@
  		<td valign="bottom" align="right" width="50%">
  			<font size="3">&nbsp;&nbsp;<strong>欢迎：</strong>${currentMemberShip.user.id }(${currentMemberShip.user.firstName }${currentMemberShip.user.lastName })【${currentMemberShip.group.name}】</font>
  		</td>
- 		<td valign="bottom" align="right" width="50%">
+ 		<!-- <td valign="bottom" align="right" width="50%">
  			<a href="javascript:openPasswordModifyDialog()" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-modifyPassword'" style="width: 150px;">修改密码</a>
 			<a href="javascript:logout()" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-exit'" style="width: 150px;">安全退出</a>
- 		</td>
+ 		</td> -->
  	</tr>
  </table>
 </div>
@@ -62,7 +64,7 @@
 </div>
 <div region="west" style="width: 200px;" title="导航菜单" split="true">
 	<div class="easyui-accordion" data-options="fit:true,border:false">
-	    <%-- <c:if test="${currentMemberShip.group.name=='管理员' }"> --%>
+	     <%-- <c:if test="${fn:contains(groupName,'管理员')==true}">  --%>
 			<div title="基础数据管理" data-options="selected:true,iconCls:'icon-item'" style="padding: 10px">
 				<a href="javascript:openTab('用户管理','userManage.jsp','icon-user')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-user'" style="width: 150px">用户管理</a>
 				<a href="javascript:openTab('角色管理','groupManage.jsp','icon-role')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-role'" style="width: 150px">角色管理</a>
@@ -78,7 +80,7 @@
 			<a href="javascript:openTab('已办任务管理','yibanManage.jsp','icon-yiban')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-yiban'" style="width: 150px;">已办任务管理</a>
 			<a href="javascript:openTab('历史任务管理','lishiManage.jsp','icon-lishi')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-lishi'" style="width: 150px;">历史任务管理</a>
 		</div>
-		<%-- <c:if test="${currentMemberShip.group.name=='学生'}"> --%>
+		<%-- <c:if test="${fn:contains(groupName,'学生')==true}">  --%>
 			<div title="业务管理"  data-options="iconCls:'icon-yewu'" style="padding:10px">
 				<a href="javascript:openTab('请假申请','leaveManage.jsp','icon-apply')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-apply'" style="width: 150px">请假申请</a>
 			</div>

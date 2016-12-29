@@ -16,11 +16,11 @@
 		$("#fm").form("submit",{
 			url:"${pageContext.request.contextPath}/user/login.action",
 			onSubmit:function(){
-				/* if($("#groupId").combobox("getValue")=="-1"){
+			     if($("#groupId").combobox("getValue")=="-1"){
 					$.messager.alert("系统提示","请选择用户角色！");
 					return false;
-				} */
-				/* return $(this).form("validate"); */
+				} 
+				 return $(this).form("validate");
 			},
 			success:function(data){
 				var data=eval('('+data+')');
@@ -65,10 +65,10 @@
 				</td>
 			</tr>
 			<tr>
-				<%--<td>角色：</td>
+			   <td>角色：</td>
 				 <td>
-					<input  id="groupId" name="groupId" class="easyui-combobox" data-options="panelHeight:'auto',valueField:'id',textField:'name',url:'${pageContext.request.contextPath}/group/groupComboList.do'" value="-1"/>
-				</td> --%>
+					<input  id="groupId" name="groupId" class="easyui-combobox" style="width: 200px" data-options="panelHeight:'auto',valueField:'id',textField:'name',url:'${pageContext.request.contextPath}/group/groupComboList.action'" value="-1"/>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2"></td>

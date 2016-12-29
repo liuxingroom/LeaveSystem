@@ -1,5 +1,6 @@
 package com.xing.leaveSystem.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -143,5 +144,25 @@ public class GroupController {
 			obj.setDataObject(buffer.toString());
 		}
 		return obj;
+	}
+	
+	/**
+	 * 查询所有的角色信息
+	 * @return
+	 */
+	@RequestMapping("/groupComboList")
+	@ResponseBody
+	public List<Group> groupComboList(){
+		Group group=new Group();
+		List<Group> groupList=new ArrayList<Group>();
+		group.setId("-1");
+		group.setName("请选择角色");
+		List<Group> groups=groupService.find(null);
+		groupList.add(group);
+		for(Group g:groups){
+			groupList.add(g);
+		}
+		return groupList;
+		
 	}
 }

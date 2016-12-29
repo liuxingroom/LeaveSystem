@@ -17,4 +17,10 @@ public class CommonConstants implements Serializable{
 	/**失败为0*/
 	public  static final String FALSE="0";
 	
+	/**未提交*/
+	public static final String NOT_SUBMIT="未提交";
+	
+	/**审核中*/
+	public static final String AUDIT="审核中";
+	
 }

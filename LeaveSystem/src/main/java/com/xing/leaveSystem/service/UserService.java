@@ -3,6 +3,7 @@ package com.xing.leaveSystem.service;
 import java.util.List;
 import java.util.Map;
 
+import com.xing.leaveSystem.entity.Group;
 import com.xing.leaveSystem.entity.User;
 
 public interface UserService {
@@ -47,5 +48,26 @@ public interface UserService {
 	 * @param string
 	 */
     public void  delete(String userId);
+    
+    /**
+     * 通过用户id来获取用户信息
+     * @param userId
+     * @return
+     */
+	User findUserById(String userId);
+
+	/**
+	 * 通过用户名和密码查询用户信息
+	 * @param user
+	 * @return
+	 */
+	User finUserByNameAndPwd(User user);
+
+	/**
+	 * 通过用户id来获取组信息
+	 * @param userId
+	 * @return
+	 */
+	List<Group> findGroupByUserId(String userId);
 
 }
