@@ -57,4 +57,11 @@ public interface GroupService {
 	 */
 	List<Group> findGroupByUserId(String userId);
 
+	/**
+	 * 查看角色id是否存在
+	 * @param id
+	 * @return
+	 */
+	Group finGroupById(String id);
+
 }

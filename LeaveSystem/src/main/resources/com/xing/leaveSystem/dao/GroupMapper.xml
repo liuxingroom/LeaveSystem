@@ -65,4 +65,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		LEFT JOIN leave_system_membership p ON  g.group_id=p.group_id 
 		WHERE p.user_id=#{userId}
 	</select>
+	
+	<!-- 查看该角色id是否存在 -->
+	<select id="finGroupById" resultMap="GroupResult">
+		select * from leave_system_group where group_id=#{id}
+	</select>
 </mapper>

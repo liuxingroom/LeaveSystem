@@ -57,4 +57,11 @@ public interface GroupMapper {
 	 */
 	List<Group> findGroupByUserId(@Param("userId")String userId);
 
+	/**
+	 * 查看角色id是否存在
+	 * @param id
+	 * @return
+	 */
+	Group finGroupById(@Param("id")String id);
+
 }

@@ -43,8 +43,8 @@ public class GroupServiceImpl implements GroupService{
 	@Override
 	public int add(Group group) {
 		//Éú³É½ÇÉ«id
-		String id=UUIDBuild.getInstance().generate();
-		group.setId(id);
+		/*String id=UUIDBuild.getInstance().generate();
+		group.setId(id);*/
 		int resultTotal=groupMapper.add(group);
 		GroupEntity entity=new GroupEntity();
 		try {
@@ -120,6 +120,12 @@ public class GroupServiceImpl implements GroupService{
 	public List<Group> findGroupByUserId(String userId) {
 		List<Group> groupList=groupMapper.findGroupByUserId(userId);
 		return groupList;
+	}
+
+	@Override
+	public Group finGroupById(String id) {
+		Group group=groupMapper.finGroupById(id);
+		return group;
 	}
 	
 	

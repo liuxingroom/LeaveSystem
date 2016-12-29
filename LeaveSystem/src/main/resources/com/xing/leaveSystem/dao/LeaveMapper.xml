@@ -38,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			select * from leave_system_leave
 	    <where>
 			<if test="userId!=null and userId!='' ">
-				 and userId = #{userId}
+				 and user_id = #{userId}
 			</if>
 		</where>
 		order by createtime desc

@@ -13,9 +13,7 @@
 <script type="text/javascript">
 
 	function formatAction(val,row){
-		console.log(row);
 		if(row.status=='未提交'){
-			alert("ss")
 			return "<a href=\"javascript:startApply('"+row.processinstanceId+"','"+row.leaveId+"')\">提交申请</a>";
 		}else if(row.status=='审核通过' || row.status=='审核未通过'){
 			return "<a href=''>查看历史批注</a>";

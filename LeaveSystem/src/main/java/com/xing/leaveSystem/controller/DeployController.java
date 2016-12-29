@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.zip.ZipInputStream;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
+import org.activiti.engine.IdentityService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.repository.Deployment;
 import org.apache.commons.beanutils.BeanUtils;
@@ -32,9 +34,12 @@ public class DeployController {
 	@Resource
 	RepositoryService repositoryService;
 	
+	@Resource
+	IdentityService identityService;
+	
 	@RequestMapping("/deploy")
 	@ResponseBody
-	public MessageObj deploy(MultipartFile deployFileBpmn,MultipartFile deployFilePng ){
+	public MessageObj deploy(MultipartFile deployFileBpmn,MultipartFile deployFilePng ,HttpSession session){
 		MessageObj obj=new MessageObj();
 		try {
 			//获取上传文件bpmn 文件的信息
@@ -44,6 +49,8 @@ public class DeployController {
 			//获取上传文件png  文件信息
 			String resourceName_png=deployFilePng.getOriginalFilename();
 			InputStream inputStream_png=deployFilePng.getInputStream();
+			//设置流程启动人
+			identityService.setAuthenticatedUserId((String)session.getAttribute("userId"));
 			
 			Deployment deployment=repositoryService.createDeployment()
 					.name(resourceName_bpmn)

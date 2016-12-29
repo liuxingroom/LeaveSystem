@@ -165,4 +165,22 @@ public class GroupController {
 		return groupList;
 		
 	}
+	
+	/**
+	 * 查看该角色id是否存在
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("/existGroupID")
+	@ResponseBody
+	public  MessageObj existGroupID(String id){
+		MessageObj obj=new MessageObj();
+		Group group=groupService.finGroupById(id);
+		if(group!=null){//如果存在
+			obj.setSuccess();
+		}else{//如果不存在
+			obj.setFail();
+		}
+		return obj;
+	}
 }

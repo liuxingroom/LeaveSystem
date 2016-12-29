@@ -12,7 +12,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript">
 
-	
+	/**删除角色信息*/
 	function deleteGroup(){
 		var selectRows=$("#dg").datagrid("getSelections");
 		if(selectRows.length==0){
@@ -38,13 +38,14 @@
 		});
 	}
 	
-	
+	/**弹出添加对话框*/
 	function openGroupAddDiglog(){
 		$("#dlg").dialog("open").dialog("setTitle","添加角色信息");
 		$("#flag").val(1);
-		$("#id").attr("readonly",true);
+		$("#id").attr("readonly",false);
 	}
 	
+	/**弹出修改对话框*/
 	function openGroupModifyDiglog(){
 		var selectRows=$("#dg").datagrid("getSelections");
 		if(selectRows.length!=1){
@@ -58,7 +59,7 @@
 		$("#id").attr("readonly",true);
 	}
 	
-	
+	/**校验数据（角色名和角色id）*/
 	function checkData(){
 		if($("#name").val()==''){
 			$.messager.alert("系统系统","请输入角色名！");
@@ -67,12 +68,21 @@
 		}
 		var flag=$("#flag").val();
 		if(flag==1){
-			$.post("${pageContext.request.contextPath}/group/existGroupName.action",{groupName:$("#name").val()},function(result){
-				if(result.exist){
-					$.messager.alert("系统系统","该角色名已存在，请更换下！");
-					$("#name").focus();
+			//判断角色id是否存在
+			$.post("${pageContext.request.contextPath}/group/existGroupID.action",{id:$("#id").val()},function(result){
+				if(result.result=="1"){
+					$.messager.alert("系统系统","该角色id已存在，请更换下！");
+					$("#id").focus();
 				}else{
-					saveGroup();
+					//判断角色名是否存在
+					$.post("${pageContext.request.contextPath}/group/existGroupName.action",{groupName:$("#name").val()},function(result){
+						if(result.result=="1"){
+							$.messager.alert("系统系统","该角色名已存在，请更换下！");
+							$("#name").focus();
+						}else{
+							saveGroup();
+						}
+					},"json");
 				}
 			},"json");
 		}else{
@@ -140,7 +150,7 @@
  			<tr>
  				<td>角色id：</td>
  				<td>
- 					<input type="text" id="id" name="id"  required="true"/>
+ 					<input type="text" id="id" name="id"  class="easyui-validatebox" required="true"/>
  				</td>
  				<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
  				<td>角色名称：</td>
