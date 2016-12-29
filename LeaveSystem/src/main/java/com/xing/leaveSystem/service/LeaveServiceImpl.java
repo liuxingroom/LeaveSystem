@@ -1,6 +1,7 @@
 package com.xing.leaveSystem.service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -51,8 +52,12 @@ public class LeaveServiceImpl implements LeaveService{
 		//设置流程启动人
 		identityService.setAuthenticatedUserId(userId);
 		
-		//启动流程实例
-		ProcessInstance processinstance=runtimeService.startProcessInstanceByKey(processDefinitionKey, leaveId);
+		//设置全局流程变量
+		Map<String, Object> variables=new  HashMap<String, Object>();
+		variables.put("days", leave.getLeaveDays());
+		
+		//启动流程实例  同时设置流程变量（请假天数）
+		ProcessInstance processinstance=runtimeService.startProcessInstanceByKey(processDefinitionKey, leaveId,variables);
 		//向请假对象中设置流程实例id
 		leave.setProcessinstanceId(processinstance.getProcessInstanceId());
 		int resultTotal=leaveMapper.add(leave);

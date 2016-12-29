@@ -55,13 +55,13 @@ public class TaskController {
 		}
 		PageBean pageBean=new PageBean(Integer.parseInt(page),Integer.parseInt(rows));
 		String processDefinitionKey=ResourceUtil.getValue("diagram.leavesystem", "studentLeaveProcess");
-		if(flag==1){
+		if(flag==1){//flag=1表示该任务已经拾取
 			list=taskService.createTaskQuery().
 				//processDefinitionKey(processDefinitionKey).   //通过流程定义的key来查询
 				taskAssignee(userId).           //通过用户id来查询
 				taskNameLike("%"+s_name+"%").        //通过任务名来查询
 				listPage(pageBean.getStart(), pageBean.getPageSize()); //返回带分页的结果集合
-		}else{
+		}else{//表示该任务还未拾取
 			list=taskService.createTaskQuery().
 				//processDefinitionKey(processDefinitionKey).   //通过流程定义的key来查询
 				taskCandidateUser(userId).           //通过用户id来查询
@@ -125,7 +125,6 @@ public class TaskController {
 		if(task!=null){
 			Map<String, Object> variables=new HashMap<String, Object>();
 			variables.put("msg", "通过");
-			variables.put("days", 7);
 			taskService.complete(taskId,variables);
 			obj.setSuccess();
 		}else{
