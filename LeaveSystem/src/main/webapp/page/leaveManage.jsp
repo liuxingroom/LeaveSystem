@@ -78,7 +78,7 @@
  	<tr>
  		<th field="cb" checkbox="true" align="center"></th>
  		<th field="leaveId" width="30" align="center">编号</th>
- 		<th field="createTime" width="80" align="center">请假日期</th>
+ 		<th field="createTimeStr" width="80" align="center">请假日期</th>
  		<th field="leaveDays" width="30" align="center">请假天数</th>
  		<th field="leaveReason" width="200" align="center">请假原因</th>
  		<th field="status" width="30" align="center">审核状态</th>

@@ -1,6 +1,7 @@
 package com.xing.leaveSystem.entity;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /** 
@@ -20,8 +21,12 @@ public class MyProcessInstance implements Serializable{
 	private String activityId;
 	/**创建时间*/
 	private Date startTime;
+	/**创建时间（字符串表现形式）*/
+	private String startTimeStr;
 	/**结束时间*/
 	private Date endTime;
+	/**结束时间（字符串表示方式）*/
+	private String endTimeStr;
 	/**流程定义信息*/
 	private String processDefinitionId;
 	
@@ -63,5 +68,24 @@ public class MyProcessInstance implements Serializable{
 	public void setProcessDefinitionId(String processDefinitionId) {
 		this.processDefinitionId = processDefinitionId;
 	}
+	public String getStartTimeStr() {
+		if(startTime!=null){
+			startTimeStr=new SimpleDateFormat("yyyy-MM-dd").format(startTime);
+		}
+		return startTimeStr;
+	}
+	public void setStartTimeStr(String startTimeStr) {
+		this.startTimeStr = startTimeStr;
+	}
+	public String getEndTimeStr() {
+		if(endTime!=null){
+			endTimeStr=new SimpleDateFormat("yyyy-MM-dd").format(endTime);
+		}
+		return endTimeStr;
+	}
+	public void setEndTimeStr(String endTimeStr) {
+		this.endTimeStr = endTimeStr;
+	}
+	
 
 }

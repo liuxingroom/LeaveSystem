@@ -1,6 +1,7 @@
 package com.xing.leaveSystem.entity;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MyDeployment implements Serializable{
@@ -15,6 +16,8 @@ public class MyDeployment implements Serializable{
 	private String name;
 	/**部署时间*/
 	private Date deploymentTime;
+	/**部署时间（字符串显示）*/
+	private String deploymentTimeStr;
 	public String getId() {
 		return id;
 	}
@@ -32,6 +35,15 @@ public class MyDeployment implements Serializable{
 	}
 	public void setDeploymentTime(Date deploymentTime) {
 		this.deploymentTime = deploymentTime;
+	}
+	public String getDeploymentTimeStr() {
+		if(deploymentTime!=null){
+			deploymentTimeStr=new SimpleDateFormat("yyyy-MM-dd").format(deploymentTime);
+		}
+		return deploymentTimeStr;
+	}
+	public void setDeploymentTimeStr(String deploymentTimeStr) {
+		this.deploymentTimeStr = deploymentTimeStr;
 	}
 	
 	

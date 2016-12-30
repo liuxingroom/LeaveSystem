@@ -85,7 +85,7 @@
  		<th field="cb" checkbox="true" align="center"></th>
  		<th field="id" width="100" align="center">编号</th>
  		<th field="name" width="100" align="center">流程名称</th>
- 		<th field="deploymentTime" width="100" align="center">部署时间</th>
+ 		<th field="deploymentTimeStr" width="100" align="center">部署时间</th>
  	</tr>
  </thead>
 </table>

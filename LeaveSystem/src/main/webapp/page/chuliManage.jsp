@@ -92,7 +92,7 @@
  		<th field="cb" checkbox="true" align="center"></th>
  		<th field="id" width="100" align="center">任务ID</th>
  		<th field="name" width="100" align="center">任务名称</th>
- 		<th field="createTime" width="100" align="center">创建时间</th>
+ 		<th field="createTimeStr" width="100" align="center">创建时间</th>
  		<th field="action" width="100" align="center" formatter="formatAction">操作</th>
  	</tr>
  </thead>

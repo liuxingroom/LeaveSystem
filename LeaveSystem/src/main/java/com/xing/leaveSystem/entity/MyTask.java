@@ -1,6 +1,7 @@
 package com.xing.leaveSystem.entity;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -18,8 +19,12 @@ public class MyTask implements Serializable{
 	private String name;
 	/**创建时间*/
 	private Date createTime;
+	/**创建时间支付串表示方式*/
+	private String createTimeStr;
 	/**结束时间*/
 	private Date endTime;
+	/**结束时间（字符串表示方式）*/
+	private String endTimeStr;
 	/**任务办理人*/
 	private String userName;
 	/**任务标识*/
@@ -68,4 +73,24 @@ public class MyTask implements Serializable{
 	public void setTaskDefinitionKey(String taskDefinitionKey) {
 		this.taskDefinitionKey = taskDefinitionKey;
 	}
+	public String getCreateTimeStr() {
+		if(createTime!=null){
+			createTimeStr=new SimpleDateFormat("yyyy-MM-dd").format(createTime);
+		}
+		return createTimeStr;
+	}
+	public void setCreateTimeStr(String createTimeStr) {
+		this.createTimeStr = createTimeStr;
+	}
+	public String getEndTimeStr() {
+		if(endTime!=null){
+			endTimeStr=new SimpleDateFormat("yyyy-MM-dd").format(endTime);
+		}
+		return endTimeStr;
+	}
+	public void setEndTimeStr(String endTimeStr) {
+		this.endTimeStr = endTimeStr;
+	}
+	
+	
 }

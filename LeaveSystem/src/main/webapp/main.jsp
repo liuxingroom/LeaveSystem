@@ -77,12 +77,12 @@
 		<div title="任务管理" data-options="iconCls:'icon-task'" style="padding:10px">
 			<a href="javascript:openTab('拾取待办任务','daibanManage.jsp','icon-daiban')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-daiban'" style="width: 150px;">拾取待办任务</a>
 			<a href="javascript:openTab('处理待办任务','chuliManage.jsp','icon-daiban')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-daiban'" style="width: 150px;">处理待办任务</a>
-			<a href="javascript:openTab('已办任务管理','yibanManage.jsp','icon-yiban')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-yiban'" style="width: 150px;">已办任务管理</a>
-			<a href="javascript:openTab('历史任务管理','lishiManage.jsp','icon-lishi')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-lishi'" style="width: 150px;">历史任务管理</a>
+			<!-- <a href="javascript:openTab('已办任务管理','yibanManage.jsp','icon-yiban')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-yiban'" style="width: 150px;">已办任务管理</a>
+			<a href="javascript:openTab('历史任务管理','lishiManage.jsp','icon-lishi')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-lishi'" style="width: 150px;">历史任务管理</a> -->
 		</div>
 		<div title="流程监控"  data-options="iconCls:'icon-system'" style="padding:10px">
 			<a href="javascript:openTab('当前运行流程务管理','yunxingManage.jsp','icon-yiban')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-yiban'" style="width: 150px;">当前运行流程务管理</a>
-			<a href="javascript:openTab('已结束管理','jieshuManage.jsp','icon-yiban')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-yiban'" style="width: 150px;">已结束管理</a>
+			<a href="javascript:openTab('已结束管理','jieshuManage.jsp','icon-lishi')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-yiban'" style="width: 150px;">已结束管理</a>
 		</div>
 		<%-- <c:if test="${fn:contains(groupName,'学生')==true}">  --%>
 			<div title="业务管理"  data-options="iconCls:'icon-yewu'" style="padding:10px">

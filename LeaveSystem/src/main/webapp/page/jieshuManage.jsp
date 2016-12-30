@@ -48,8 +48,8 @@
  	<tr>
  		<th field="cb" checkbox="true" align="center"></th>
  		<th field="processInstanceId" width="100" align="center">流程实例id</th>
- 		<th field="startTime" width="100" align="center">创建时间</th>
- 		<th field="endTime" width="100" align="center">结束时间</th>
+ 		<th field="startTimeStr" width="100" align="center">创建时间</th>
+ 		<th field="endTimeStr" width="100" align="center">结束时间</th>
  		<th field="activityId" width="100" align="center">当前活动</th>
  		<th field="action" width="100" align="center" formatter="formatAction">查看历史任务</th>
  	</tr>

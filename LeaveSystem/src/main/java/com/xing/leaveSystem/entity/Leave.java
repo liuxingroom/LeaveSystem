@@ -1,6 +1,7 @@
 package com.xing.leaveSystem.entity;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -28,8 +29,12 @@ public class Leave implements Serializable{
 	private String leaveReason;
 	/**创建时间*/
 	private Date createTime;
+	/**创建时间(支付串表现方式)*/
+	private String createTimeStr;
 	/**结束时间*/
 	private Date endTime;
+	/**结束时间（字符串表现方式）*/
+	private String endTimeStr;
 	/**请假记录所对应的流程实例id*/
 	private  String  processinstanceId;
 	public String getLeaveId() {
@@ -85,6 +90,24 @@ public class Leave implements Serializable{
 	}
 	public void setProcessinstanceId(String processinstanceId) {
 		this.processinstanceId = processinstanceId;
+	}
+	public String getCreateTimeStr() {
+		if(createTime!=null){
+			createTimeStr=new SimpleDateFormat("yyyy-MM-dd").format(createTime);
+		}
+		return createTimeStr;
+	}
+	public void setCreateTimeStr(String createTimeStr) {
+		this.createTimeStr = createTimeStr;
+	}
+	public String getEndTimeStr() {
+		if(endTime!=null){
+			endTimeStr=new SimpleDateFormat("yyyy-MM-dd").format(endTime);
+		}
+		return endTimeStr;
+	}
+	public void setEndTimeStr(String endTimeStr) {
+		this.endTimeStr = endTimeStr;
 	}
 	
 	

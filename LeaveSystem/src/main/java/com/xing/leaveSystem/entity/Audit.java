@@ -1,6 +1,7 @@
 package com.xing.leaveSystem.entity;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Audit implements Serializable{
@@ -23,6 +24,9 @@ public class Audit implements Serializable{
 	private String status;
 	/**审核时间*/
 	private Date createTime;
+	/**审核时间支付串表现形式*/
+	private String createTimeStr;
+	
 	public String getAuditId() {
 		return auditId;
 	}
@@ -65,6 +69,16 @@ public class Audit implements Serializable{
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	/**格式化时间（将日期对象转换成支付串）*/
+	public String getCreateTimeStr() {
+		if(createTime!=null){
+			createTimeStr=new SimpleDateFormat("yyyy-MM-dd").format(createTime);
+		}
+		return createTimeStr;
+	}
+	public void setCreateTimeStr(String createTimeStr) {
+		this.createTimeStr = createTimeStr;
 	}
 	
 	
