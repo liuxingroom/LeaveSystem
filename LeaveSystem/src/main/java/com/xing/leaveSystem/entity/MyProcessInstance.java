@@ -22,6 +22,9 @@ public class MyProcessInstance implements Serializable{
 	private Date startTime;
 	/**结束时间*/
 	private Date endTime;
+	/**流程定义信息*/
+	private String processDefinitionId;
+	
 
 	public String getProcessInstanceId() {
 		return processInstanceId;
@@ -54,5 +57,11 @@ public class MyProcessInstance implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+	public String getProcessDefinitionId() {
+		return processDefinitionId;
+	}
+	public void setProcessDefinitionId(String processDefinitionId) {
+		this.processDefinitionId = processDefinitionId;
+	}
+
 }

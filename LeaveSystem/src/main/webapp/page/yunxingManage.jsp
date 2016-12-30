@@ -20,23 +20,11 @@
 		});
 	}
 
+	/**返回查看当前运行节点的链接*/
 	function formatAction(val,row){
-		var userId=$("#userId").val();
-		return "<a href=\"javascript:claimTask('"+row.id+"','"+userId+"')\">查看当前运行节点</a>";
+		return "<a href='${pageContext.request.contextPath}/flow/queryLeaveMap.action?processInstanceId="+row.processInstanceId+"'>查看当前运行节点</a>";
 		
 	}
-	
-	/**拾取任务*/
-	/* function claimTask(taskId,userId){
-		$.post("${pageContext.request.contextPath}/task/claimTask.action",{taskId:taskId,userId:userId},function(result){
-			if(result.result=="1"){//如果储存在同名的用户
-				$("#dg").datagrid("reload");
-				$.messager.alert("任务拾取","拾取任务成功");
-			}else{
-				$.messager.alert("任务拾取","任务拾取失败");
-			}
-		},"json");
-	} */
 
 </script>
 </head>
@@ -50,6 +38,7 @@
  		<th field="processInstanceId" width="100" align="center">流程实例id</th>
  		<th field="startTime" width="100" align="center">创建时间</th>
  		<th field="activityId" width="100" align="center">当前活动</th>
+ 		<th field="processDefinitionId" hidden="true" width="100" align="center">流程定义</th>
  		<th field="action" width="100" align="center" formatter="formatAction">查看流程图</th>
  	</tr>
  </thead>

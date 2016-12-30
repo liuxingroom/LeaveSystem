@@ -78,9 +78,9 @@ public class ProcessDefinitionController {
 	}
 	
 	/**
-	 * jiang
-	 * @param deploymentId
-	 * @param diagramResourceName
+	 * 显示工作流程图片信息
+	 * @param deploymentId  部署id
+	 * @param diagramResourceName  要显示的资源名
 	 * @param response
 	 * @throws Exception
 	 */

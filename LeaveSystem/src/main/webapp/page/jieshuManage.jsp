@@ -27,7 +27,7 @@
 	}
 	
 	/**拾取任务*/
-	function claimTask(taskId,userId){
+/* 	function claimTask(taskId,userId){
 		$.post("${pageContext.request.contextPath}/task/claimTask.action",{taskId:taskId,userId:userId},function(result){
 			if(result.result=="1"){//如果储存在同名的用户
 				$("#dg").datagrid("reload");
@@ -36,7 +36,7 @@
 				$.messager.alert("任务拾取","任务拾取失败");
 			}
 		},"json");
-	}
+	} */
 
 </script>
 </head>
@@ -57,7 +57,7 @@
 </table>
 <div id="tb">
  <div>
- 	&nbsp;任务名称&nbsp;<input type="text" id="s_name" size="20" onkeydown="if(event.keyCode==13) searchTask()"/>
+ 	&nbsp;流程实例id&nbsp;<input type="text" id="s_name" size="20" onkeydown="if(event.keyCode==13) searchTask()"/>
  	<a href="javascript:searchTask()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
  	<input type="hidden" id="userId" value="${userId} "/>
  </div>
