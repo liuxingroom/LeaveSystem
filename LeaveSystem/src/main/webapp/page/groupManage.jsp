@@ -40,6 +40,8 @@
 	
 	/**弹出添加对话框*/
 	function openGroupAddDiglog(){
+		/*将填写框中的信息制空*/
+		resetValue();
 		$("#dlg").dialog("open").dialog("setTitle","添加角色信息");
 		$("#flag").val(1);
 		$("#id").attr("readonly",false);

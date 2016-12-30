@@ -1,6 +1,8 @@
 package com.xing.leaveSystem.controller;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,7 +10,11 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.activiti.engine.HistoryService;
+import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
+import org.activiti.engine.runtime.ProcessInstance;
+import org.activiti.engine.runtime.ProcessInstanceQuery;
 import org.activiti.engine.task.Task;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.log4j.Logger;
@@ -17,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xing.leaveSystem.entity.Audit;
+import com.xing.leaveSystem.entity.MyProcessInstance;
 import com.xing.leaveSystem.entity.MyTask;
 import com.xing.leaveSystem.entity.PageBean;
 import com.xing.leaveSystem.service.TaskAuditService;
@@ -34,6 +41,12 @@ public class TaskController {
 	
 	@Resource
 	TaskAuditService taskAuditService;
+	
+	@Resource
+	HistoryService historyService;
+	
+	@Resource
+	RuntimeService runtimeService;
 	
 	/***
 	 * 
@@ -150,6 +163,63 @@ public class TaskController {
 		}else{
 			obj.setFail();
 		}
+		return obj;
+	}
+	
+	/**
+	 * 查看历史任务
+	 * @param userId
+	 * @return
+	 */
+	@RequestMapping("/historyList")
+	@ResponseBody
+	public ResultObj historyList(String userId){
+		ResultObj obj=new ResultObj();
+		historyService.createHistoricTaskInstanceQuery();
+		String processDefinitionKey=ResourceUtil.getValue("diagram.leavesystem", "studentLeaveProcess");
+		return obj;
+	}
+	
+	/**
+	 *  查看当前运行的流程实例信息
+	 *  
+	 */
+	@RequestMapping("/queryActivityLeave")
+	@ResponseBody
+	public ResultObj queryActivityLeave(){
+		ResultObj obj=new ResultObj();
+		//创建页显示的流程实例的集合
+		List<MyProcessInstance> processInstances=new ArrayList<MyProcessInstance>();
+		//获取流程定义的key
+		String processDefinitionKey=ResourceUtil.getValue("diagram.leavesystem", "studentLeaveProcess");
+		//获取流程实例查询对象
+		ProcessInstanceQuery processInstanceQuery=runtimeService.createProcessInstanceQuery()
+				.processDefinitionKey(processDefinitionKey)
+				.orderByProcessInstanceId()
+				.desc();
+		//查询流程实例信息
+		List<ProcessInstance> list=processInstanceQuery.list();
+		
+		//遍历流程实例对象封装流程实例信息并带到页面显示
+		try {
+			for(ProcessInstance instance:list){
+				
+				MyProcessInstance myProcessInstance=new MyProcessInstance();
+				BeanUtils.copyProperties(myProcessInstance, instance);
+				//获取流程实例创建时间
+				Date startTime=historyService.createHistoricProcessInstanceQuery().processInstanceId(myProcessInstance.getProcessInstanceId()).singleResult().getStartTime();
+				myProcessInstance.setName(instance.getName());
+				myProcessInstance.setCreateTime(startTime);
+				processInstances.add(myProcessInstance);
+				
+			}
+		} catch (Exception e) {
+			logger.error("流程实例信息复制失败");
+			e.printStackTrace();
+		} 
+		int total=processInstances.size();
+		obj.setRows(processInstances);
+		obj.setTotal(total);
 		return obj;
 	}
 }

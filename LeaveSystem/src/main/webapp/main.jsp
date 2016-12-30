@@ -77,6 +77,8 @@
 		<div title="任务管理" data-options="iconCls:'icon-task'" style="padding:10px">
 			<a href="javascript:openTab('拾取待办任务','daibanManage.jsp','icon-daiban')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-daiban'" style="width: 150px;">拾取待办任务</a>
 			<a href="javascript:openTab('处理待办任务','chuliManage.jsp','icon-daiban')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-daiban'" style="width: 150px;">处理待办任务</a>
+			<a href="javascript:openTab('当前运行流程务管理','yunxingManage.jsp','icon-yiban')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-yiban'" style="width: 150px;">当前运行流程务管理</a>
+			<a href="javascript:openTab('已结束管理','jieshuManage.jsp','icon-yiban')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-yiban'" style="width: 150px;">已结束管理</a>
 			<a href="javascript:openTab('已办任务管理','yibanManage.jsp','icon-yiban')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-yiban'" style="width: 150px;">已办任务管理</a>
 			<a href="javascript:openTab('历史任务管理','lishiManage.jsp','icon-lishi')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-lishi'" style="width: 150px;">历史任务管理</a>
 		</div>
@@ -92,7 +94,7 @@
 	</div>
 </div>
 <div region="south" style="height: 26px;padding: 5px" align="center">
-	Copyright @ 2012-2016 Java知识分享网 版权所有
+	Copyright @ 2016-2017 Java
 </div>
 </body>
 </html>

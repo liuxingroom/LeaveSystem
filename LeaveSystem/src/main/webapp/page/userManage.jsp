@@ -46,6 +46,8 @@
 	
 	/**弹出添加对话框*/
 	function openUserAddDiglog(){
+		/**将弹出框中的信息制空*/
+		resetValue();
 		$("#dlg").dialog("open").dialog("setTitle","添加用户信息");
 		$("#flag").val(1);
 		$("#id").attr("readonly",true);
@@ -113,10 +115,11 @@
 	function resetValue(){
 		$("#id").val("");
 		$("#password").val("");
-		$("#useName").val("");
+		$("#userName").val("");
 		$("#email").val("");
 	}
 	
+	/***/
 	function closeUserDialog(){
 		$("#dlg").dialog("close");
 		resetValue();
