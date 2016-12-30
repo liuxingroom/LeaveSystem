@@ -20,11 +20,11 @@
 		});
 	}
 
+	/**返回审核链接*/
 	function formatAction(val,row){
 		$("#taskId").val(row.id);
 		$("#taskIds").val(row.id);
-		return "<a href=\"javascript:Auditing()\">审核</a>&nbsp;<a href='#'>查看当前流程图</a>";
-		//<a href=\"javascript:Auditing('"+row.id+"','"+userId+"')\">审核</a>&nbsp;<a href='#'>查看当前流程图</a>"
+		return "<a href=\"javascript:Auditing()\">审核</a>";
 	}
 	
 	/**弹出审核信息页面*/

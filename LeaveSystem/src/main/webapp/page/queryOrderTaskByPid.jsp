@@ -14,11 +14,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/jquery-easyui-1.3.3/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js"></script>
 <title>任务列表</title>
-<script type="text/javascript">
-	
-	
-
-</script>
 
 </head>
 <body>
@@ -48,8 +43,6 @@
 				</c:forEach>
 			</TBODY>
 		</TABLE>
-
-	
-
+		
 </body>
 </html>
