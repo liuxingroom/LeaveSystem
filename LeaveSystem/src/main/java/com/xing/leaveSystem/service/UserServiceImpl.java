@@ -84,6 +84,8 @@ public class UserServiceImpl implements UserService{
 				BeanUtils.copyProperties(entity, user);
 				entity.setId(user.getUserId());
 				entity.setFirstName(user.getUserName());
+				
+				/**在删除用户信息时先删除外键信息*/
 				//查询该用户下的所有角色信息
 				List<Group> groupList=identityService.createGroupQuery().groupMember(entity.getId()).list();
 				if(groupList.size()>0){//如果该用户存在组关系
@@ -93,10 +95,20 @@ public class UserServiceImpl implements UserService{
 					}
 				}
 				
+				/**工作流在更新用户信息时  是先删除后添加操作*/
 				//删除工作流重用户的信息
 				identityService.deleteUser(entity.getId());
 				//添加工作流中用户的信息
 				identityService.saveUser(entity);
+				
+				/**添加完用户信息后   如果该用户存在角色信息应该在添加用户角色的关联*/
+				//添加用户角色的关联
+				if(groupList.size()>0){//如果该用户存在组信息
+					for(int i=0;i<groupList.size();i++){//遍历角色信息
+						//添加角色关联
+						identityService.createMembership(entity.getId(), groupList.get(i).getId());
+					}
+				}
 			}
 			
 		} catch (Exception e) {

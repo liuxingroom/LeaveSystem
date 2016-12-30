@@ -58,8 +58,9 @@ public class MemberShipController {
 			memberShipService.add(memberShip);
 			
 			//删除工作流中用户角色的关联关系
-			identityService.deleteMembership(userId, gIds[i]);
+//			identityService.deleteMembership(userId, gIds[i]);
 			//添加工作流中用户角色的关联关系
+			String groupId=gIds[i];
 			identityService.createMembership(userId, gIds[i]);
 		}
 		/**更新用户表中groups字段信息*/
