@@ -22,6 +22,8 @@ public class MyTask implements Serializable{
 	private Date endTime;
 	/**任务办理人*/
 	private String userName;
+	/**任务标识*/
+	private String taskDefinitionKey;
 	/**判断任务是否拾取的标记0  代表未拾取  1代笔拾取*/
 	private boolean flag;
 	public String getId() {
@@ -60,6 +62,10 @@ public class MyTask implements Serializable{
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	
-	
+	public String getTaskDefinitionKey() {
+		return taskDefinitionKey;
+	}
+	public void setTaskDefinitionKey(String taskDefinitionKey) {
+		this.taskDefinitionKey = taskDefinitionKey;
+	}
 }

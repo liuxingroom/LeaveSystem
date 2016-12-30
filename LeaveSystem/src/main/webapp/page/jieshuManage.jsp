@@ -22,7 +22,7 @@
 
 	function formatAction(val,row){
 		var userId=$("#userId").val();
-		return "<a href=\"javascript:claimTask('"+row.id+"','"+userId+"')\">查看运行的任务</a>";
+		return "<a href='${pageContext.request.contextPath}/task/findOrderTaskListByPid.action?processInstanceId="+row.processInstanceId+"'>查看历史任务</a>";
 		
 	}
 	
@@ -51,7 +51,7 @@
  		<th field="startTime" width="100" align="center">创建时间</th>
  		<th field="endTime" width="100" align="center">结束时间</th>
  		<th field="activityId" width="100" align="center">当前活动</th>
- 		<th field="action" width="100" align="center" formatter="formatAction">查看运行任务</th>
+ 		<th field="action" width="100" align="center" formatter="formatAction">查看历史任务</th>
  	</tr>
  </thead>
 </table>

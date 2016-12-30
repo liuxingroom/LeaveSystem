@@ -1,6 +1,5 @@
 package com.xing.leaveSystem.controller;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -15,6 +14,8 @@ import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.history.HistoricProcessInstanceQuery;
+import org.activiti.engine.history.HistoricTaskInstance;
+import org.activiti.engine.history.HistoricTaskInstanceQuery;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.runtime.ProcessInstanceQuery;
 import org.activiti.engine.task.Task;
@@ -22,6 +23,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -29,7 +31,9 @@ import com.xing.leaveSystem.entity.Audit;
 import com.xing.leaveSystem.entity.MyProcessInstance;
 import com.xing.leaveSystem.entity.MyTask;
 import com.xing.leaveSystem.entity.PageBean;
+import com.xing.leaveSystem.entity.User;
 import com.xing.leaveSystem.service.TaskAuditService;
+import com.xing.leaveSystem.service.UserService;
 import com.xing.leaveSystem.utils.MessageObj;
 import com.xing.leaveSystem.utils.ResourceUtil;
 import com.xing.leaveSystem.utils.ResultObj;
@@ -50,6 +54,9 @@ public class TaskController {
 	
 	@Resource
 	RuntimeService runtimeService;
+	
+	@Resource
+	UserService userService;
 	
 	/***
 	 * 
@@ -268,5 +275,42 @@ public class TaskController {
 		obj.setRows(processInstances);
 		obj.setTotal(total);
 		return obj;
+	}
+	
+	/**
+	 * 通过流程实例id来查看完成任务信息
+	 */
+	@RequestMapping("/findOrderTaskListByPid")
+	public String findOrderTaskListByPid(String processInstanceId,Model model){
+		List<MyTask> taskList=new ArrayList<MyTask>();
+		//获取流程定义的key
+		String processDefinitionKey=ResourceUtil.getValue("diagram.leavesystem", "studentLeaveProcess");
+		//获取历史任务查询对象
+		HistoricTaskInstanceQuery historicTaskInstanceQuery=historyService.createHistoricTaskInstanceQuery();
+		//设置查询对象（流程定义的key）
+		historicTaskInstanceQuery.processDefinitionKey(processDefinitionKey);
+		//设置查询对象（流程实例的id）
+		historicTaskInstanceQuery.processInstanceId(processInstanceId);
+		
+		//添加排序，按照任务执行时间先后排序
+		historicTaskInstanceQuery.orderByHistoricActivityInstanceStartTime().asc();
+		
+		//获取流程实例集合
+		List<HistoricTaskInstance> list=historicTaskInstanceQuery.list();
+		
+		try {
+			for(HistoricTaskInstance instance:list){
+				MyTask task=new MyTask();
+				User user=userService.findUserById(instance.getAssignee());
+				task.setUserName(user.getUserName());
+				BeanUtils.copyProperties(task, instance);
+				taskList.add(task);
+			}
+		} catch (Exception e) {
+			logger.error("历史任务复制失败");
+			e.printStackTrace();
+		}
+		model.addAttribute("taskList", taskList);
+		return "queryOrderTaskByPid";
 	}
 }
