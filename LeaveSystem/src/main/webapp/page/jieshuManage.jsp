@@ -16,13 +16,13 @@
 
 	function searchTask(){
 		$("#dg").datagrid('load',{
-			"s_name":$("#s_name").val()
+			"processInstanceId":$("#processInstanceId").val()
 		});
 	}
 
 	function formatAction(val,row){
 		var userId=$("#userId").val();
-		return "<a href=\"javascript:claimTask('"+row.id+"','"+userId+"')\">拾取任务</a>&nbsp;<a href='#'>查看当前流程图</a>";
+		return "<a href=\"javascript:claimTask('"+row.id+"','"+userId+"')\">查看运行的任务</a>";
 		
 	}
 	
@@ -43,16 +43,15 @@
 <body style="margin: 1px">
 <table id="dg" title="待办任务管理" class="easyui-datagrid"
   fitColumns="true" pagination="true" rownumbers="true"
-  url="${pageContext.request.contextPath}/task/historyList.action?userId=${userId}" fit="true" toolbar="#tb">
+  url="${pageContext.request.contextPath}/task/queryFinishedLeave.action" fit="true" toolbar="#tb">
  <thead>
  	<tr>
  		<th field="cb" checkbox="true" align="center"></th>
- 		<th field="id" width="100" align="center">任务ID</th>
- 		<th field="name" width="100" align="center">任务名称</th>
- 		<th field="userName" width="100" align="center">办理人</th>
- 		<th field="createTime" width="100" align="center">创建时间</th>
+ 		<th field="processInstanceId" width="100" align="center">流程实例id</th>
+ 		<th field="startTime" width="100" align="center">创建时间</th>
  		<th field="endTime" width="100" align="center">结束时间</th>
- 		<!-- <th field="action" width="100" align="center" formatter="formatAction">操作</th> -->
+ 		<th field="activityId" width="100" align="center">当前活动</th>
+ 		<th field="action" width="100" align="center" formatter="formatAction">查看运行任务</th>
  	</tr>
  </thead>
 </table>

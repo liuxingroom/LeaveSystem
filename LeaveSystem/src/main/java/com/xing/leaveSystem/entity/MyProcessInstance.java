@@ -19,7 +19,9 @@ public class MyProcessInstance implements Serializable{
 	/**当前节点信息*/
 	private String activityId;
 	/**创建时间*/
-	private Date createTime;
+	private Date startTime;
+	/**结束时间*/
+	private Date endTime;
 
 	public String getProcessInstanceId() {
 		return processInstanceId;
@@ -33,11 +35,18 @@ public class MyProcessInstance implements Serializable{
 	public void setActivityId(String activityId) {
 		this.activityId = activityId;
 	}
-	public Date getCreateTime() {
-		return createTime;
+	
+	public Date getStartTime() {
+		return startTime;
 	}
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
+	}
+	public Date getEndTime() {
+		return endTime;
+	}
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
 	}
 	public String getName() {
 		return name;

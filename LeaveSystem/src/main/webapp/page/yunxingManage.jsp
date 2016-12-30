@@ -48,8 +48,7 @@
  	<tr>
  		<th field="cb" checkbox="true" align="center"></th>
  		<th field="processInstanceId" width="100" align="center">流程实例id</th>
- 		<!-- <th field="name" width="100" align="center">流程实例名称</th> -->
- 		<th field="createTime" width="100" align="center">创建时间</th>
+ 		<th field="startTime" width="100" align="center">创建时间</th>
  		<th field="activityId" width="100" align="center">当前活动</th>
  		<th field="action" width="100" align="center" formatter="formatAction">查看流程图</th>
  	</tr>

@@ -13,10 +13,13 @@ import javax.servlet.http.HttpSession;
 import org.activiti.engine.HistoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
+import org.activiti.engine.history.HistoricProcessInstance;
+import org.activiti.engine.history.HistoricProcessInstanceQuery;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.runtime.ProcessInstanceQuery;
 import org.activiti.engine.task.Task;
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -186,8 +189,9 @@ public class TaskController {
 	 */
 	@RequestMapping("/queryActivityLeave")
 	@ResponseBody
-	public ResultObj queryActivityLeave(){
+	public ResultObj queryActivityLeave(String processInstanceId){
 		ResultObj obj=new ResultObj();
+	
 		//创建页显示的流程实例的集合
 		List<MyProcessInstance> processInstances=new ArrayList<MyProcessInstance>();
 		//获取流程定义的key
@@ -197,6 +201,11 @@ public class TaskController {
 				.processDefinitionKey(processDefinitionKey)
 				.orderByProcessInstanceId()
 				.desc();
+		
+		//如果传递流程实例id不为空   则根据流程实例id
+		if(StringUtils.isNotEmpty(processInstanceId)){
+			processInstanceQuery.processInstanceId(processInstanceId);
+		}
 		//查询流程实例信息
 		List<ProcessInstance> list=processInstanceQuery.list();
 		
@@ -209,7 +218,7 @@ public class TaskController {
 				//获取流程实例创建时间
 				Date startTime=historyService.createHistoricProcessInstanceQuery().processInstanceId(myProcessInstance.getProcessInstanceId()).singleResult().getStartTime();
 				myProcessInstance.setName(instance.getName());
-				myProcessInstance.setCreateTime(startTime);
+				myProcessInstance.setStartTime(startTime);
 				processInstances.add(myProcessInstance);
 				
 			}
@@ -217,6 +226,44 @@ public class TaskController {
 			logger.error("流程实例信息复制失败");
 			e.printStackTrace();
 		} 
+		int total=processInstances.size();
+		obj.setRows(processInstances);
+		obj.setTotal(total);
+		return obj;
+	}
+	
+	/**
+	 * 查询已经结束的流程实例信息
+	 */
+	@RequestMapping("/queryFinishedLeave")
+	@ResponseBody
+	public ResultObj queryFinishedLeave(String processInstanceId){
+		ResultObj obj=new ResultObj();
+		//创建页显示的流程实例的集合
+		List<MyProcessInstance> processInstances=new ArrayList<MyProcessInstance>();
+		//获取流程定义的key
+		String processDefinitionKey=ResourceUtil.getValue("diagram.leavesystem", "studentLeaveProcess");
+		
+		//获取流程实例历史查询对象
+		HistoricProcessInstanceQuery historicProcessInstanceQuery =historyService.createHistoricProcessInstanceQuery()
+				.processDefinitionKey(processDefinitionKey)
+				.orderByProcessInstanceEndTime()
+				.desc()
+				.finished();
+		//获取历史流程实例集合
+		List<HistoricProcessInstance> list= historicProcessInstanceQuery.list();
+		
+		try {
+			for(HistoricProcessInstance instance:list){
+				MyProcessInstance myProcessInstance=new MyProcessInstance();
+				BeanUtils.copyProperties(myProcessInstance, instance);
+				processInstances.add(myProcessInstance);
+			}
+		} catch (Exception e) {
+			logger.error("历史流程实例对象复制失败");
+			e.printStackTrace();
+		}
+		
 		int total=processInstances.size();
 		obj.setRows(processInstances);
 		obj.setTotal(total);
