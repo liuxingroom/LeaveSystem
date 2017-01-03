@@ -36,4 +36,11 @@ public interface LeaveService {
 	 */
 	public MessageObj startApply(String processinstanceId,String leaveId);
 
+	/**
+	 * 获取请假信息
+	 * @param leaveId
+	 * @return
+	 */
+	Leave findLeaveById(String leaveId);
+
 }

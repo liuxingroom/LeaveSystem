@@ -28,10 +28,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xing.leaveSystem.entity.Audit;
+import com.xing.leaveSystem.entity.Leave;
 import com.xing.leaveSystem.entity.MyProcessInstance;
 import com.xing.leaveSystem.entity.MyTask;
 import com.xing.leaveSystem.entity.PageBean;
 import com.xing.leaveSystem.entity.User;
+import com.xing.leaveSystem.service.LeaveService;
 import com.xing.leaveSystem.service.TaskAuditService;
 import com.xing.leaveSystem.service.UserService;
 import com.xing.leaveSystem.utils.MessageObj;
@@ -57,6 +59,9 @@ public class TaskController {
 	
 	@Resource
 	UserService userService;
+	
+	@Resource
+	LeaveService leaveService;
 	
 	/***
 	 * 
@@ -226,6 +231,16 @@ public class TaskController {
 				Date startTime=historyService.createHistoricProcessInstanceQuery().processInstanceId(myProcessInstance.getProcessInstanceId()).singleResult().getStartTime();
 				myProcessInstance.setName(instance.getName());
 				myProcessInstance.setStartTime(startTime);
+				//获取请假信息
+				Leave leave=leaveService.findLeaveById(instance.getBusinessKey());
+				//获取请假人的信息
+				User user=userService.findUserById(leave.getUserId());
+				//设置请假人信息
+				myProcessInstance.setUserName(user.getUserName());
+				//设置请假原因
+				myProcessInstance.setLeaveReason(leave.getLeaveReason());
+				//设置请假时间
+				myProcessInstance.setLeaveDays(leave.getLeaveDays());
 				processInstances.add(myProcessInstance);
 				
 			}

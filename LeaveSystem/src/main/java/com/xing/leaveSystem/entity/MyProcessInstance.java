@@ -29,6 +29,12 @@ public class MyProcessInstance implements Serializable{
 	private String endTimeStr;
 	/**流程定义信息*/
 	private String processDefinitionId;
+	/**请假人*/
+	private String userName;
+	/**请假原因*/
+	private String leaveReason;
+	/**请假时间*/
+	private int leaveDays;
 	
 
 	public String getProcessInstanceId() {
@@ -86,6 +92,23 @@ public class MyProcessInstance implements Serializable{
 	public void setEndTimeStr(String endTimeStr) {
 		this.endTimeStr = endTimeStr;
 	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public String getLeaveReason() {
+		return leaveReason;
+	}
+	public void setLeaveReason(String leaveReason) {
+		this.leaveReason = leaveReason;
+	}
+	public int getLeaveDays() {
+		return leaveDays;
+	}
+	public void setLeaveDays(int leaveDays) {
+		this.leaveDays = leaveDays;
+	}
 	
-
 }
