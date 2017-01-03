@@ -63,5 +63,12 @@ public interface UserMapper {
 	 * @return
 	 */
 	User finUserByNameAndPwd(User user);
+
+	/**
+	 * 通过用户id和密码来判断用户是否存在
+	 * @param user
+	 * @return
+	 */
+	User findUserByIdAndPwd(User user);
 	
 }

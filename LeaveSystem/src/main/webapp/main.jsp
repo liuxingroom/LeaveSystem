@@ -47,6 +47,73 @@
 		},"json");
 	}
 	
+	/**弹出修改密码对话框*/
+	function openPasswordModifyDialog(){
+		/**将弹出框中的信息制空*/
+		resetValue();
+		$("#dlg").dialog("open").dialog("setTitle","修改密码");
+	}
+	
+	/**重置对话框中的数据*/
+	function resetValue(){
+		$("#password").val("");
+		$("#password1").val("");
+		$("#password2").val("");
+	}
+	
+	/**关闭对话框*/
+	function closeUserDialog(){
+		$("#dlg").dialog("close");
+		resetValue();
+	}
+	
+	/**检验数据是否存在*/
+	function checkData(){
+		var password=$("#password").val();
+		var password1=$("#password1").val();
+		var password2=$("#password2").val();
+		$.post("${pageContext.request.contextPath}/user/existUserIdPwd.action",{password:password},function(result){
+			if(result.result=="1"){//如果储存在同名的用户
+				if(password==password1 || password==password2){
+					$.messager.alert("系统信息","新密码不能和近期的密码相同");
+				}else{
+					updateUser();
+				}
+				
+			}else{
+				$.messager.alert("系统信息","您的输入的密码错误");
+			}
+		},"json");
+	}
+	
+	/**修改新密码*/
+	function updateUser(){
+		
+		$("#fm").form("submit",{
+			url:'${pageContext.request.contextPath}/user/updateUser.action',
+			onSubmit:function(){
+				return $(this).form("validate");
+			},
+			success:function(result){
+				var result=eval('('+result+')');
+				if(result.result=="1"){
+					$.messager.alert("系统信息","密码修改成功");
+					resetValue();
+					$("#dlg").dialog("close");
+				}else{
+					$.messager.alert("系统信息","密码修改失败");
+					return;
+				}
+			}
+		});
+		/* $.post("${pageContext.request.contextPath}/user/updateUser.action",{password:password,password1:password1,password2:password1},function(result){
+			if(result.result=="1"){//如果储存在同名的用户
+				$.messager.alert("系统信息","密码修改成功");
+			}else{
+				$.messager.alert("系统信息","密码修改失败");
+			}
+		},"json"); */
+	}
 	
 </script>
 </head>
@@ -59,6 +126,7 @@
  		</td>
  		<td valign="bottom" align="right" width="50%">
  			<font size="3">&nbsp;&nbsp;<strong>欢迎：</strong>${currentMemberShip.user.id }(${currentMemberShip.user.firstName }${currentMemberShip.user.lastName })【${currentMemberShip.group.name}】</font>
+ 			
  		</td>
  		<!-- <td valign="bottom" align="right" width="50%">
  			<a href="javascript:openPasswordModifyDialog()" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-modifyPassword'" style="width: 150px;">修改密码</a>
@@ -72,6 +140,37 @@
 		<div title="首页" data-options="iconCls:'icon-home'">
 			<div align="center" style="padding-top: 100px;"><font color="red" size="10">欢迎使用</font></div>
 		</div>
+	</div>
+	
+	<div id="dlg" class="easyui-dialog" style="width: 620px;height: 250px;padding: 10px 20px" closed="true" buttons="#dlg-buttons">
+	 	<form id="fm" method="post">
+	 		<table cellpadding="8px">
+	 			<tr>
+	 				<td>原始密码</td>
+	 				<td>
+	 					<input type="text" id="password" name="password" class="easyui-validatebox"  required="true"/>
+	 				</td>
+	 			</tr>
+	 			<tr>	
+	 				<td>新密码：</td>
+	 				<td>
+	 					<input type="text" id="password1" name="password1" class="easyui-validatebox" required="true"/>
+	 				</td>
+	 			</tr>
+	 			<tr>
+	 				<td>确认密码：</td>
+	 				<td>
+	 					<input type="text" id="password2" name="password2" class="easyui-validatebox" required="true"/>
+	 				</td>
+	 			</tr>
+	 	 	</table>
+	 	</form>
+	 
+	</div>
+	
+	<div id="dlg-buttons">
+		<a href="javascript:checkData()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+		<a href="javascript:closeUserDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
 	</div>
 </div>
 <div region="west" style="width: 200px;" title="导航菜单" split="true">
@@ -109,7 +208,7 @@
 	</div>
 </div>
 <div region="south" style="height: 26px;padding: 5px" align="center">
-	Copyright @ 2016-2017 Java
+	Copyright @ 2016-2017 made in china
 </div>
 </body>
 </html>

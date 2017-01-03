@@ -162,5 +162,11 @@ public class UserServiceImpl implements UserService{
 		List<com.xing.leaveSystem.entity.Group> groups=groupService.findGroupByUserId(userId);
 		return groups;
 	}
+
+	@Override
+	public User findUserByIdAndPwd(User user) {
+	    User user2=userMapper.findUserByIdAndPwd(user);
+		return user2;
+	}
 	
 }

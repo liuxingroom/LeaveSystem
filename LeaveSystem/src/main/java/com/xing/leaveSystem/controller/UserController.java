@@ -140,6 +140,23 @@ public class UserController {
 		return obj;
 	}
 	
+	/***
+	 * 根据用户id（userId） 和密码判断用户是否存在
+	 */
+	@RequestMapping("/existUserIdPwd")
+	@ResponseBody
+	public MessageObj existUserIdPwd(User user,HttpSession session){
+		MessageObj obj=new MessageObj();
+		String userId=(String) session.getAttribute("userId");
+		user.setUserId(userId);
+		if(userService.findUserByIdAndPwd(user)!=null){
+			obj.setSuccess();
+		}else{
+			obj.setFail();
+		}
+		return obj;
+	}
+	
 	/**
 	 * 根据用户id来删除用户信息
 	 * @param ids
@@ -214,6 +231,29 @@ public class UserController {
 			obj.setSuccess();
 		}else{
 			//退出登录失败
+			obj.setFail();
+		}
+		return obj;
+	}
+	
+	/***
+	 * 修改用户信息
+	 */
+	@RequestMapping("updateUser")
+	@ResponseBody
+	public MessageObj updateUser(HttpSession session,String password,String password1,String password2){
+		MessageObj obj=new MessageObj();
+		User user=null;
+		//判断  新更新的密码不能和之前的密码相同   且新密码和确认密码相同
+		if(!password.equals(password1) && !password.equals(password2) && password1.equals(password2)){
+			user=new User();
+			String userId=(String) session.getAttribute("userId");
+			user.setUserId(userId);
+			user.setPassword(password1);
+			userService.update(user);
+			
+			obj.setSuccess();
+		}else{
 			obj.setFail();
 		}
 		return obj;

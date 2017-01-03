@@ -88,6 +88,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 	</select>
 	
+	<!-- 通过用户id和密码来判断用户信息是否存在 -->
+	<select id="findUserByIdAndPwd" parameterType="com.xing.leaveSystem.entity.User" resultMap="UserResult">
+		select * from leave_system_user
+		<where>
+			and user_id=#{userId}
+			and password=#{password}
+		</where>
+	</select>
+	
 	<!-- 通过用户名和密码来获取用户信息 -->
 	<select id="finUserByNameAndPwd" resultMap="UserResult" parameterType="com.xing.leaveSystem.entity.User">
 		select * from leave_system_user 

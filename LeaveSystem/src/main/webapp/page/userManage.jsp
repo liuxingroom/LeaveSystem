@@ -119,7 +119,7 @@
 		$("#email").val("");
 	}
 	
-	/***/
+	/**关闭对话框*/
 	function closeUserDialog(){
 		$("#dlg").dialog("close");
 		resetValue();

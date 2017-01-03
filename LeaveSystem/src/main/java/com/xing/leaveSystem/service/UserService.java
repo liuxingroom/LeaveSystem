@@ -70,4 +70,11 @@ public interface UserService {
 	 */
 	List<Group> findGroupByUserId(String userId);
 
+	/**
+	 * 根据用户id和密码判断用户是否存在
+	 * @param user
+	 * @return
+	 */
+	User findUserByIdAndPwd(User user);
+
 }
