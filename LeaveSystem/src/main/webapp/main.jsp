@@ -24,6 +24,19 @@
 	function openTab(text,url,iconCls){
 		if($("#tabs").tabs("exists",text)){
 			$("#tabs").tabs("select",text);	
+			//当再次点击时刷新  选项卡标签
+			var content="<iframe frameborder=0 scrolling='auto' style='width:100%;height:100%' src='${pageContext.request.contextPath}/page/"+url+"'></iframe>";
+			var tab = $("#tabs").tabs('getSelected'); 
+			 $("#tabs").tabs('update',{  
+				    tab:tab,  
+				    options:{   
+				       //href:URL, // 使用href会导致页面加载两次，所以使用content代替  
+				       content:content,  
+				 	   closable:true,  
+				       fit:true,  
+				       selected:true  
+				    }
+			 }); 
 		}else{
 			var content="<iframe frameborder=0 scrolling='auto' style='width:100%;height:100%' src='${pageContext.request.contextPath}/page/"+url+"'></iframe>";
 			$("#tabs").tabs("add",{
@@ -34,6 +47,8 @@
 			});
 		}
 	}
+	
+
 	
 	/**退出登录*/
 	function logout(){
