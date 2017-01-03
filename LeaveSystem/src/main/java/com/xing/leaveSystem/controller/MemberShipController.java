@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.xing.leaveSystem.dao.LoginUserMapper;
 import com.xing.leaveSystem.entity.MemberShip;
 import com.xing.leaveSystem.entity.User;
 import com.xing.leaveSystem.service.LoginUserService;

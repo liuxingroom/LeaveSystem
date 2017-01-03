@@ -88,7 +88,6 @@
 	
 	/**修改新密码*/
 	function updateUser(){
-		
 		$("#fm").form("submit",{
 			url:'${pageContext.request.contextPath}/user/updateUser.action',
 			onSubmit:function(){
@@ -106,13 +105,6 @@
 				}
 			}
 		});
-		/* $.post("${pageContext.request.contextPath}/user/updateUser.action",{password:password,password1:password1,password2:password1},function(result){
-			if(result.result=="1"){//如果储存在同名的用户
-				$.messager.alert("系统信息","密码修改成功");
-			}else{
-				$.messager.alert("系统信息","密码修改失败");
-			}
-		},"json"); */
 	}
 	
 </script>
@@ -125,13 +117,9 @@
  			<img src="${pageContext.request.contextPath}/static/images/logo.png"/>
  		</td>
  		<td valign="bottom" align="right" width="50%">
- 			<font size="3">&nbsp;&nbsp;<strong>欢迎：</strong>${currentMemberShip.user.id }(${currentMemberShip.user.firstName }${currentMemberShip.user.lastName })【${currentMemberShip.group.name}】</font>
+ 			<font size="3">&nbsp;&nbsp;<strong>欢迎：</strong>${userName}【${groupName}】</font>
  			
  		</td>
- 		<!-- <td valign="bottom" align="right" width="50%">
- 			<a href="javascript:openPasswordModifyDialog()" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-modifyPassword'" style="width: 150px;">修改密码</a>
-			<a href="javascript:logout()" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-exit'" style="width: 150px;">安全退出</a>
- 		</td> -->
  	</tr>
  </table>
 </div>

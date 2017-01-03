@@ -61,10 +61,13 @@ public class UserController {
 				//拼接角色名
 				buffer.append(group.getName()+",");
 			}
+			groupName=buffer.substring(0, buffer.length()-1);
 			//设置角色信息
-			session.setAttribute("groupName", buffer.toString());
+			session.setAttribute("groupName", groupName);
 			//设置用户已登录的标记
 			session.setAttribute("userId", users.getUserId());
+			//设置用户名标记
+			session.setAttribute("userName", users.getUserName());
 			
 			//设置登录成功
 			result.setSuccess();
