@@ -85,7 +85,7 @@ public class UserController {
 	 * @param user  封装查询条件的Javabean
 	 * @return
 	 */
-	@RequestMapping("list")
+	@RequestMapping("/list")
 	@ResponseBody
 	public ResultObj list(String page,String rows,User user)throws Exception{
 	    PageBean pageBean=new PageBean(Integer.parseInt(page),Integer.parseInt(rows));
@@ -246,7 +246,7 @@ public class UserController {
 	/***
 	 * 修改用户信息
 	 */
-	@RequestMapping("updateUser")
+	@RequestMapping("/updateUser")
 	@ResponseBody
 	public MessageObj updateUser(HttpSession session,String password,String password1,String password2){
 		MessageObj obj=new MessageObj();
