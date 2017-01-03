@@ -279,6 +279,16 @@ public class TaskController {
 			for(HistoricProcessInstance instance:list){
 				MyProcessInstance myProcessInstance=new MyProcessInstance();
 				BeanUtils.copyProperties(myProcessInstance, instance);
+				//获取请假信息
+				Leave leave=leaveService.findLeaveById(instance.getBusinessKey());
+				//获取请假人的信息
+				User user=userService.findUserById(leave.getUserId());
+				//设置请假人信息
+				myProcessInstance.setUserName(user.getUserName());
+				//设置请假原因
+				myProcessInstance.setLeaveReason(leave.getLeaveReason());
+				//设置请假时间
+				myProcessInstance.setLeaveDays(leave.getLeaveDays());
 				processInstances.add(myProcessInstance);
 			}
 		} catch (Exception e) {

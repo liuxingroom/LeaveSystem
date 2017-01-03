@@ -47,6 +47,9 @@
  <thead>
  	<tr>
  		<th field="cb" checkbox="true" align="center"></th>
+ 		<th field="userName" width="100" align="center">请假人</th>
+ 		<th field="leaveReason" width="100" align="center">请假理由</th>
+ 	    <th field="leaveDays" width="100" align="center">请假天数</th>
  		<th field="processInstanceId" width="100" align="center">流程实例id</th>
  		<th field="startTimeStr" width="100" align="center">创建时间</th>
  		<th field="endTimeStr" width="100" align="center">结束时间</th>
