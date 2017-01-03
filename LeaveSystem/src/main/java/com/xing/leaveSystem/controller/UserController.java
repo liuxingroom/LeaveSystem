@@ -1,10 +1,13 @@
 package com.xing.leaveSystem.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
@@ -188,6 +191,29 @@ public class UserController {
 		Long total=userService.getTotal(map);
 		obj.setRows(userList);
 		obj.setTotal(total);
+		return obj;
+	}
+	
+	/***
+	 * 退出登录
+	 * @param session
+	 * @param response
+	 * @param request
+	 * @return
+	 * @throws IOException
+	 */
+	@RequestMapping("/logout")
+	@ResponseBody
+	public MessageObj logout(HttpSession session,HttpServletResponse response,HttpServletRequest request) throws IOException{
+		MessageObj obj=new MessageObj();
+		System.out.println(session.getAttribute("userId"));
+		if(StringUtils.isNotEmpty((String) session.getAttribute("userId"))){
+			//清除session信息
+			session.invalidate();
+			obj.setSuccess();
+		}else{
+			obj.setFail();
+		}
 		return obj;
 	}
 }

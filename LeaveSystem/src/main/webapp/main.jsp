@@ -35,6 +35,19 @@
 		}
 	}
 	
+	/**退出登录*/
+	function logout(){
+		$.post("${pageContext.request.contextPath}/user/logout.action",{},function(result){
+			if(result.result=="1"){
+				/* $.messager.alert("系统提示","成功退出登录 ！"); */
+				document.location.reload();
+			}else{
+				$.messager.alert("系统提示","退出登录失败，请重新操作！");
+			}
+		},"json");
+	}
+	
+	
 </script>
 </head>
 <body class="easyui-layout">
