@@ -37,7 +37,7 @@
 	function resetValue(){
 		$("#userName").val("");
 		$("#password").val("");
-		$("#groupId").combobox("setValue","");
+		$("#groupId").combobox("setValue","请选择角色");
 	}
 
 </script>

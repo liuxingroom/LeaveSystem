@@ -210,8 +210,10 @@ public class UserController {
 		if(StringUtils.isNotEmpty((String) session.getAttribute("userId"))){
 			//清除session信息
 			session.invalidate();
+			//设置退出登录操作成功
 			obj.setSuccess();
 		}else{
+			//退出登录失败
 			obj.setFail();
 		}
 		return obj;
