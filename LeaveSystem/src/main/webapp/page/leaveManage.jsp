@@ -45,12 +45,13 @@
 		});
 	}
 
-	
+	/**重置对话框中的信息*/
 	function resetValue(){
 		$("#leaveDays").val("");
 		$("#leaveReason").val("");
 	}
-	
+
+	/**关闭对话框*/
 	function closeLeaveDialog(){
 		$("#dlg").dialog("close");
 		resetValue();
