@@ -58,7 +58,6 @@
 	}
 	
 	function startApply(processinstanceId,leaveId){
-		alert("ss");
 		$.post("${pageContext.request.contextPath}/leave/startApply.action",{'processinstanceId':processinstanceId,'leaveId':leaveId},function(result){
 			if(result.result=="1"){
 				$.messager.alert("系统系统","请假申请提交成功，目前审核中，请耐心等待！");
@@ -82,7 +81,7 @@
  		<th field="createTimeStr" width="80" align="center">请假日期</th>
  		<th field="leaveDays" width="30" align="center">请假天数</th>
  		<th field="leaveReason" width="200" align="center">请假原因</th>
- 		<th field="status" width="30" align="center">审核状态</th>
+ 		<th field="status" width="40" align="center">审核状态</th>
  		<th field="processinstanceId" width="30" hidden="true" align="center">流程实例Id</th>
  		<th field="action" width="50" align="center" formatter="formatAction">操作</th>
  	</tr>

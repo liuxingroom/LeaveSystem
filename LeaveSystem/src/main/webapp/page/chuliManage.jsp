@@ -33,9 +33,9 @@
 	}
 	
 	
-	/**拾取任务*/
-	function completeTask(taskId,userId){
-		$.post("${pageContext.request.contextPath}/task/completeTask.action",{taskId:taskId,userId:userId},function(result){
+	/**审核请假流程信息*/
+ 	function completeTask(taskId,userId,msg){
+		$.post("${pageContext.request.contextPath}/task/completeTask.action",{taskId:taskId,userId:userId,msg:msg},function(result){
 			if(result.result=="1"){//如果储存在同名的用户
 				$("#dg").datagrid("reload");
 				$.messager.alert("任务处理","处理任务成功");
@@ -46,6 +46,9 @@
 	}
 	
 	function taskAuit(){
+		var taskId=$("#taskId").val();
+		var userId=$("#userId").val();
+		var msg="";
 		$("#fm").form("submit",{
 			url:'${pageContext.request.contextPath}/task/taskAuit.action',
 			onSubmit:function(){
@@ -54,16 +57,17 @@
 			success:function(result){
 				var result=eval('('+result+')');
 				if(result.result=="1"){
-					var taskId=$("#taskId").val();
-					alert(taskId)
-					var userId=$("#userId").val();
+					msg="通过";
+					$.messager.alert("系统信息","审核通过！");
 					//提交任务
-					completeTask(taskId,userId);
+					completeTask(taskId,userId,msg);
 					resetValue();
 					$("#dlg").dialog("close");
 					$("#dg").datagrid("reload");
 				}else{
-					$.messager.alert("系统信息","提交失败！");
+					msg="未通过";
+					$.messager.alert("系统信息","审核不通过！");
+					completeTask(taskId,userId,msg);
 					return;
 				}
 			}

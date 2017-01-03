@@ -122,7 +122,7 @@ public class TaskController {
 	 */
 	@RequestMapping("/claimTask")
 	@ResponseBody
-	public MessageObj claimAndCompleteTask(String taskId,String userId){
+	public MessageObj claimTask(String taskId,String userId){
 		MessageObj obj=new MessageObj();
 		//查看该用户的任务是否存在
 		Task task=taskService.createTaskQuery()
@@ -147,12 +147,12 @@ public class TaskController {
 	 */
 	@RequestMapping("/completeTask")
 	@ResponseBody
-	public MessageObj completeTask(String userId,String taskId){
+	public MessageObj completeTask(String userId,String taskId,String msg){
 		MessageObj obj=new MessageObj();
 		Task task=taskService.createTaskQuery().taskAssignee(userId).taskId(taskId).singleResult();
 		if(task!=null){
 			Map<String, Object> variables=new HashMap<String, Object>();
-			variables.put("msg", "通过");
+			variables.put("msg", msg);
 			taskService.complete(taskId,variables);
 			obj.setSuccess();
 		}else{
@@ -174,7 +174,11 @@ public class TaskController {
 		String userId=(String) session.getAttribute("userId");
 		int resultTotal=taskAuditService.add(audit,userId,taskId);
 		if(resultTotal>0){
-			obj.setSuccess();
+			if(audit.getStatus().equals("1")){//如果审核状态为1     表示通过
+				obj.setSuccess();
+			}else if(audit.getStatus().equals("0")){//如果为0    表示审核不通过
+				obj.setFail();
+			}
 		}else{
 			obj.setFail();
 		}
