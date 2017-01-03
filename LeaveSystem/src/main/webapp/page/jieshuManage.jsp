@@ -25,18 +25,6 @@
 		return "<a href='${pageContext.request.contextPath}/task/findOrderTaskListByPid.action?processInstanceId="+row.processInstanceId+"'>查看历史任务</a>";
 		
 	}
-	
-	/**拾取任务*/
-/* 	function claimTask(taskId,userId){
-		$.post("${pageContext.request.contextPath}/task/claimTask.action",{taskId:taskId,userId:userId},function(result){
-			if(result.result=="1"){//如果储存在同名的用户
-				$("#dg").datagrid("reload");
-				$.messager.alert("任务拾取","拾取任务成功");
-			}else{
-				$.messager.alert("任务拾取","任务拾取失败");
-			}
-		},"json");
-	} */
 
 </script>
 </head>

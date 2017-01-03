@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>学生请假系统</title>
 <%
 	// 权限验证
     if(session.getAttribute("userId")==null){
@@ -23,7 +23,7 @@
 	
 	function openTab(text,url,iconCls){
 		if($("#tabs").tabs("exists",text)){
-			$("#tabs").tabs("select",text);
+			$("#tabs").tabs("select",text);	
 		}else{
 			var content="<iframe frameborder=0 scrolling='auto' style='width:100%;height:100%' src='${pageContext.request.contextPath}/page/"+url+"'></iframe>";
 			$("#tabs").tabs("add",{

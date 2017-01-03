@@ -58,18 +58,17 @@
 				var result=eval('('+result+')');
 				if(result.result=="1"){
 					msg="通过";
-					$.messager.alert("系统信息","审核通过！");
+				//	$.messager.alert("系统信息","审核通过！");
 					//提交任务
 					completeTask(taskId,userId,msg);
-					resetValue();
-					$("#dlg").dialog("close");
-					$("#dg").datagrid("reload");
 				}else{
 					msg="未通过";
-					$.messager.alert("系统信息","审核不通过！");
+				//	$.messager.alert("系统信息","审核不通过！");
 					completeTask(taskId,userId,msg);
-					return;
 				}
+				resetValue();
+				$("#dlg").dialog("close");
+				$("#dg").datagrid("reload");
 			}
 		});
 	}
