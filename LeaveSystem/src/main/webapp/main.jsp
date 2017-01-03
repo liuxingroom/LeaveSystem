@@ -202,6 +202,7 @@
 		<%-- <c:if test="${fn:contains(groupName,'学生')==true}">  --%>
 			<div title="业务管理"  data-options="iconCls:'icon-yewu'" style="padding:10px">
 				<a href="javascript:openTab('请假申请','leaveManage.jsp','icon-apply')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-apply'" style="width: 150px">请假申请</a>
+				<a href="javascript:openTab('请假历史信息查询','leaveHisManage.jsp','icon-apply')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-apply'" style="width: 150px">请假历史信息查询</a>
 			</div>
 		<%-- </c:if> --%>
 		<div title="系统管理"  data-options="iconCls:'icon-system'" style="padding:10px">

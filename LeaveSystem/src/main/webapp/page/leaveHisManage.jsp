@@ -89,38 +89,11 @@
 </table>
 <div id="tb">
  <div>
-	<a href="javascript:openLeaveAddDialog()" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增请假单</a>
 	<a href="javascript:openUserModifyDiglog()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">归档</a>
  </div>
 </div>
 
-<div id="dlg" class="easyui-dialog" style="width: 620px;height: 280px;padding: 10px 20px" closed="true" buttons="#dlg-buttons">
- 
- 	<form id="fm" method="post">
- 		<table cellpadding="8px">
- 			<tr>
- 				<td>请假天数：</td>
- 				<td>
- 					<input type="text" id="leaveDays" name="leaveDays" class="easyui-numberbox" required="true"/>
- 				</td>
- 			</tr>
- 			<tr>
- 				<td valign="top">请假原因：</td>
- 				<td>
- 					<%-- <input type="hidden" name="user.id" value="${currentMemberShip.user.id }"/> --%>
- 					<!-- <input type="hidden" name="status" value="未提交"/> -->
- 					<textarea type="text" id="leaveReason" name="leaveReason"  rows="5" cols="49" class="easyui-validatebox" required="true"></textarea>
- 				</td>
- 			</tr>
- 		</table>
- 	</form>
- 
-</div>
 
-<div id="dlg-buttons">
-	<a href="javascript:saveLeave()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
-	<a href="javascript:closeLeaveDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
-</div>
 
 </body>
 </html>
