@@ -8,6 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="userId" column="user_id"/>
 		<result property="userName" column="username"/>
 		<result property="password" column="password"/>
+		<result property="groups" column="groups" jdbcType="VARCHAR"/>
 	</resultMap>
 	
 	<!-- 向登录用户表中添加数据 -->
@@ -28,6 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<trim suffixOverrides=",">
 				<if test="userName!=null and userName!=''">username=#{userName,jdbcType=VARCHAR},</if>
 				<if test="password!=null and password!=''">password=#{password,jdbcType=VARCHAR},</if>
+				<if test="groups!=null and groups!=''">groups=#{groups,jdbcType=VARCHAR},</if>
 			</trim>
 		</set>
 		<where>
@@ -42,5 +44,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			user_id=#{userId}
 		</where>
 	</delete>
+	
+	<!-- 通过用户名和密码来获取用户信息 -->
+	<select id="finUserByNameAndPwd" resultMap="LoginUserResult" parameterType="com.xing.leaveSystem.entity.User">
+		select * from leave_system_loginuser 
+		<where>
+			<if test="userName!=null and userName!=''">
+				and username=#{userName}
+			</if>
+			<if test="password!=null and password!=''">
+				and password=#{password}
+			</if>
+		</where>
+	</select>
 	
 </mapper>

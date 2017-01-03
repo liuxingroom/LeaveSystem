@@ -10,8 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.xing.leaveSystem.dao.LoginUserMapper;
 import com.xing.leaveSystem.entity.MemberShip;
 import com.xing.leaveSystem.entity.User;
+import com.xing.leaveSystem.service.LoginUserService;
 import com.xing.leaveSystem.service.MemberShipService;
 import com.xing.leaveSystem.service.UserService;
 import com.xing.leaveSystem.utils.MessageObj;
@@ -28,6 +30,9 @@ public class MemberShipController {
 	
 	@Resource
 	UserService userService;
+	
+	@Resource
+	LoginUserService loginUserService;
 	
 	/**
 	 * 更新用户权限 先删除 后批量添加
@@ -66,8 +71,12 @@ public class MemberShipController {
 		/**更新用户表中groups字段信息*/
 		//获取用户对象
 		user=userService.findUserById(userId);
+		//设置用户和角色的关系
 		user.setGroups(groupsIds);
+		//更新用户信息
 		userService.update(user);
+		//更新登录用户表中的信息
+		loginUserService.update(user);
 		
 		obj.setSuccess();
 		return obj;

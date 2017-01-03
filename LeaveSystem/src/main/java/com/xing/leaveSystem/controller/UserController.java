@@ -19,6 +19,7 @@ import com.xing.leaveSystem.entity.Group;
 import com.xing.leaveSystem.entity.PageBean;
 import com.xing.leaveSystem.entity.User;
 import com.xing.leaveSystem.service.GroupService;
+import com.xing.leaveSystem.service.LoginUserService;
 import com.xing.leaveSystem.service.UserService;
 import com.xing.leaveSystem.utils.MessageObj;
 import com.xing.leaveSystem.utils.ResultObj;
@@ -34,6 +35,9 @@ public class UserController {
 	@Resource
 	GroupService groupService;
 	
+	@Resource
+	LoginUserService loginUserService;
+	
 	/***
 	 * 用户登录
 	 */
@@ -46,7 +50,7 @@ public class UserController {
 		//用户记录组（角色）名
 		String groupName="";
 		//根据用户名和密码查询用户
-		User users=userService.finUserByNameAndPwd(user);
+		User users=loginUserService.finUserByNameAndPwd(user);
 		//判断该用户是否有该权限  如果有登录成功
 		
 		if(users!=null && StringUtils.isNotEmpty(users.getGroups()) && users.getGroups().contains(groupId)){

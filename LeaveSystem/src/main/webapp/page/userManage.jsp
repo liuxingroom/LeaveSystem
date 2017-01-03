@@ -137,8 +137,6 @@
  		<th field="userId" width="80" align="center">用户id</th>
  		<th field="userName" width="80" align="center">用户名</th>
  		<th field="password" width="80" align="center">密码</th>
- 		<!-- <th field="firstName" width="50" align="center">姓</th>
- 		<th field="lastName" width="50" align="center">名</th> -->
  		<th field="email" width="100" align="center">邮箱</th>
  	</tr>
  </thead>

@@ -24,4 +24,11 @@ public interface LoginUserMapper {
 	 * @param userId
 	 */
 	public void delete(@Param("userId")String userId);
+
+	/**
+	 * 通过用户名和密码来获取用户信息
+	 * @param user
+	 * @return
+	 */
+	public User finUserByNameAndPwd(User user);
 }
