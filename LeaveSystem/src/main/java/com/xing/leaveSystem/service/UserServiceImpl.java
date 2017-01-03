@@ -9,6 +9,7 @@ import org.activiti.engine.IdentityService;
 import org.activiti.engine.identity.Group;
 import org.activiti.engine.impl.persistence.entity.UserEntity;
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
@@ -83,7 +84,14 @@ public class UserServiceImpl implements UserService{
 			if(identityService.createUserQuery().userId(user.getUserId()).singleResult()!=null){//如果工作流系统中存在改用户信息
 				BeanUtils.copyProperties(entity, user);
 				entity.setId(user.getUserId());
-				entity.setFirstName(user.getUserName());
+				if(StringUtils.isNotEmpty(user.getUserName())){//判断用户名是否为空
+					entity.setFirstName(user.getUserName());
+				}else if(StringUtils.isEmpty(user.getUserName()) && StringUtils.isEmpty(user.getEmail())){//如果只是修改密码操作  此时邮箱和密码传递的值为空  此时需要从工作流中获取用户信息
+					org.activiti.engine.identity.User users=identityService.createUserQuery().userId(user.getUserId()).singleResult();
+					entity.setFirstName(users.getFirstName());
+					entity.setEmail(users.getEmail());
+				}
+				
 				
 				/**在删除用户信息时先删除外键信息*/
 				//查询该用户下的所有角色信息
@@ -94,6 +102,8 @@ public class UserServiceImpl implements UserService{
 						identityService.deleteMembership(entity.getId(),groupList.get(i).getId());
 					}
 				}
+				
+				
 				
 				/**工作流在更新用户信息时  是先删除后添加操作*/
 				//删除工作流重用户的信息
