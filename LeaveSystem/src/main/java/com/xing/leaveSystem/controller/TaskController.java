@@ -115,7 +115,7 @@ public class TaskController {
 	}
 	
 	/***
-	 * 拾取并办理任务
+	 * 拾取任务
 	 * @param taskId
 	 * @param userId
 	 * @return
