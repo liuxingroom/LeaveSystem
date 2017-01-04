@@ -1,6 +1,5 @@
 package com.xing.leaveSystem.service;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import com.xing.leaveSystem.dao.GroupMapper;
 import com.xing.leaveSystem.entity.Group;
-import com.xing.leaveSystem.utils.UUIDBuild;
 
 @Service
 public class GroupServiceImpl implements GroupService{
@@ -42,19 +40,19 @@ public class GroupServiceImpl implements GroupService{
 
 	@Override
 	public int add(Group group) {
-		//Éú³É½ÇÉ«id
+		//ç”Ÿæˆè§’è‰²id
 		/*String id=UUIDBuild.getInstance().generate();
 		group.setId(id);*/
 		int resultTotal=groupMapper.add(group);
 		GroupEntity entity=new GroupEntity();
 		try {
-			if(identityService.createGroupQuery().groupId(group.getId()).singleResult()==null){//Èç¹û²»´æÔÚ×éĞÅÏ¢    Ôò±£´æ½ÇÉ«ĞÅÏ¢
+			if(identityService.createGroupQuery().groupId(group.getId()).singleResult()==null){//å¦‚æœä¸å­˜åœ¨ç»„ä¿¡æ¯    åˆ™ä¿å­˜è§’è‰²ä¿¡æ¯
 				BeanUtils.copyProperties(entity, group);
 				identityService.saveGroup(entity);
 			}
 			
 		} catch (Exception e) {
-			logger.error("Ìí¼ÓÊ±½ÇÉ«ĞÅÏ¢¸´ÖÆÊ§°Ü");
+			logger.error("æ·»åŠ æ—¶è§’è‰²ä¿¡æ¯å¤åˆ¶å¤±è´¥");
 			e.printStackTrace();
 		}
 		return resultTotal;
@@ -62,29 +60,29 @@ public class GroupServiceImpl implements GroupService{
 
 	@Override
 	public int update(Group group) {
-		//¸üĞÂ½ÇÉ«ĞÅÏ¢
+		//æ›´æ–°è§’è‰²ä¿¡æ¯
 		int resultTotal=groupMapper.update(group);
 		GroupEntity entity=new GroupEntity();
 		try {
 			if(identityService.createGroupQuery().groupId(group.getId()).singleResult()!=null){
 				BeanUtils.copyProperties(entity, group);
-				//²éÑ¯¸Ã½ÇÉ«ÏÂµÄËùÓĞÓÃ»§ĞÅÏ¢
+				//æŸ¥è¯¢è¯¥è§’è‰²ä¸‹çš„æ‰€æœ‰ç”¨æˆ·ä¿¡æ¯
 				List<User> userList=identityService.createUserQuery().memberOfGroup(entity.getId()).list();
-				if(userList.size()>0){//Èç¹û¸Ã½ÇÉ«º¬ÓĞÓÃ»§ĞÅÏ¢
+				if(userList.size()>0){//å¦‚æœè¯¥è§’è‰²å«æœ‰ç”¨æˆ·ä¿¡æ¯
 					for(int i=0;i<userList.size();i++){
-						//¸ù¾İÓÃ»§idºÍ½ÇÉ«idÉ¾³ıÓÃ»§ºÍ½ÇÉ«µÄ¹ØÁª¹ØÏµ
+						//æ ¹æ®ç”¨æˆ·idå’Œè§’è‰²idåˆ é™¤ç”¨æˆ·å’Œè§’è‰²çš„å…³è”å…³ç³»
 						identityService.deleteMembership(userList.get(i).getId(), entity.getId());
 					}
 				}
 				
-				//É¾³ı¹¤×÷Á÷ÏµÍ³ÖĞ½ÇÉ«µÄĞÅÏ¢
+				//åˆ é™¤å·¥ä½œæµç³»ç»Ÿä¸­è§’è‰²çš„ä¿¡æ¯
 				identityService.deleteGroup(entity.getId());
-				//Ìí¼Ó¹¤×÷Á÷ÏµÍ³ÖĞ½ÇÉ«µÄĞÅÏ¢
+				//æ·»åŠ å·¥ä½œæµç³»ç»Ÿä¸­è§’è‰²çš„ä¿¡æ¯
 				identityService.saveGroup(entity);
 				
 			}
 		} catch (Exception e) {
-			logger.error("¸üĞÂÊ±½ÇÉ«ĞÅÏ¢¸´ÖÆÊ§°Ü");
+			logger.error("æ›´æ–°æ—¶è§’è‰²ä¿¡æ¯å¤åˆ¶å¤±è´¥");
 			e.printStackTrace();
 		} 
 		
@@ -99,20 +97,20 @@ public class GroupServiceImpl implements GroupService{
 
 	@Override
 	public void delete(String id) {
-		//É¾³ı½ÇÉ«±íÖĞµÄ½ÇÉ«ĞÅÏ¢
+		//åˆ é™¤è§’è‰²è¡¨ä¸­çš„è§’è‰²ä¿¡æ¯
 		groupMapper.delete(id);
 		
-		if(identityService.createGroupQuery().groupId(id).singleResult()!=null){//Èç¹û´æÔÚ¸Ä×éĞÅÏ¢
+		if(identityService.createGroupQuery().groupId(id).singleResult()!=null){//å¦‚æœå­˜åœ¨æ”¹ç»„ä¿¡æ¯
 			List<User> userList=identityService.createUserQuery().memberOfGroup(id).list();
-			if(userList.size()>0){//Èç¹û¸Ã½ÇÉ«  º¬ÓĞÓÃ»§ĞÅÏ¢
+			if(userList.size()>0){//å¦‚æœè¯¥è§’è‰²  å«æœ‰ç”¨æˆ·ä¿¡æ¯
 				for(int i=0;i<userList.size();i++){
-					//¸ù¾İÓÃ»§id ºÍ½ÇÉ«id À´É¾³ıÓÃ»§ºÍ½ÇÉ«µÄ¹ØÁª¹ØÏµ
+					//æ ¹æ®ç”¨æˆ·id å’Œè§’è‰²id æ¥åˆ é™¤ç”¨æˆ·å’Œè§’è‰²çš„å…³è”å…³ç³»
 					identityService.deleteMembership(userList.get(i).getId(), id);
 				}
 			}
 		}
 		
-		//É¾³ı¹¤×÷Á÷ÏµÍ³ÖĞµÄ½ÇÉ«ĞÅÏ¢
+		//åˆ é™¤å·¥ä½œæµç³»ç»Ÿä¸­çš„è§’è‰²ä¿¡æ¯
 		identityService.deleteGroup(id);
 	}
 
