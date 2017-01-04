@@ -6,36 +6,36 @@ import java.util.Date;
 
 
 /**
- * Çë¼Ù¼ÇÂ¼±í
+ * è¯·å‡è®°å½•è¡¨
  */
 public class Leave implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 5604535185508728493L;
-	/**Çë¼Ù¼ÇÂ¼id*/
+	/**è¯·å‡è®°å½•id*/
 	private String leaveId;
-	/**Çë¼ÙÈËid*/
+	/**è¯·å‡äººid*/
 	private String userId;
-	/**Çë¼ÙÃû³Æ*/
+	/**è¯·å‡åç§°*/
 	private String leaveName;
 	/**
-	 * Çë¼ÙÌìÊı(Çë¼ÙÒÔÌìÊıÎª×¼)
+	 * è¯·å‡å¤©æ•°(è¯·å‡ä»¥å¤©æ•°ä¸ºå‡†)
 	 * */
 	private int leaveDays;
-	/**Çë¼Ù×´Ì¬*/
+	/**è¯·å‡çŠ¶æ€*/
 	private String status;
-	/**Çë¼ÙÔ­Òò*/
+	/**è¯·å‡åŸå› */
 	private String leaveReason;
-	/**´´½¨Ê±¼ä*/
+	/**åˆ›å»ºæ—¶é—´*/
 	private Date createTime;
-	/**´´½¨Ê±¼ä(Ö§¸¶´®±íÏÖ·½Ê½)*/
+	/**åˆ›å»ºæ—¶é—´(æ”¯ä»˜ä¸²è¡¨ç°æ–¹å¼)*/
 	private String createTimeStr;
-	/**½áÊøÊ±¼ä*/
+	/**ç»“æŸæ—¶é—´*/
 	private Date endTime;
-	/**½áÊøÊ±¼ä£¨×Ö·û´®±íÏÖ·½Ê½£©*/
+	/**ç»“æŸæ—¶é—´ï¼ˆå­—ç¬¦ä¸²è¡¨ç°æ–¹å¼ï¼‰*/
 	private String endTimeStr;
-	/**Çë¼Ù¼ÇÂ¼Ëù¶ÔÓ¦µÄÁ÷³ÌÊµÀıid*/
+	/**è¯·å‡è®°å½•æ‰€å¯¹åº”çš„æµç¨‹å®ä¾‹id*/
 	private  String  processinstanceId;
 	public String getLeaveId() {
 		return leaveId;

@@ -11,42 +11,43 @@ import com.xing.leaveSystem.utils.ApplicationContextUtils;
 
 
 /**
- *  Ö´ĞĞ¼àÌıÆ÷µÄÊ¹ÓÃ    
- *  ¸Ã¼àÌıÆ÷¼àÌıµÄÊÂ¼ş£º
- *     1.Á÷³ÌÊµÀıµÄÆô¶¯ºÍ½áÊø
- *     2.½ÚµãµÄ¿ªÊ¼ºÍ½áÊø
- *     3.Íø¹ØµÄ¿ªÊ¼ºÍ½áÊø
- *     4.ÖĞ¼äÊÂ¼şµÄ¿ªÊ¼ºÍ½áÊø
- *     5.¿ªÊ¼Ê±¼ä½áÊø»ò½áÊøÊÂ¼ş¿ªÊ¼
- */
+ *  æ‰§è¡Œç›‘å¬å™¨çš„ä½¿ç”¨    
+ *  è¯¥ç›‘å¬å™¨ç›‘å¬çš„äº‹ä»¶ï¼š
+ *     1.æµç¨‹å®ä¾‹çš„å¯åŠ¨å’Œç»“æŸ
+ *     2.èŠ‚ç‚¹çš„å¼€å§‹å’Œç»“æŸ
+ *     3.ç½‘å…³çš„å¼€å§‹å’Œç»“æŸ
+ *     4.ä¸­é—´äº‹ä»¶çš„å¼€å§‹å’Œç»“æŸ
+ *     5.å¼€å§‹æ—¶é—´ç»“æŸæˆ–ç»“æŸäº‹ä»¶å¼€å§‹
+ */
+
 public class ProcessCompleteListener implements ExecutionListener{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -6414796179261516690L;
-	//Í¨¹ı¹¤¾ßÀà»ñÈ¡springÈİÆ÷
+	//é€šè¿‡å·¥å…·ç±»è·å–springå®¹å™¨
 	private static ApplicationContext applicationContext=ApplicationContextUtils.
 					getApplicationContext();
 
 	@Override
 	public void notify(DelegateExecution execution) throws Exception {
-		//execution ÊÇÁ÷³ÌÊµÀıµÄ´úÀí¶ÔÏó
+		//execution æ˜¯æµç¨‹å®ä¾‹çš„ä»£ç†å¯¹è±¡
 		
-		//»ñÈ¡ÒµÎñ±êÊ¶  £¬¼´²É¹ºµ¥id
+		//è·å–ä¸šåŠ¡æ ‡è¯†  ï¼Œå³é‡‡è´­å•id
 		String businessKey=execution.getBusinessKey();
-		//»ñÈ¡Á÷³Ì±äÁ¿ĞÅÏ¢
+		//è·å–æµç¨‹å˜é‡ä¿¡æ¯
 		String msg=(String) execution.getVariable("msg");
-		//´ÓspringÈİÆ÷ÖØµÃµ½mapper
+		//ä»springå®¹å™¨é‡å¾—åˆ°mapper
 		LeaveMapper leaveMapper= applicationContext.getBean(LeaveMapper.class);
 		
-		//¸ù¾İ²É¹ºµ¥µÄid¸üĞÂstatus×´Ì¬ÖµÎªcomplete
+		//æ ¹æ®é‡‡è´­å•çš„idæ›´æ–°statusçŠ¶æ€å€¼ä¸ºcomplete
 		Leave leaver=new Leave();
-		leaver.setLeaveId(businessKey);//¸üĞÂ¼ÇÂ¼µÄid
-		if(msg.equals("Í¨¹ı")){
-			leaver.setStatus("ÉóºËÍ¨¹ı");//¸üĞÂstatus×´Ì¬ÖµÎª  ÉóºËÍ¨¹ı
-		}else if(msg.equals("Î´Í¨¹ı")){
-			leaver.setStatus("ÉóºË²»Í¨¹ı");
+		leaver.setLeaveId(businessKey);//æ›´æ–°è®°å½•çš„id
+		if(msg.equals("é€šè¿‡")){
+			leaver.setStatus("å®¡æ ¸é€šè¿‡");//æ›´æ–°statusçŠ¶æ€å€¼ä¸º  å®¡æ ¸é€šè¿‡
+		}else if(msg.equals("æœªé€šè¿‡")){
+			leaver.setStatus("å®¡æ ¸ä¸é€šè¿‡");
 		}
 		leaveMapper.update(leaver);
 	}

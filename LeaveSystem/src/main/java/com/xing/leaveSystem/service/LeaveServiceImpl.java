@@ -39,26 +39,26 @@ public class LeaveServiceImpl implements LeaveService{
 	@Override
 	public int add(Leave leave ,String userId) {
 		
-		/**ÉèÖÃÄ¬ÈÏµÄÇë¼ÙĞÅÏ¢*/
+		/**è®¾ç½®é»˜è®¤çš„è¯·å‡ä¿¡æ¯*/
 		leave.setCreateTime(new Date());
 		String leaveId=UUIDBuild.getInstance().generate();
 		leave.setLeaveId(leaveId);
 		leave.setStatus(CommonConstants.NOT_SUBMIT);
 				
-		/**ÍêÉÆÇë¼ÙĞÅÏ¢*/
+		/**å®Œå–„è¯·å‡ä¿¡æ¯*/
 		leave.setUserId(userId);
 		String processDefinitionKey=ResourceUtil.getValue("diagram.leavesystem", "studentLeaveProcess");
 		
-		//ÉèÖÃÁ÷³ÌÆô¶¯ÈË
+		//è®¾ç½®æµç¨‹å¯åŠ¨äºº
 		identityService.setAuthenticatedUserId(userId);
 		
-		//ÉèÖÃÈ«¾ÖÁ÷³Ì±äÁ¿
+		//è®¾ç½®å…¨å±€æµç¨‹å˜é‡
 		Map<String, Object> variables=new  HashMap<String, Object>();
 		variables.put("days", leave.getLeaveDays());
 		
-		//Æô¶¯Á÷³ÌÊµÀı  Í¬Ê±ÉèÖÃÁ÷³Ì±äÁ¿£¨Çë¼ÙÌìÊı£©
+		//å¯åŠ¨æµç¨‹å®ä¾‹  åŒæ—¶è®¾ç½®æµç¨‹å˜é‡ï¼ˆè¯·å‡å¤©æ•°ï¼‰
 		ProcessInstance processinstance=runtimeService.startProcessInstanceByKey(processDefinitionKey, leaveId,variables);
-		//ÏòÇë¼Ù¶ÔÏóÖĞÉèÖÃÁ÷³ÌÊµÀıid
+		//å‘è¯·å‡å¯¹è±¡ä¸­è®¾ç½®æµç¨‹å®ä¾‹id
 		leave.setProcessinstanceId(processinstance.getProcessInstanceId());
 		int resultTotal=leaveMapper.add(leave);
 		return resultTotal;
@@ -81,16 +81,16 @@ public class LeaveServiceImpl implements LeaveService{
 		MessageObj obj=new MessageObj();
 		
 		Leave leave=leaveMapper.findById(leaveId);
-		//²éÑ¯´ú°ìÈÎÎñ
+		//æŸ¥è¯¢ä»£åŠä»»åŠ¡
 		Task task=taskService.createTaskQuery()
 				.processInstanceId(processinstanceId)
 				.singleResult();
 		
-		if(task!=null){//Èç¹û´æÔÚ¸ÄÈÎÎñ
+		if(task!=null){//å¦‚æœå­˜åœ¨æ”¹ä»»åŠ¡
 			taskService.complete(task.getId());
-			//ĞŞ¸ÄÇë¼Ùµ¥×´Ì¬
+			//ä¿®æ”¹è¯·å‡å•çŠ¶æ€
 			leave.setStatus(CommonConstants.AUDIT);
-			//¸üĞÂÇë¼Ùµ¥
+			//æ›´æ–°è¯·å‡å•
 			leaveMapper.update(leave);
 			obj.setSuccess();
 		}else{

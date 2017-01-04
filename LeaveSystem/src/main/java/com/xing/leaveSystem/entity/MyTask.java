@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- *  ×Ô¶¨ÒåÒ»¸öÈÎÎñÀà    ÓÃ»§·â×°Êı¾İ´øµ½Ò³ÃæÏÔÊ¾
+ *  è‡ªå®šä¹‰ä¸€ä¸ªä»»åŠ¡ç±»    ç”¨æˆ·å°è£…æ•°æ®å¸¦åˆ°é¡µé¢æ˜¾ç¤º
  */
 public class MyTask implements Serializable{
 	
@@ -13,23 +13,23 @@ public class MyTask implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1969017856161754429L;
-	/**ÈÎÎñid*/
+	/**ä»»åŠ¡id*/
 	private String id;
-	/**ÈÎÎñÃû³Æ*/
+	/**ä»»åŠ¡åç§°*/
 	private String name;
-	/**´´½¨Ê±¼ä*/
+	/**åˆ›å»ºæ—¶é—´*/
 	private Date createTime;
-	/**´´½¨Ê±¼äÖ§¸¶´®±íÊ¾·½Ê½*/
+	/**åˆ›å»ºæ—¶é—´æ”¯ä»˜ä¸²è¡¨ç¤ºæ–¹å¼*/
 	private String createTimeStr;
-	/**½áÊøÊ±¼ä*/
+	/**ç»“æŸæ—¶é—´*/
 	private Date endTime;
-	/**½áÊøÊ±¼ä£¨×Ö·û´®±íÊ¾·½Ê½£©*/
+	/**ç»“æŸæ—¶é—´ï¼ˆå­—ç¬¦ä¸²è¡¨ç¤ºæ–¹å¼ï¼‰*/
 	private String endTimeStr;
-	/**ÈÎÎñ°ìÀíÈË*/
+	/**ä»»åŠ¡åŠç†äºº*/
 	private String userName;
-	/**ÈÎÎñ±êÊ¶*/
+	/**ä»»åŠ¡æ ‡è¯†*/
 	private String taskDefinitionKey;
-	/**ÅĞ¶ÏÈÎÎñÊÇ·ñÊ°È¡µÄ±ê¼Ç0  ´ú±íÎ´Ê°È¡  1´ú±ÊÊ°È¡*/
+	/**åˆ¤æ–­ä»»åŠ¡æ˜¯å¦æ‹¾å–çš„æ ‡è®°0  ä»£è¡¨æœªæ‹¾å–  1ä»£ç¬”æ‹¾å–*/
 	private boolean flag;
 	public String getId() {
 		return id;

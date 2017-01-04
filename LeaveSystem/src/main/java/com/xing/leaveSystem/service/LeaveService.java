@@ -9,35 +9,35 @@ import com.xing.leaveSystem.utils.MessageObj;
 public interface LeaveService {
 
 	/**
-	 * Ìí¼ÓÇë¼ÙĞÅÏ¢
-	 * @param leave  ·â×°Çë¼ÓĞÅÏ¢µÄJavabean
+	 * æ·»åŠ è¯·å‡ä¿¡æ¯
+	 * @param leave  å°è£…è¯·åŠ ä¿¡æ¯çš„Javabean
  	 * @return
 	 */
 	int  add(Leave leave,String userId);
 
 	/**
-	 * ·ÖÒ³²éÑ¯Çë¼ÙĞÅÏ¢
+	 * åˆ†é¡µæŸ¥è¯¢è¯·å‡ä¿¡æ¯
 	 * @param map
 	 * @return
 	 */
 	List<Leave> find(Map<String, Object> map);
 
 	/**
-	 * »ñÈ¡Çë¼ÙµÄ¼ÇÂ¼Êı
+	 * è·å–è¯·å‡çš„è®°å½•æ•°
 	 * @param map
 	 * @return
 	 */
 	long getTotal(Map<String, Object> map);
 
 	/**
-	 * Ìá½»ÉêÇëµ¥
+	 * æäº¤ç”³è¯·å•
 	 * @param processinstanceId
 	 * @return
 	 */
 	public MessageObj startApply(String processinstanceId,String leaveId);
 
 	/**
-	 * »ñÈ¡Çë¼ÙĞÅÏ¢
+	 * è·å–è¯·å‡ä¿¡æ¯
 	 * @param leaveId
 	 * @return
 	 */

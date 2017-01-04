@@ -3,7 +3,7 @@ package com.xing.leaveSystem.entity;
 import java.io.Serializable;
 
 /**
- *  °üº¬Á÷³Ì¶¨ÒåĞÅÏ¢µÄÀà 
+ *  åŒ…å«æµç¨‹å®šä¹‰ä¿¡æ¯çš„ç±» 
  */
 public class MyProcessDefinition implements Serializable{
 
@@ -11,19 +11,19 @@ public class MyProcessDefinition implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 5326911309380765140L;
-	/**Á÷³Ì¶¨Òå±àºÅ*/
+	/**æµç¨‹å®šä¹‰ç¼–å·*/
 	private String id;
-	/**Á÷³Ì¶¨ÒåÃû³Æ*/
+	/**æµç¨‹å®šä¹‰åç§°*/
 	private String name;
-	/**Á÷³Ì¶¨ÒåµÄkey*/
+	/**æµç¨‹å®šä¹‰çš„key*/
 	private String key;
-	/**Á÷³Ì¶¨Òå°æ±¾*/
+	/**æµç¨‹å®šä¹‰ç‰ˆæœ¬*/
 	private String version;
-	/**Á÷³Ì¶¨ÒåµÄ¹æÔòÎÄ¼şÃû³Æ*/
+	/**æµç¨‹å®šä¹‰çš„è§„åˆ™æ–‡ä»¶åç§°*/
 	private String resourceName;
-	/**Á÷³Ì¶¨ÒåµÄ¹æÔòÍ¼Æ¬Ãû³Æ*/
+	/**æµç¨‹å®šä¹‰çš„è§„åˆ™å›¾ç‰‡åç§°*/
 	private String diagramResourceName;
-	/**Á÷³Ì²¿Êğid*/
+	/**æµç¨‹éƒ¨ç½²id*/
 	private String deploymentId;
 	public String getId() {
 		return id;

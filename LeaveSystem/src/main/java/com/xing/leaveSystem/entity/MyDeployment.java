@@ -10,13 +10,13 @@ public class MyDeployment implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -1015437738542834712L;
-	/**²¿Êğid*/
+	/**éƒ¨ç½²id*/
 	private String id;
-	/**²¿ÊğÃû*/
+	/**éƒ¨ç½²å*/
 	private String name;
-	/**²¿ÊğÊ±¼ä*/
+	/**éƒ¨ç½²æ—¶é—´*/
 	private Date deploymentTime;
-	/**²¿ÊğÊ±¼ä£¨×Ö·û´®ÏÔÊ¾£©*/
+	/**éƒ¨ç½²æ—¶é—´ï¼ˆå­—ç¬¦ä¸²æ˜¾ç¤ºï¼‰*/
 	private String deploymentTimeStr;
 	public String getId() {
 		return id;

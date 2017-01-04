@@ -3,7 +3,7 @@ package com.xing.leaveSystem.entity;
 import java.io.Serializable;
 
 /**
- * ÓÃ»§ÊµÌåÀà
+ * ç”¨æˆ·å®ä½“ç±»
  *
  */
 public class User  implements Serializable{
@@ -13,11 +13,11 @@ public class User  implements Serializable{
 	 */
 	private static final long serialVersionUID = -756760723183852068L;
 	
-	private String userId;  //Ö÷¼ü
-	private String userName; //ÓÃ»§Ãû
-	private String password; //ÃÜÂë
-	private String email;    //ÓÊÏä
-	private String groups;   // ÓÃ»§ËùÓĞµÄ½ÇÉ« ¶à¸ö½ÇÉ«Ö®¼äÓÃ¶ººÅ¸ô¿ª(Ê¹ÓÃÈßÓà×Ö¶ÎÀ´±íÊ¾£¬  Ê¡È¥ÁË¶ÔÏóµÄ¹ØÁª)
+	private String userId;  //ä¸»é”®
+	private String userName; //ç”¨æˆ·å
+	private String password; //å¯†ç 
+	private String email;    //é‚®ç®±
+	private String groups;   // ç”¨æˆ·æ‰€æœ‰çš„è§’è‰² å¤šä¸ªè§’è‰²ä¹‹é—´ç”¨é€—å·éš”å¼€(ä½¿ç”¨å†—ä½™å­—æ®µæ¥è¡¨ç¤ºï¼Œ  çœå»äº†å¯¹è±¡çš„å…³è”)
 	
 	public String getUserId() {
 		return userId;

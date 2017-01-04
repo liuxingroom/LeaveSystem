@@ -8,57 +8,57 @@ import com.xing.leaveSystem.entity.Group;
 public interface GroupService {
 
 	/**
-	 * ·ÖÒ³²éÑ¯½ÇÉ«ĞÅÏ¢
+	 * åˆ†é¡µæŸ¥è¯¢è§’è‰²ä¿¡æ¯
 	 * @param map
 	 * @return
 	 */
 	List<Group> find(Map<String, Object> map);
 
 	/**
-	 * »ñÈ¡½ÇÉ«µÄ×Ü¼ÇÂ¼Êı
+	 * è·å–è§’è‰²çš„æ€»è®°å½•æ•°
 	 * @param map
 	 * @return
 	 */
 	Long getTotal(Map<String, Object> map);
 
 	/**
-	 * Ìí¼Ó½ÇÉ«ĞÅÏ¢  
-	 * Èç¹û·µ»ØµÄÊı´óÓÚ0  Ôò²Ù×÷³É¹¦  Èç¹ûĞ¡ÓÚµÈÓÚ0  Ôò²Ù×÷²»³É¹¦
+	 * æ·»åŠ è§’è‰²ä¿¡æ¯  
+	 * å¦‚æœè¿”å›çš„æ•°å¤§äº0  åˆ™æ“ä½œæˆåŠŸ  å¦‚æœå°äºç­‰äº0  åˆ™æ“ä½œä¸æˆåŠŸ
 	 * @param group
 	 * @return
 	 */
 	int add(Group group);
 
 	/**
-	 * ĞŞ¸Ä½ÇÉ«ĞÅÏ¢
-	 * Èç¹û·µ»ØµÄÊı´óÓÚ0  Ôò²Ù×÷³É¹¦  Èç¹ûĞ¡ÓÚµÈÓÚ0  Ôò²Ù×÷²»³É¹¦
+	 * ä¿®æ”¹è§’è‰²ä¿¡æ¯
+	 * å¦‚æœè¿”å›çš„æ•°å¤§äº0  åˆ™æ“ä½œæˆåŠŸ  å¦‚æœå°äºç­‰äº0  åˆ™æ“ä½œä¸æˆåŠŸ
 	 * @param group
 	 * @return
 	 */
 	int update(Group group);
 
 	/**
-	 * ¸ù¾İ½ÇÉ«Ãû²é¿´½ÇÉ«ĞÅÏ¢
+	 * æ ¹æ®è§’è‰²åæŸ¥çœ‹è§’è‰²ä¿¡æ¯
 	 * @param groupName
 	 * @return
 	 */
 	Group findByGroupName(String groupName);
 
 	/**
-	 * ¸ù¾İ½ÇÉ«idÀ´É¾³ı½ÇÉ«ĞÅÏ¢
+	 * æ ¹æ®è§’è‰²idæ¥åˆ é™¤è§’è‰²ä¿¡æ¯
 	 * @param string
 	 */
 	public void delete(String id);
 
 	/**
-	 * Í¨¹ıÓÃ»§idÀ´»ñÈ¡×é£¨½ÇÉ«£©ĞÅÏ¢
+	 * é€šè¿‡ç”¨æˆ·idæ¥è·å–ç»„ï¼ˆè§’è‰²ï¼‰ä¿¡æ¯
 	 * @param userId
 	 * @return
 	 */
 	List<Group> findGroupByUserId(String userId);
 
 	/**
-	 * ²é¿´½ÇÉ«idÊÇ·ñ´æÔÚ
+	 * æŸ¥çœ‹è§’è‰²idæ˜¯å¦å­˜åœ¨
 	 * @param id
 	 * @return
 	 */

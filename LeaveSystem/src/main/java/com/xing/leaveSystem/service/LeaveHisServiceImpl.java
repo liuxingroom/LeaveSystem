@@ -63,10 +63,10 @@ public class LeaveHisServiceImpl implements LeaveHisService{
 	}
 	
 	/**
-	 * Æ´½ÓÇë¼Ù¼ÇÂ¼±íºÍÇë¼Ù¼ÇÂ¼ÀúÊ·±íÊı¾İÏà»¥×°»»ĞÅÏ¢µÄsql
-	 * @param id Çë¼Ù±íµÄid¼¯ºÏ
-	 * @param source ¸´ÖÆµÄÔ´±í
-	 * @param target ¸´ÖÆµÄÄ¿µÄ±í
+	 * æ‹¼æ¥è¯·å‡è®°å½•è¡¨å’Œè¯·å‡è®°å½•å†å²è¡¨æ•°æ®ç›¸äº’è£…æ¢ä¿¡æ¯çš„sql
+	 * @param id è¯·å‡è¡¨çš„idé›†åˆ
+	 * @param source å¤åˆ¶çš„æºè¡¨
+	 * @param target å¤åˆ¶çš„ç›®çš„è¡¨
 	 * @return
 	 */
 	private String[] doData(String[] id, String source, String target) {
@@ -76,13 +76,7 @@ public class LeaveHisServiceImpl implements LeaveHisService{
 		sBuf.append("insert into leave_system").append(target).append("_leave( select * from leave_system").append(source).append("_leave where leave_id in (").append(inStr).append("));"); 
 		
 		//
-		sBuf.append("delete from leave_system").append(source).append("_leave where leave_id in (").append(inStr).append(");"); 
-		String sqlStr=sBuf.toString();
-		System.out.println(sqlStr);
-		String sqls []=sqlStr.split(";");
-		for(String string:sqls){
-			System.out.println(string);
-		}
-		return sqls;
+		sBuf.append("delete from leave_system").append(source).append("_leave where leave_id in (").append(inStr).append(");");
+		return sBuf.toString().split(";");
 	}
 }

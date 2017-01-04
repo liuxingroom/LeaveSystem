@@ -9,28 +9,28 @@ import com.xing.leaveSystem.utils.MessageObj;
 public interface LeaveHisService {
 
 	/**
-	 * ·ÖÒ³²éÑ¯Çë¼ÙĞÅÏ¢
+	 * åˆ†é¡µæŸ¥è¯¢è¯·å‡ä¿¡æ¯
 	 * @param map
 	 * @return
 	 */
 	List<Leave> find(Map<String, Object> map);
 
 	/**
-	 * »ñÈ¡Çë¼ÙµÄ¼ÇÂ¼Êı
+	 * è·å–è¯·å‡çš„è®°å½•æ•°
 	 * @param map
 	 * @return
 	 */
 	long getTotal(Map<String, Object> map);
 
 	/**
-	 * È¡ÏûÇë¼ÙĞÅÏ¢¹éµµ
+	 * å–æ¶ˆè¯·å‡ä¿¡æ¯å½’æ¡£
 	 * @param ids
 	 * @return
 	 */
 	MessageObj pigeouthole(String ids);
 
 	/**
-	 * ½«Çë¼ÙĞÅÏ¢¹éµµ
+	 * å°†è¯·å‡ä¿¡æ¯å½’æ¡£
 	 * @param ids
 	 * @return
 	 */

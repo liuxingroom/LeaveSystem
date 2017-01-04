@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /** 
- *	×Ô¶¨ÒåÁ÷³ÌÊµÀıĞÅÏ¢
+ *	è‡ªå®šä¹‰æµç¨‹å®ä¾‹ä¿¡æ¯
  */
 public class MyProcessInstance implements Serializable{
 	
@@ -13,27 +13,27 @@ public class MyProcessInstance implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 7153104285523617229L;
-	/**µ±Ç°Á÷³ÌÊµÀıid*/
+	/**å½“å‰æµç¨‹å®ä¾‹id*/
 	private String processInstanceId;
-	/**Á÷³ÌÊµÀıÃû³Æ*/
+	/**æµç¨‹å®ä¾‹åç§°*/
 	private String name;
-	/**µ±Ç°½ÚµãĞÅÏ¢*/
+	/**å½“å‰èŠ‚ç‚¹ä¿¡æ¯*/
 	private String activityId;
-	/**´´½¨Ê±¼ä*/
+	/**åˆ›å»ºæ—¶é—´*/
 	private Date startTime;
-	/**´´½¨Ê±¼ä£¨×Ö·û´®±íÏÖĞÎÊ½£©*/
+	/**åˆ›å»ºæ—¶é—´ï¼ˆå­—ç¬¦ä¸²è¡¨ç°å½¢å¼ï¼‰*/
 	private String startTimeStr;
-	/**½áÊøÊ±¼ä*/
+	/**ç»“æŸæ—¶é—´*/
 	private Date endTime;
-	/**½áÊøÊ±¼ä£¨×Ö·û´®±íÊ¾·½Ê½£©*/
+	/**ç»“æŸæ—¶é—´ï¼ˆå­—ç¬¦ä¸²è¡¨ç¤ºæ–¹å¼ï¼‰*/
 	private String endTimeStr;
-	/**Á÷³Ì¶¨ÒåĞÅÏ¢*/
+	/**æµç¨‹å®šä¹‰ä¿¡æ¯*/
 	private String processDefinitionId;
-	/**Çë¼ÙÈË*/
+	/**è¯·å‡äºº*/
 	private String userName;
-	/**Çë¼ÙÔ­Òò*/
+	/**è¯·å‡åŸå› */
 	private String leaveReason;
-	/**Çë¼ÙÊ±¼ä*/
+	/**è¯·å‡æ—¶é—´*/
 	private int leaveDays;
 	
 

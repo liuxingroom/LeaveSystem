@@ -5,13 +5,13 @@ import com.xing.leaveSystem.entity.User;
 public interface LoginUserService {
 
 	/**
-	 * 更新登录使用的用户表中的信息
+	 * 鏇存柊鐧诲綍浣跨敤鐨勭敤鎴疯〃涓殑淇℃伅
 	 * @param user
 	 */
 	public void update(User user);
 	
 	/**
-	 * 通过用户名和密码查询用户信息
+	 * 閫氳繃鐢ㄦ埛鍚嶅拰瀵嗙爜鏌ヨ鐢ㄦ埛淇℃伅
 	 * @param user
 	 * @return
 	 */

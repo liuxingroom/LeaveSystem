@@ -3,7 +3,7 @@ package com.xing.leaveSystem.entity;
 import java.io.Serializable;
 
 /**
- *  ÓÃ»§½ÇÉ«ÖÐ¼ä¹ØÏµÀà 
+ *  ç”¨æˆ·è§’è‰²ä¸­é—´å…³ç³»ç±» 
  */
 public class MemberShip implements Serializable{
 
