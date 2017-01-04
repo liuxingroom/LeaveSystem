@@ -5,13 +5,13 @@ import com.xing.leaveSystem.entity.MemberShip;
 public interface MemberShipService {
 	
 	/**
-	 * ¸ù¾İÓÃ»§idÉ¾³ı¸ÃÓÃ»§µÄËùÓĞ½ÇÉ«µÄ¹ØÁª¹ØÏµ
+	 * æ ¹æ®ç”¨æˆ·idåˆ é™¤è¯¥ç”¨æˆ·çš„æ‰€æœ‰è§’è‰²çš„å…³è”å…³ç³»
 	 * @param userId
 	 */
 	public void deleteAllGroupsByUserId(String userId);
 
 	/**
-	 * Ìí¼ÓÓÃ»§½ÇÉ«µÄ¹ØÁª¹ØÏµ
+	 * æ·»åŠ ç”¨æˆ·è§’è‰²çš„å…³è”å…³ç³»
 	 * @param memberShip
 	 */
 	public void add(MemberShip memberShip);

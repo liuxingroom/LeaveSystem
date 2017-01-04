@@ -31,18 +31,18 @@ public class TaskAuiditServiceImpl implements TaskAuditService{
 		String auditId=UUIDBuild.getInstance().generate();
 		audit.setAuditId(auditId);
 		audit.setCreateTime(new Date());
-		//ÉèÖÃÉóºËÈË
+		//è®¾ç½®å®¡æ ¸äºº
 		audit.setUserId(userId);
-		//ÉèÖÃËù¶ÔÓ¦µÄÇë¼ÙĞÅÏ¢
-		//»ñÈ¡Çë¼ÙÈÎÎñ
+		//è®¾ç½®æ‰€å¯¹åº”çš„è¯·å‡ä¿¡æ¯
+		//è·å–è¯·å‡ä»»åŠ¡
 		Task task=taskService.createTaskQuery().taskId(taskId).singleResult();
-		//»ñÈ¡Á÷³ÌÊµÀıid
+		//è·å–æµç¨‹å®ä¾‹id
 		String processInstanceId=task.getProcessInstanceId();
-		//»ñÈ¡Á÷³ÌÊµÀıĞÅÏ¢
+		//è·å–æµç¨‹å®ä¾‹ä¿¡æ¯
 		ProcessInstance instance=runtimeService.createProcessInstanceQuery().processInstanceId(processInstanceId).singleResult();
-		//»ñÈ¡Çë¼Ùµ¥id
+		//è·å–è¯·å‡å•id
 		String leaveId=instance.getActivityId();
-		//ÉèÖÃÇë¼Ùµ¥id
+		//è®¾ç½®è¯·å‡å•id
 		audit.setLeaveId(leaveId);
 		int resultTotal=taskAuditMapper.add(audit);
 		return resultTotal;

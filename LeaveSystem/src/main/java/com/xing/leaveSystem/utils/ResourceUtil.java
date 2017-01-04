@@ -28,7 +28,7 @@ public class ResourceUtil {
 	
 	
 	/** 
-	 * @param fileName 文件�?
+	 * @param fileName 文件名
 	 * @param key    索引
 	 * @return
 	 */
@@ -38,8 +38,8 @@ public class ResourceUtil {
 	}
 
 	/**
-	 * 加载.properties 文件并获取该文件中的�?
-	 * @param fileName  文件�?
+	 * 加载.properties 文件并获取该文件中的值
+	 * @param fileName  文件名
 	 * @param key   索引
 	 * @return
 	 */
@@ -58,7 +58,7 @@ public class ResourceUtil {
 	}
 	
 	/**
-	 * 获取配置文件中所有的value信息，并将所有的value信息封装到一个list集合�?
+	 * 获取配置文件中所有的value信息，并将所有的value信息封装到一个list集合中
 	 * @param baseName
 	 * @return
 	 */
@@ -77,7 +77,7 @@ public class ResourceUtil {
 
 	
 	/**
-	 * 通过key从资源文件中获取内容，并格式�?
+	 * 通过key从资源文件中获取内容，并格式化
 	 * @param fileName
 	 * @param key
 	 * @param objs

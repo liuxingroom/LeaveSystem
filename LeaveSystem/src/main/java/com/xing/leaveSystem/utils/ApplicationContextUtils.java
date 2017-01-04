@@ -8,9 +8,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
- *  Í¨¹ıÁíÍâÒ»ÖÖ·½Ê½»ñÈ¡spring webÈİÆ÷µÄ¶ÔÏó
- *  ÓÃÍ¾£º¸ÃÀàµÄ×÷ÓÃÖ÷ÒªÊ¹ÎªÁËÔÚ¼àÌıÆ÷ÖĞ»¹ÄÜÊ¹ÓÃspring´´½¨µÄÀà
- *  ×¢Òâ£ºÊ¹ÓÃ¸Ã·½·¨»ñÈ¡ApplicationContext¶ÔÏó»¹ĞèÒªÔÚweb.xmlÖĞÅäÖÃrequestµÄÉÏÏÂÎÄ¼àÌı 
+ *  é€šè¿‡å¦å¤–ä¸€ç§æ–¹å¼è·å–spring webå®¹å™¨çš„å¯¹è±¡
+ *  ç”¨é€”ï¼šè¯¥ç±»çš„ä½œç”¨ä¸»è¦ä½¿ä¸ºäº†åœ¨ç›‘å¬å™¨ä¸­è¿˜èƒ½ä½¿ç”¨springåˆ›å»ºçš„ç±»
+ *  æ³¨æ„ï¼šä½¿ç”¨è¯¥æ–¹æ³•è·å–ApplicationContextå¯¹è±¡è¿˜éœ€è¦åœ¨web.xmlä¸­é…ç½®requestçš„ä¸Šä¸‹æ–‡ç›‘å¬ 
  */
 public class ApplicationContextUtils {
 	private static ApplicationContext applicationContext=null;

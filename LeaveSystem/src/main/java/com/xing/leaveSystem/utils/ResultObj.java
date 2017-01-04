@@ -3,8 +3,8 @@ package com.xing.leaveSystem.utils;
 import java.io.Serializable;
 
 /**
- * Êı¾İ·µ»ØµÄ¸ñÊ½
- * {"rows":[{"email":"99@qq.com","groups":"","password":"111111","userId":"111111","userName":"ÕÅÈı"}],"total":1}
+ * æ•°æ®è¿”å›çš„æ ¼å¼
+ * {"rows":[{"email":"99@qq.com","groups":"","password":"111111","userId":"111111","userName":"å¼ ä¸‰"}],"total":1}
  * @param <T>
  */
 public class ResultObj implements Serializable{

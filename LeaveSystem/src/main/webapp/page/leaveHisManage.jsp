@@ -18,7 +18,7 @@
 		//判断有没有选中数据  入股没有选中 则提示选中数据
 		var selectRows=$("#dg").datagrid("getSelections");
 		if(selectRows.length==0){
-			$.messager.alert("系统提示","请选择要删除的数据！");
+			$.messager.alert("系统提示","请选择要取消归档的数据！");
 			return;
 		}
 		//获取选中的id

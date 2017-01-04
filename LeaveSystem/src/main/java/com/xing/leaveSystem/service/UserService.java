@@ -9,69 +9,69 @@ import com.xing.leaveSystem.entity.User;
 public interface UserService {
 
 	/**
-	 * ¸ù¾İÓÃ»§Ãû·ÖÒ³²éÑ¯·ûºÏµÄÓÃ»§ĞÅÏ¢
+	 * æ ¹æ®ç”¨æˆ·ååˆ†é¡µæŸ¥è¯¢ç¬¦åˆçš„ç”¨æˆ·ä¿¡æ¯
 	 * @param map
 	 * @return
 	 */
 	List<User> find(Map<String, Object> map);
 
 	/**
-	 * »ñÈ¡Êı¾İµÄ¼ÇÂ¼Êı
+	 * è·å–æ•°æ®çš„è®°å½•æ•°
 	 * @param map
 	 * @return
 	 */
 	Long getTotal(Map<String, Object> map);
 
 	/**
-	 * Ìí¼ÓÓÃ»§ĞÅÏ¢
+	 * æ·»åŠ ç”¨æˆ·ä¿¡æ¯
 	 * @param user
 	 * @return
 	 */
 	int add(User user);
 
 	/**
-	 * ¸üĞÂÓÃ»§ĞÅÏ¢
+	 * æ›´æ–°ç”¨æˆ·ä¿¡æ¯
 	 * @param user
 	 * @return
 	 */
 	int update(User user);
 
 	/**
-	 * Í¨¹ıÓÃ»§Ãû²éÕÒÓÃ»§ĞÅÏ¢
+	 * é€šè¿‡ç”¨æˆ·åæŸ¥æ‰¾ç”¨æˆ·ä¿¡æ¯
 	 * @param userName
 	 * @return
 	 */
 	User findByUserName(String userName);
 
 	/**
-	 * ¸ù¾İÓÃ»§idÀ´É¾³ıÓÃ»§ĞÅÏ¢
+	 * æ ¹æ®ç”¨æˆ·idæ¥åˆ é™¤ç”¨æˆ·ä¿¡æ¯
 	 * @param string
 	 */
     public void  delete(String userId);
     
     /**
-     * Í¨¹ıÓÃ»§idÀ´»ñÈ¡ÓÃ»§ĞÅÏ¢
+     * é€šè¿‡ç”¨æˆ·idæ¥è·å–ç”¨æˆ·ä¿¡æ¯
      * @param userId
      * @return
      */
 	User findUserById(String userId);
 
 	/**
-	 * Í¨¹ıÓÃ»§ÃûºÍÃÜÂë²éÑ¯ÓÃ»§ĞÅÏ¢
+	 * é€šè¿‡ç”¨æˆ·åå’Œå¯†ç æŸ¥è¯¢ç”¨æˆ·ä¿¡æ¯
 	 * @param user
 	 * @return
 	 */
 	User finUserByNameAndPwd(User user);
 
 	/**
-	 * Í¨¹ıÓÃ»§idÀ´»ñÈ¡×éĞÅÏ¢
+	 * é€šè¿‡ç”¨æˆ·idæ¥è·å–ç»„ä¿¡æ¯
 	 * @param userId
 	 * @return
 	 */
 	List<Group> findGroupByUserId(String userId);
 
 	/**
-	 * ¸ù¾İÓÃ»§idºÍÃÜÂëÅĞ¶ÏÓÃ»§ÊÇ·ñ´æÔÚ
+	 * æ ¹æ®ç”¨æˆ·idå’Œå¯†ç åˆ¤æ–­ç”¨æˆ·æ˜¯å¦å­˜åœ¨
 	 * @param user
 	 * @return
 	 */

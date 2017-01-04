@@ -48,26 +48,26 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public int add(User user) {
-		//»ñÈ¡ÓÃ»§id
+		//è·å–ç”¨æˆ·id
 		UUIDBuild build=UUIDBuild.getInstance();
 		String userId=build.generate();
 		user.setUserId(userId);
-		//ÏòÆÕÍ¨ÓÃ»§±íÖĞ²åÈëÊı¾İ
+		//å‘æ™®é€šç”¨æˆ·è¡¨ä¸­æ’å…¥æ•°æ®
 		int resultTotal=userMapper.add(user);
-		//ÏòµÇÂ¼ÓÃ»§±íÖĞ²åÈëÓÃ»§ĞÅÏ¢
+		//å‘ç™»å½•ç”¨æˆ·è¡¨ä¸­æ’å…¥ç”¨æˆ·ä¿¡æ¯
 		loginUserMapper.add(user);
 		UserEntity entity=new UserEntity();
 		try {
-			if(identityService.createUserQuery().userId(user.getUserId()).singleResult()==null){//Èç¹û¹¤×÷Á÷ÏµÍ³ÖĞ²»´æÔÚ¸ÄÓÃ»§ĞÅÏ¢Ê±
+			if(identityService.createUserQuery().userId(user.getUserId()).singleResult()==null){//å¦‚æœå·¥ä½œæµç³»ç»Ÿä¸­ä¸å­˜åœ¨æ”¹ç”¨æˆ·ä¿¡æ¯æ—¶
 				BeanUtils.copyProperties(entity, user);
 				entity.setId(user.getUserId());
 				entity.setFirstName(user.getUserName());
-				//Ïò¹¤×÷Á÷¿ò¼ÜÖĞÌí¼ÓÓÃ»§ĞÅÏ¢
+				//å‘å·¥ä½œæµæ¡†æ¶ä¸­æ·»åŠ ç”¨æˆ·ä¿¡æ¯
 				identityService.saveUser(entity);
 			}
 			
 		} catch (Exception e) {
-			logger.error("Ìí¼ÓÊ±ÓÃ»§ĞÅÏ¢¸´ÖÆÊ§°Ü");
+			logger.error("æ·»åŠ æ—¶ç”¨æˆ·ä¿¡æ¯å¤åˆ¶å¤±è´¥");
 			e.printStackTrace();
 		} 
 		return resultTotal;
@@ -75,54 +75,54 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public int update(User user) {
-		//¸üĞÂÆÕÍ¨ÓÃ»§ĞÅÏ¢
+		//æ›´æ–°æ™®é€šç”¨æˆ·ä¿¡æ¯
 		int resultTotal=userMapper.update(user);
-		//¸üĞÂµÇÂ¼ÓÃ»§ĞÅÏ¢
+		//æ›´æ–°ç™»å½•ç”¨æˆ·ä¿¡æ¯
 		loginUserMapper.update(user);
 		UserEntity entity=new UserEntity();
 		try {
-			if(identityService.createUserQuery().userId(user.getUserId()).singleResult()!=null){//Èç¹û¹¤×÷Á÷ÏµÍ³ÖĞ´æÔÚ¸ÄÓÃ»§ĞÅÏ¢
+			if(identityService.createUserQuery().userId(user.getUserId()).singleResult()!=null){//å¦‚æœå·¥ä½œæµç³»ç»Ÿä¸­å­˜åœ¨æ”¹ç”¨æˆ·ä¿¡æ¯
 				BeanUtils.copyProperties(entity, user);
 				entity.setId(user.getUserId());
-				if(StringUtils.isNotEmpty(user.getUserName())){//ÅĞ¶ÏÓÃ»§ÃûÊÇ·ñÎª¿Õ
+				if(StringUtils.isNotEmpty(user.getUserName())){//åˆ¤æ–­ç”¨æˆ·åæ˜¯å¦ä¸ºç©º
 					entity.setFirstName(user.getUserName());
-				}else if(StringUtils.isEmpty(user.getUserName()) && StringUtils.isEmpty(user.getEmail())){//Èç¹ûÖ»ÊÇĞŞ¸ÄÃÜÂë²Ù×÷  ´ËÊ±ÓÊÏäºÍÃÜÂë´«µİµÄÖµÎª¿Õ  ´ËÊ±ĞèÒª´Ó¹¤×÷Á÷ÖĞ»ñÈ¡ÓÃ»§ĞÅÏ¢
+				}else if(StringUtils.isEmpty(user.getUserName()) && StringUtils.isEmpty(user.getEmail())){//å¦‚æœåªæ˜¯ä¿®æ”¹å¯†ç æ“ä½œ  æ­¤æ—¶é‚®ç®±å’Œå¯†ç ä¼ é€’çš„å€¼ä¸ºç©º  æ­¤æ—¶éœ€è¦ä»å·¥ä½œæµä¸­è·å–ç”¨æˆ·ä¿¡æ¯
 					org.activiti.engine.identity.User users=identityService.createUserQuery().userId(user.getUserId()).singleResult();
 					entity.setFirstName(users.getFirstName());
 					entity.setEmail(users.getEmail());
 				}
 				
 				
-				/**ÔÚÉ¾³ıÓÃ»§ĞÅÏ¢Ê±ÏÈÉ¾³ıÍâ¼üĞÅÏ¢*/
-				//²éÑ¯¸ÃÓÃ»§ÏÂµÄËùÓĞ½ÇÉ«ĞÅÏ¢
+				/**åœ¨åˆ é™¤ç”¨æˆ·ä¿¡æ¯æ—¶å…ˆåˆ é™¤å¤–é”®ä¿¡æ¯*/
+				//æŸ¥è¯¢è¯¥ç”¨æˆ·ä¸‹çš„æ‰€æœ‰è§’è‰²ä¿¡æ¯
 				List<Group> groupList=identityService.createGroupQuery().groupMember(entity.getId()).list();
-				if(groupList.size()>0){//Èç¹û¸ÃÓÃ»§´æÔÚ×é¹ØÏµ
+				if(groupList.size()>0){//å¦‚æœè¯¥ç”¨æˆ·å­˜åœ¨ç»„å…³ç³»
 					for(int i=0;i<groupList.size();i++){
-						//¸ù¾İÓÃ»§idºÍ×éidÉ¾³ıÓÃ»§ºÍ×éµÄ¹ØÏµ
+						//æ ¹æ®ç”¨æˆ·idå’Œç»„idåˆ é™¤ç”¨æˆ·å’Œç»„çš„å…³ç³»
 						identityService.deleteMembership(entity.getId(),groupList.get(i).getId());
 					}
 				}
 				
 				
 				
-				/**¹¤×÷Á÷ÔÚ¸üĞÂÓÃ»§ĞÅÏ¢Ê±  ÊÇÏÈÉ¾³ıºóÌí¼Ó²Ù×÷*/
-				//É¾³ı¹¤×÷Á÷ÖØÓÃ»§µÄĞÅÏ¢
+				/**å·¥ä½œæµåœ¨æ›´æ–°ç”¨æˆ·ä¿¡æ¯æ—¶  æ˜¯å…ˆåˆ é™¤åæ·»åŠ æ“ä½œ*/
+				//åˆ é™¤å·¥ä½œæµé‡ç”¨æˆ·çš„ä¿¡æ¯
 				identityService.deleteUser(entity.getId());
-				//Ìí¼Ó¹¤×÷Á÷ÖĞÓÃ»§µÄĞÅÏ¢
+				//æ·»åŠ å·¥ä½œæµä¸­ç”¨æˆ·çš„ä¿¡æ¯
 				identityService.saveUser(entity);
 				
-				/**Ìí¼ÓÍêÓÃ»§ĞÅÏ¢ºó   Èç¹û¸ÃÓÃ»§´æÔÚ½ÇÉ«ĞÅÏ¢Ó¦¸ÃÔÚÌí¼ÓÓÃ»§½ÇÉ«µÄ¹ØÁª*/
-				//Ìí¼ÓÓÃ»§½ÇÉ«µÄ¹ØÁª
-				if(groupList.size()>0){//Èç¹û¸ÃÓÃ»§´æÔÚ×éĞÅÏ¢
-					for(int i=0;i<groupList.size();i++){//±éÀú½ÇÉ«ĞÅÏ¢
-						//Ìí¼Ó½ÇÉ«¹ØÁª
+				/**æ·»åŠ å®Œç”¨æˆ·ä¿¡æ¯å   å¦‚æœè¯¥ç”¨æˆ·å­˜åœ¨è§’è‰²ä¿¡æ¯åº”è¯¥åœ¨æ·»åŠ ç”¨æˆ·è§’è‰²çš„å…³è”*/
+				//æ·»åŠ ç”¨æˆ·è§’è‰²çš„å…³è”
+				if(groupList.size()>0){//å¦‚æœè¯¥ç”¨æˆ·å­˜åœ¨ç»„ä¿¡æ¯
+					for(int i=0;i<groupList.size();i++){//éå†è§’è‰²ä¿¡æ¯
+						//æ·»åŠ è§’è‰²å…³è”
 						identityService.createMembership(entity.getId(), groupList.get(i).getId());
 					}
 				}
 			}
 			
 		} catch (Exception e) {
-			logger.error("¸üĞÂÊ±ÓÃ»§ĞÅÏ¢¸´ÖÆÊ§°Ü");
+			logger.error("æ›´æ–°æ—¶ç”¨æˆ·ä¿¡æ¯å¤åˆ¶å¤±è´¥");
 			e.printStackTrace();
 		} 
 		return resultTotal;
@@ -136,20 +136,20 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public void delete(String userId) {
-		//É¾³ıÆÕÍ¨ÓÃ»§ĞÅÏ¢
+		//åˆ é™¤æ™®é€šç”¨æˆ·ä¿¡æ¯
 		userMapper.delete(userId);
-		//É¾³ıµÇÂ¼ÓÃ»§ĞÅÏ¢
+		//åˆ é™¤ç™»å½•ç”¨æˆ·ä¿¡æ¯
 		loginUserMapper.delete(userId);
-		//É¾³ı¹¤×÷Á÷ÏµÍ³ÖĞµÄÓÃ»§ĞÅÏ¢
+		//åˆ é™¤å·¥ä½œæµç³»ç»Ÿä¸­çš„ç”¨æˆ·ä¿¡æ¯
 		
 		List<Group> groupList=identityService.createGroupQuery().groupMember(userId).list();
-		if(groupList.size()>0){//Èç¹û¸ÃÓÃ»§´æÔÚ×é¹ØÏµ
+		if(groupList.size()>0){//å¦‚æœè¯¥ç”¨æˆ·å­˜åœ¨ç»„å…³ç³»
 			for(int i=0;i<groupList.size();i++){
-				//¸ù¾İÓÃ»§idºÍ×éidÉ¾³ıÓÃ»§ºÍ×éµÄ¹ØÏµ
+				//æ ¹æ®ç”¨æˆ·idå’Œç»„idåˆ é™¤ç”¨æˆ·å’Œç»„çš„å…³ç³»
 				identityService.deleteMembership(userId,groupList.get(i).getId());
 			}
 		}
-		//É¾³ı¹¤×÷Á÷ÖØÓÃ»§µÄĞÅÏ¢
+		//åˆ é™¤å·¥ä½œæµé‡ç”¨æˆ·çš„ä¿¡æ¯
 		identityService.deleteUser(userId);
 		
 	}

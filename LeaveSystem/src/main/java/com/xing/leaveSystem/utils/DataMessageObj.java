@@ -18,7 +18,7 @@ public class DataMessageObj<T> extends MessageObj{
 	}
 	
 	/**
-	 * 设置成功(重写父类的成功的设置方法)
+	 * 璁剧疆鎴愬姛(閲嶅啓鐖剁被鐨勬垚鍔熺殑璁剧疆鏂规硶)
 	 */
 	public DataMessageObj<T> setSuccess(T dataObject){
 		setSuccess();

@@ -24,7 +24,7 @@ import java.util.Date;
   }
   
 
-	/* ÑéÖ¤Êı×éÊÇ·ñÎª¿Õ */
+	/* éªŒè¯æ•°ç»„æ˜¯å¦ä¸ºç©º */
 	public static boolean arrayValid(Object[] objects) {
 		if (objects != null && objects.length > 0) {
 			return true;
@@ -33,7 +33,7 @@ import java.util.Date;
 		}
 	}
 
-	/* ÑéÖ¤listÊÇ·ñÎª¿Õ */
+	/* éªŒè¯listæ˜¯å¦ä¸ºç©º */
 	public boolean listValid(List list) {
 		if (list != null && list.size() > 0) {
 			return true;
@@ -43,14 +43,14 @@ import java.util.Date;
 	}
   
 
-  //»ñµÃÄêÁä
+  //è·å¾—å¹´é¾„
   public int age(String dateStart, String dateEnd) throws Exception{
 	  int yearStart = Integer.parseInt(dateStart.substring(0,4));
 	  int yearEnd = Integer.parseInt(dateEnd.substring(0,4));
 	  return yearEnd-yearStart;
   }
   
-  //ÊÇ·ñÎªÆæÊı
+  //æ˜¯å¦ä¸ºå¥‡æ•°
   public boolean isOdd(int i){
 	  if(i%2==0){
 		  return false;
@@ -68,7 +68,7 @@ import java.util.Date;
   	return str;
   }
   
-  //·µ»Ø¹Ì¶¨³¤¶È´®£¬¿Õ°×µØ·½ÓÃ¿Õ¸ñÌî³ä by tony 20110926
+  //è¿”å›å›ºå®šé•¿åº¦ä¸²ï¼Œç©ºç™½åœ°æ–¹ç”¨ç©ºæ ¼å¡«å…… by tony 20110926
   public String fixSpaceStr(String str,int len){
 	  StringBuffer sBuf = new StringBuffer();
 	  try{
@@ -90,7 +90,7 @@ import java.util.Date;
 	  return fixSpaceStr(String.valueOf(number),len);
   }
   
-  //Ç°×º¿Õ¸ñ
+  //å‰ç¼€ç©ºæ ¼
   public String prefixSpaceStr(String str,int len){
 	  StringBuffer sBuf = new StringBuffer();
 	  try{
@@ -108,7 +108,7 @@ import java.util.Date;
 	  }
   }
   
-  //½ØÈ¡×Ö·û,Èç¹û³¬¹ı³¤¶È,½ØÈ¡²¢¼ÓÊ¡ÂÔºÅ by tony 20101108
+  //æˆªå–å­—ç¬¦,å¦‚æœè¶…è¿‡é•¿åº¦,æˆªå–å¹¶åŠ çœç•¥å· by tony 20101108
   public String suspensionStr(String str,int len){
 	  try{
 		  str = str.substring(0,len) + "...";
@@ -118,22 +118,22 @@ import java.util.Date;
 	  return str;
   }
 
-  //url get·½Ê½´«µİ²ÎÊı by tony 20110328
+  //url getæ–¹å¼ä¼ é€’å‚æ•° by tony 20110328
   public static String joinUrlParameter(List<String> sList){
 	  StringBuffer sBuf = new StringBuffer();
 	  for(Iterator it = sList.iterator(); it.hasNext();){
 		  sBuf.append("&").append(it.next()).append("=").append(it.next());
 	  }
-	  return sBuf.substring(1, sBuf.length());	//È¥µôµÚÒ»¸ö&·ûºÅ
+	  return sBuf.substring(1, sBuf.length());	//å»æ‰ç¬¬ä¸€ä¸ª&ç¬¦å·
   }
   
-  /** SplitStr ¹¦ÄÜ£º·µ»Ø·Ö¸îºóµÄÊı×é
-   * <br>ÊäÈë²ÎÊı£ºString str ÉèÖÃ·µ»ØÏµÍ³Ê±¼äÑùÊ½
-   * <br>ÊäÈë²ÎÊı£ºString SplitFlag ÉèÖÃ·Ö¸î×Ö·û
-   * <br>Êä³ö²ÎÊı£ºstring[] ·µ»Ø·Ö¸îºóµÄÊı×é
-   * <br>×÷Õß£º³Â×ÓÊà
-   * <br>Ê±¼ä£º2003-9-7
-   * <br>ÓÃ·¨£º
+  /** SplitStr åŠŸèƒ½ï¼šè¿”å›åˆ†å‰²åçš„æ•°ç»„
+   * <br>è¾“å…¥å‚æ•°ï¼šString str è®¾ç½®è¿”å›ç³»ç»Ÿæ—¶é—´æ ·å¼
+   * <br>è¾“å…¥å‚æ•°ï¼šString SplitFlag è®¾ç½®åˆ†å‰²å­—ç¬¦
+   * <br>è¾“å‡ºå‚æ•°ï¼šstring[] è¿”å›åˆ†å‰²åçš„æ•°ç»„
+   * <br>ä½œè€…ï¼šé™ˆå­æ¢
+   * <br>æ—¶é—´ï¼š2003-9-7
+   * <br>ç”¨æ³•ï¼š
    */
 /*
       String s[] = SplitStr("asd asd we sd"," ");
@@ -158,20 +158,20 @@ import java.util.Date;
     }
   }
   
-  //ÀàËÆgoogleÄÇÑùÊµÏÖ¶à¸ö¹Ø¼ü×ÖµÄ²éÑ¯£¬¹Ø¼ü×ÖÖ®¼äÓÃ¿Õ¸ñ»ò¶ººÅ¸ô¿ª by tony 20110523
-  //Ö§³ÖµÄ·Ö¸ô·û Ó¢ÎÄ¶ººÅ,ÖĞÎÄ¶ººÅ,¿Õ¸ñ
+  //ç±»ä¼¼googleé‚£æ ·å®ç°å¤šä¸ªå…³é”®å­—çš„æŸ¥è¯¢ï¼Œå…³é”®å­—ä¹‹é—´ç”¨ç©ºæ ¼æˆ–é€—å·éš”å¼€ by tony 20110523
+  //æ”¯æŒçš„åˆ†éš”ç¬¦ è‹±æ–‡é€—å·,ä¸­æ–‡é€—å·,ç©ºæ ¼
   public String[] splitFindStr(String str){
 	if(str==null){
 		return null;
 	}
 	String[] aStr = null;
-	str = str.replaceAll(",", " ");		//Ó¢ÎÄ¶ººÅ
-	str = str.replaceAll("£¬", " ");		//ÖĞÎÄ¶ººÅ
-	aStr = this.splitStr(str, " ");		//¿Õ¸ñ  
+	str = str.replaceAll(",", " ");		//è‹±æ–‡é€—å·
+	str = str.replaceAll("ï¼Œ", " ");		//ä¸­æ–‡é€—å·
+	aStr = this.splitStr(str, " ");		//ç©ºæ ¼  
 	return aStr;
  }
  
-  /* ½×Ìİº¯Êı,ÀıÈç£¬a,b,c ·µ»Ø a;a,b;a,b,c by tony 20110330 */
+  /* é˜¶æ¢¯å‡½æ•°,ä¾‹å¦‚ï¼Œa,b,c è¿”å› a;a,b;a,b,c by tony 20110330 */
   static public String[] splitStair(String str,String SplitFlag){
 	  try{
 		  String[] _temp = splitStr(str, SplitFlag);
@@ -184,13 +184,13 @@ import java.util.Date;
 	  }
   }
 
-  /** SplitStr ¹¦ÄÜ£º½«Êı×éºÏ²¢ÎªÒ»¸ö×Ö·û´®
-   * <br>ÊäÈë²ÎÊı£ºString aStr ÒªºÏ²¢Êı×é
-   * <br>ÊäÈë²ÎÊı£ºString SplitFlag ÉèÖÃ·Ö¸î×Ö·û
-   * <br>Êä³ö²ÎÊı£ºString ÒªºÏ²¢Êı×é
-   * <br>×÷Õß£º³Â×ÓÊà
-   * <br>Ê±¼ä£º2004-1-9
-   * <br>ÓÃ·¨£º
+  /** SplitStr åŠŸèƒ½ï¼šå°†æ•°ç»„åˆå¹¶ä¸ºä¸€ä¸ªå­—ç¬¦ä¸²
+   * <br>è¾“å…¥å‚æ•°ï¼šString aStr è¦åˆå¹¶æ•°ç»„
+   * <br>è¾“å…¥å‚æ•°ï¼šString SplitFlag è®¾ç½®åˆ†å‰²å­—ç¬¦
+   * <br>è¾“å‡ºå‚æ•°ï¼šString è¦åˆå¹¶æ•°ç»„
+   * <br>ä½œè€…ï¼šé™ˆå­æ¢
+   * <br>æ—¶é—´ï¼š2004-1-9
+   * <br>ç”¨æ³•ï¼š
    */
 
 
@@ -200,14 +200,14 @@ import java.util.Date;
       for (int i=0;i<aStr.length;i++){
         sBuffer.append(aStr[i]).append(SplitFlag);
       }
-      sBuffer.delete(sBuffer.length() - 1, sBuffer.length()); //È¥µô×îºóµÄ·Ö¸ô·û SplitFlag
+      sBuffer.delete(sBuffer.length() - 1, sBuffer.length()); //å»æ‰æœ€åçš„åˆ†éš”ç¬¦ SplitFlag
     }else{
       sBuffer = sBuffer.append("");
     }
     return sBuffer.toString();
   }
 
-  /* Á´½Ó,µ«ÖĞ¼äÎŞÁ´½Ó·ûºÅ add by tony 20100322 */
+  /* é“¾æ¥,ä½†ä¸­é—´æ— é“¾æ¥ç¬¦å· add by tony 20100322 */
   static public String joinStr(String[] aStr){
     StringBuffer sBuffer = new StringBuffer();
     if (aStr != null){
@@ -221,14 +221,14 @@ import java.util.Date;
   }
   
   /** JoinStr 
-   * <br>¹¦ÄÜ£º½«Êı×éºÏ²¢ÎªÒ»¸ö×Ö·û´®
-   * <br>ÊäÈë²ÎÊı£ºString sPrefix Êı×éÔªËØ¼ÓµÄÇ°×º
-   * <br>ÊäÈë²ÎÊı£ºString sSuffix Êı×éÔªËØ¼ÓµÄºó×º
-   * <br>ÊäÈë²ÎÊı£ºString SplitFlag ÉèÖÃ·Ö¸î×Ö·û
-   * <br>Êä³ö²ÎÊı£ºString ºÏ²¢ºóµÄ×Ö·û´®
-   * <br>×÷Õß£º³Â×ÓÊà
-   * <br>Ê±¼ä£º2005-3-17
-   * <br>ÓÃ·¨£º
+   * <br>åŠŸèƒ½ï¼šå°†æ•°ç»„åˆå¹¶ä¸ºä¸€ä¸ªå­—ç¬¦ä¸²
+   * <br>è¾“å…¥å‚æ•°ï¼šString sPrefix æ•°ç»„å…ƒç´ åŠ çš„å‰ç¼€
+   * <br>è¾“å…¥å‚æ•°ï¼šString sSuffix æ•°ç»„å…ƒç´ åŠ çš„åç¼€
+   * <br>è¾“å…¥å‚æ•°ï¼šString SplitFlag è®¾ç½®åˆ†å‰²å­—ç¬¦
+   * <br>è¾“å‡ºå‚æ•°ï¼šString åˆå¹¶åçš„å­—ç¬¦ä¸²
+   * <br>ä½œè€…ï¼šé™ˆå­æ¢
+   * <br>æ—¶é—´ï¼š2005-3-17
+   * <br>ç”¨æ³•ï¼š
    */
 
 
@@ -238,14 +238,14 @@ import java.util.Date;
       for (int i=0;i<aStr.length;i++){
         sBuffer.append(sPrefix).append(aStr[i]).append(sSuffix).append(SplitFlag);
       }
-      sBuffer.delete(sBuffer.length() - SplitFlag.length(), sBuffer.length()); //È¥µô×îºóµÄ·Ö¸ô·û SplitFlag
+      sBuffer.delete(sBuffer.length() - SplitFlag.length(), sBuffer.length()); //å»æ‰æœ€åçš„åˆ†éš”ç¬¦ SplitFlag
     }else{
       sBuffer = sBuffer.append("");
     }
     return sBuffer.toString();
   }
   
-  /* ·µ»ØÓÃÓÚin²éÑ¯µÄ´®  'x','y' */
+  /* è¿”å›ç”¨äºinæŸ¥è¯¢çš„ä¸²  'x','y' */
   static public String joinInStr(String[] aStr){
 	  StringBuffer sBuffer = new StringBuffer();
 	  if (aStr != null){
@@ -259,7 +259,7 @@ import java.util.Date;
 	  return sBuffer.toString();
   }
 
-  /* Á´½Ó,µ«ÖĞ¼äÎŞÁ´½Ó·ûºÅ add by tony 20100322 */
+  /* é“¾æ¥,ä½†ä¸­é—´æ— é“¾æ¥ç¬¦å· add by tony 20100322 */
   static public String joinStr(String[] aStr,String sPrefix,String sSuffix){
     StringBuffer sBuffer = new StringBuffer();
     if (aStr != null){
@@ -272,7 +272,7 @@ import java.util.Date;
     return sBuffer.toString();
   }
 
-  /* Á´½Ólen(s)¸ösymbol·ûºÅ add by tony 20100407 */
+  /* é“¾æ¥len(s)ä¸ªsymbolç¬¦å· add by tony 20100407 */
   static public String joinStr(String s, String symbol){
 	  StringBuffer sBuf = new StringBuffer();
 	  for (int i=0;i<s.length();i++){
@@ -289,12 +289,12 @@ import java.util.Date;
 	  return sBuf.toString();
   }  
   
-  /** SysTime ¹¦ÄÜ£º·µ»ØÏµÍ³Ê±¼ä
- * <br>ÊäÈë²ÎÊı£ºint style ÉèÖÃ·µ»ØÏµÍ³Ê±¼äÑùÊ½
- * <br>Êä³ö²ÎÊı£ºstring ·µ»ØÏµÍ³Ê±¼äÑùÊ½
- * <br>×÷Õß£º³Â×ÓÊà
- * <br>Ê±¼ä£º2003-6-24
- * <br>´æÔÚÎÊÌâ£ºÖĞÎÄÂÒÂë£¬µ«JSPÖĞÏÔÊ¾Õı³£¡£
+  /** SysTime åŠŸèƒ½ï¼šè¿”å›ç³»ç»Ÿæ—¶é—´
+ * <br>è¾“å…¥å‚æ•°ï¼šint style è®¾ç½®è¿”å›ç³»ç»Ÿæ—¶é—´æ ·å¼
+ * <br>è¾“å‡ºå‚æ•°ï¼šstring è¿”å›ç³»ç»Ÿæ—¶é—´æ ·å¼
+ * <br>ä½œè€…ï¼šé™ˆå­æ¢
+ * <br>æ—¶é—´ï¼š2003-6-24
+ * <br>å­˜åœ¨é—®é¢˜ï¼šä¸­æ–‡ä¹±ç ï¼Œä½†JSPä¸­æ˜¾ç¤ºæ­£å¸¸ã€‚
  */
   static public String SysTime(String strStyle){
     String s = "";
@@ -402,12 +402,12 @@ import java.util.Date;
 	  }
   }
   
-  /** ¹¦ÄÜ£ºÓÃÓÚ×ª»»ÎªnullµÄ×Ö¶Î¡£
-   * <br>Èë²Î£ºString strvalue ÉèÖÃÒª×ª»»µÄ×Ö·û´®
-   * <br>³ö²Î£º²»Îª¡°null¡±µÄ·µ»ØÔ­´®£»Îª¡°null¡±·µ»Ø""¡£
-   * <br>×÷Õß£º³Â×ÓÊà
-   * <br>Ê±¼ä£º2003-9-16
-   * <p>ÓÃ·¨£ºoptionFuns.convertNull(String.valueOf(oi.next()))</p>
+  /** åŠŸèƒ½ï¼šç”¨äºè½¬æ¢ä¸ºnullçš„å­—æ®µã€‚
+   * <br>å…¥å‚ï¼šString strvalue è®¾ç½®è¦è½¬æ¢çš„å­—ç¬¦ä¸²
+   * <br>å‡ºå‚ï¼šä¸ä¸ºâ€œnullâ€çš„è¿”å›åŸä¸²ï¼›ä¸ºâ€œnullâ€è¿”å›""ã€‚
+   * <br>ä½œè€…ï¼šé™ˆå­æ¢
+   * <br>æ—¶é—´ï¼š2003-9-16
+   * <p>ç”¨æ³•ï¼šoptionFuns.convertNull(String.valueOf(oi.next()))</p>
    */
   public static String convertNull(String strvalue)
   {
@@ -450,7 +450,7 @@ import java.util.Date;
     }
   }
   
-  //½«ÎªnullµÄÊı¾İ×ªÎª0£¬ÓÃÔÚÊıÖµµÄÖµ´ÓÊı¾İ¿âÖĞ¶Á³öµÄÇé¿ö
+  //å°†ä¸ºnullçš„æ•°æ®è½¬ä¸º0ï¼Œç”¨åœ¨æ•°å€¼çš„å€¼ä»æ•°æ®åº“ä¸­è¯»å‡ºçš„æƒ…å†µ
   public static int ConvertZero(Object o)
   {
     try{
@@ -465,7 +465,7 @@ import java.util.Date;
     }
   }
   
-  //½«ÎªnullµÄÊı¾İ×ªÎª0£¬ÓÃÔÚÊıÖµµÄÖµ´ÓÊı¾İ¿âÖĞ¶Á³öµÄÇé¿ö
+  //å°†ä¸ºnullçš„æ•°æ®è½¬ä¸º0ï¼Œç”¨åœ¨æ•°å€¼çš„å€¼ä»æ•°æ®åº“ä¸­è¯»å‡ºçš„æƒ…å†µ
   public static int cvtPecrent(Object o)
   {
     try{
@@ -540,7 +540,7 @@ import java.util.Date;
     }
   }
   
-  //Ö»ÓÃÔÚ±í¸ñµÄÊä³ö
+  //åªç”¨åœ¨è¡¨æ ¼çš„è¾“å‡º
   public static String ConvertTD(String strvalue)
   {
     try{
@@ -571,9 +571,9 @@ import java.util.Date;
   }
   
   /*
-    Ö»×ªÖĞÎÄ£¬²»´¦Àínull
-    ¶ÁÈ¡¼ÇÂ¼Ê±È¥µôÊı¾İÁ½±ßµÄ¿Õ¸ñ£»¶øÂ¼ÈëÊı¾İÊ±£¬Î¬³ÖÓÃ»§µÄÊäÈë£¬ÄÄÅÂÓÃ»§¶àÊäÈëÁË¿Õ¸ñ
-    Ô­ÒòÔÚÓÚÓĞÊ±¿ÉÄÜÓÃ»§ÓĞÒâÊäÈë¿Õ¸ñ¡£ÀıÈç£º±¸×¢×Ö¶ÎÔ­À´ÓĞÄÚÈİ£¬ÏÖÔÚÓÃ»§ÏëÇå¿Õ¡£
+    åªè½¬ä¸­æ–‡ï¼Œä¸å¤„ç†null
+    è¯»å–è®°å½•æ—¶å»æ‰æ•°æ®ä¸¤è¾¹çš„ç©ºæ ¼ï¼›è€Œå½•å…¥æ•°æ®æ—¶ï¼Œç»´æŒç”¨æˆ·çš„è¾“å…¥ï¼Œå“ªæ€•ç”¨æˆ·å¤šè¾“å…¥äº†ç©ºæ ¼
+    åŸå› åœ¨äºæœ‰æ—¶å¯èƒ½ç”¨æˆ·æœ‰æ„è¾“å…¥ç©ºæ ¼ã€‚ä¾‹å¦‚ï¼šå¤‡æ³¨å­—æ®µåŸæ¥æœ‰å†…å®¹ï¼Œç°åœ¨ç”¨æˆ·æƒ³æ¸…ç©ºã€‚
   */
   public static String ConvertCH(String strvalue)
   {
@@ -626,7 +626,7 @@ import java.util.Date;
   }
   
   /**
-   *UrlEncoder ½øĞĞURL±àÂë
+   *UrlEncoder è¿›è¡ŒURLç¼–ç 
    */
     public String UrlEncoder(String s)
     {
@@ -646,7 +646,7 @@ import java.util.Date;
     }
 
   /**
-   *URLDecoder ½øĞĞURL½âÂë
+   *URLDecoder è¿›è¡ŒURLè§£ç 
    */
     public String UrlDecoder(String s)
     {
@@ -666,8 +666,8 @@ import java.util.Date;
     }
     
   /**
-   * ½«×Ö·û´®×ª»¯³ÉÊ××ÖÄ¸´óĞ´£¬ÆäÓà×ÖÄ¸Ğ¡Ğ´µÄ¸ñÊ½
-   * @param source ´«Èë×Ö·û´®
+   * å°†å­—ç¬¦ä¸²è½¬åŒ–æˆé¦–å­—æ¯å¤§å†™ï¼Œå…¶ä½™å­—æ¯å°å†™çš„æ ¼å¼
+   * @param source ä¼ å…¥å­—ç¬¦ä¸²
    * @return String
    */
   public static String format_Aaa(String source) {
@@ -683,9 +683,9 @@ import java.util.Date;
   }
   
   /**
-   * ½«×Ö·û´®×ª»»³ÉLongĞÍ
-   * @param param ´«Èë×Ö·û´®
-   * @return ³¤ÕûĞÎ
+   * å°†å­—ç¬¦ä¸²è½¬æ¢æˆLongå‹
+   * @param param ä¼ å…¥å­—ç¬¦ä¸²
+   * @return é•¿æ•´å½¢
    */
   public static long parseLong(String param) {
     long l=0;
@@ -699,9 +699,9 @@ import java.util.Date;
   }
 
   /**
-   * ½«×Ö·û´®×ª»»³ÉFloatĞÍ
-   * @param param ´«Èë×Ö·û´®
-   * @return ¸¡µãĞÍ
+   * å°†å­—ç¬¦ä¸²è½¬æ¢æˆFloatå‹
+   * @param param ä¼ å…¥å­—ç¬¦ä¸²
+   * @return æµ®ç‚¹å‹
    */
   public static float parseFloat(String param) {
     float l=0;
@@ -715,9 +715,9 @@ import java.util.Date;
   }
 
   /**
-   * ½«×Ö·û´®×ª»»³ÉIntegerĞÍ
-   * @param param ´«Èë×Ö·û´®
-   * @return ÕûĞÎ
+   * å°†å­—ç¬¦ä¸²è½¬æ¢æˆIntegerå‹
+   * @param param ä¼ å…¥å­—ç¬¦ä¸²
+   * @return æ•´å½¢
    */
   public static int parseInt(String param) {
     int l=0;
@@ -787,9 +787,9 @@ import java.util.Date;
 	}
 	
   /**
-   * ½«×Ö·û´®×ª»»³ÉDoubleĞÍ
-   * @param param ´«Èë×Ö·û´®
-   * @return doubleĞÍ
+   * å°†å­—ç¬¦ä¸²è½¬æ¢æˆDoubleå‹
+   * @param param ä¼ å…¥å­—ç¬¦ä¸²
+   * @return doubleå‹
    */
   public static double parseDouble(String param) {
     double l=0;
@@ -803,7 +803,7 @@ import java.util.Date;
   }
 
   /**
-   * sÊÇ·ñ´æÔÚArrayListÖĞ£¬´æÔÚ·µ»ØÊı×éÏÂ±ê£¬²»´æÔÚ·µ»Ø-1
+   * sæ˜¯å¦å­˜åœ¨ArrayListä¸­ï¼Œå­˜åœ¨è¿”å›æ•°ç»„ä¸‹æ ‡ï¼Œä¸å­˜åœ¨è¿”å›-1
    */
   public static int existElements(String s,ArrayList aList) {
     try{
@@ -817,7 +817,7 @@ import java.util.Date;
   }
 
   /**
-   * sÊÇ·ñ´æÔÚStringÊı×éÖĞ£¬´æÔÚ·µ»ØÊı×éÏÂ±ê£¬²»´æÔÚ·µ»Ø-1
+   * sæ˜¯å¦å­˜åœ¨Stringæ•°ç»„ä¸­ï¼Œå­˜åœ¨è¿”å›æ•°ç»„ä¸‹æ ‡ï¼Œä¸å­˜åœ¨è¿”å›-1
    */
   public static int existElements(String s,String[] a) {
     try{
@@ -831,7 +831,7 @@ import java.util.Date;
   }
   
   /**
-   * ÅĞ¶Ï¶ÔÏóoÊÇ·ñ´æÔÚÓÚset¶ÔÏó¼¯ºÏÖĞ create by tony 20090611
+   * åˆ¤æ–­å¯¹è±¡oæ˜¯å¦å­˜åœ¨äºsetå¯¹è±¡é›†åˆä¸­ create by tony 20090611
    */  
   public static boolean existElements(Object o, Set set) {
 	  boolean isExists = false;
@@ -849,7 +849,7 @@ import java.util.Date;
   }
 
   /**
-   * sÊÇ·ñ´æÔÚArrayListÖĞ£¬´æÔÚ·µ»ØÊı×éÏÂ±ê£¬²»´æÔÚ·µ»Ø-1
+   * sæ˜¯å¦å­˜åœ¨ArrayListä¸­ï¼Œå­˜åœ¨è¿”å›æ•°ç»„ä¸‹æ ‡ï¼Œä¸å­˜åœ¨è¿”å›-1
    */
   public static int IsIndexOfElements(String s,ArrayList aList) {
     try{
@@ -865,8 +865,8 @@ import java.util.Date;
   }
   
   /**
-   * ½«ArrayList×ª»»ÎªÒ»Î¬StringÊı×é£¬²¢°ÑÆäÖĞµÄnull»»³É¿Õ×Ö·û´®
-   * @param aList ´«ÈëµÄArraylist
+   * å°†ArrayListè½¬æ¢ä¸ºä¸€ç»´Stringæ•°ç»„ï¼Œå¹¶æŠŠå…¶ä¸­çš„nullæ¢æˆç©ºå­—ç¬¦ä¸²
+   * @param aList ä¼ å…¥çš„Arraylist
    */
   public String[] ArrayListToString(ArrayList aList) {
     String[] s = new String[aList.size()];
@@ -878,8 +878,8 @@ import java.util.Date;
   
   
   /**
-   * ½«Êı×éÖĞµÄnull»»³É¿Õ×Ö·û´®
-   * @param al ´«ÈëµÄArraylist£¬Í¬Ê±Ò²ÊÇÊä³ö½á¹û
+   * å°†æ•°ç»„ä¸­çš„nullæ¢æˆç©ºå­—ç¬¦ä¸²
+   * @param al ä¼ å…¥çš„Arraylistï¼ŒåŒæ—¶ä¹Ÿæ˜¯è¾“å‡ºç»“æœ
    */
   public static void formatArrayList(ArrayList al) {
 
@@ -890,18 +890,18 @@ import java.util.Date;
 
   }
 
-    /** ComboList ¹¦ÄÜ£ºÑ¡¶¨ÔÚÏÂÀ­ÁĞ±í¿òÖĞÓë²éÕÒµ½Êı¾İ,Ïà·ûµÄÄÇÒ»ÏîÄÚÈİ
-     * <br>ÊäÈë²ÎÊı£ºString CurrentValue ²éÕÒ³öµÄÊı¾İ¿âÖĞµÄÊı¾İ
-     *               String[] content ĞèÒªÊä³öµÄËùÓĞÏÂÀ­ÁĞ±í¿òµÄÄÚÈİ
-     * <br>Êä³ö²ÎÊı£º·µ»ØÏÂÀ­ÁĞ±í
-      * <br>×¢ÒâÊÂÏî£ºvaluesÎª0¿ªÊ¼,¶øÇÒÖĞ¼ä²»ÄÜ¶Ï¿ª
+    /** ComboList åŠŸèƒ½ï¼šé€‰å®šåœ¨ä¸‹æ‹‰åˆ—è¡¨æ¡†ä¸­ä¸æŸ¥æ‰¾åˆ°æ•°æ®,ç›¸ç¬¦çš„é‚£ä¸€é¡¹å†…å®¹
+     * <br>è¾“å…¥å‚æ•°ï¼šString CurrentValue æŸ¥æ‰¾å‡ºçš„æ•°æ®åº“ä¸­çš„æ•°æ®
+     *               String[] content éœ€è¦è¾“å‡ºçš„æ‰€æœ‰ä¸‹æ‹‰åˆ—è¡¨æ¡†çš„å†…å®¹
+     * <br>è¾“å‡ºå‚æ•°ï¼šè¿”å›ä¸‹æ‹‰åˆ—è¡¨
+      * <br>æ³¨æ„äº‹é¡¹ï¼švaluesä¸º0å¼€å§‹,è€Œä¸”ä¸­é—´ä¸èƒ½æ–­å¼€
      */
     public String ComboList(String CurrentValue, String[] content) {
       int i = 0;
       StringBuffer sBuf = new StringBuffer();
       String selected = " selected";
       try{
-        sBuf.append("<option value='' selected>--ÇëÑ¡Ôñ--</option>");
+        sBuf.append("<option value='' selected>--è¯·é€‰æ‹©--</option>");
         for (i = 0; i < content.length; i++) {
           sBuf.append("\n<option value='").append(i).append("'");
           if (CurrentValue.compareTo(String.valueOf(i)) == 0) {
@@ -933,16 +933,16 @@ import java.util.Date;
       }
     }
     
-    /** ComboList ¹¦ÄÜ£ºÑ¡¶¨ÔÚÏÂÀ­ÁĞ±í¿òÖĞÓë²éÕÒµ½Êı¾İ,Ïà·ûµÄÄÇÒ»ÏîÄÚÈİ
-     * <br>ÊäÈë²ÎÊı£ºString CurrentValue ²éÕÒ³öµÄÊı¾İ¿âÖĞµÄÊı¾İ
-     *               String[] values  ĞèÒªÊä³öµÄËùÓĞÏÂÀ­ÁĞ±í¿òµÄÄÚÈİËù¶ÔÓ¦µÄÖµ
-     *               String[] content ĞèÒªÊä³öµÄËùÓĞÏÂÀ­ÁĞ±í¿òµÄÄÚÈİ
-     * <br>Êä³ö²ÎÊı£º·µ»ØÏÂÀ­ÁĞ±í
-     * <br>ĞŞ¸Ä£º³Â×ÓÊà
-     * <br>ĞŞ¸ÄÊ±¼ä£º2003-9-4
-     * <br>×¢ÒâÊÂÏî£ºvaluesºÍcontentÊı×é¸öÊı±ØĞëÏàÍ¬.ÊÊºÏ´ÓÊı¾İ¿âÖĞÈ¡Öµ
+    /** ComboList åŠŸèƒ½ï¼šé€‰å®šåœ¨ä¸‹æ‹‰åˆ—è¡¨æ¡†ä¸­ä¸æŸ¥æ‰¾åˆ°æ•°æ®,ç›¸ç¬¦çš„é‚£ä¸€é¡¹å†…å®¹
+     * <br>è¾“å…¥å‚æ•°ï¼šString CurrentValue æŸ¥æ‰¾å‡ºçš„æ•°æ®åº“ä¸­çš„æ•°æ®
+     *               String[] values  éœ€è¦è¾“å‡ºçš„æ‰€æœ‰ä¸‹æ‹‰åˆ—è¡¨æ¡†çš„å†…å®¹æ‰€å¯¹åº”çš„å€¼
+     *               String[] content éœ€è¦è¾“å‡ºçš„æ‰€æœ‰ä¸‹æ‹‰åˆ—è¡¨æ¡†çš„å†…å®¹
+     * <br>è¾“å‡ºå‚æ•°ï¼šè¿”å›ä¸‹æ‹‰åˆ—è¡¨
+     * <br>ä¿®æ”¹ï¼šé™ˆå­æ¢
+     * <br>ä¿®æ”¹æ—¶é—´ï¼š2003-9-4
+     * <br>æ³¨æ„äº‹é¡¹ï¼švalueså’Œcontentæ•°ç»„ä¸ªæ•°å¿…é¡»ç›¸åŒ.é€‚åˆä»æ•°æ®åº“ä¸­å–å€¼
 	<%
-	  String[] aContextOPERATE_TYPE = {"¶¨¼ì","ÂÖ»»","³é¼ì"};
+	  String[] aContextOPERATE_TYPE = {"å®šæ£€","è½®æ¢","æŠ½æ£€"};
 	  out.print(optionFuns.ComboList("",aContextOPERATE_TYPE,aContextOPERATE_TYPE));
 	%>
      */
@@ -955,7 +955,7 @@ import java.util.Date;
     	if(CurrentValue==null){
     		CurrentValue = "";
     	}
-        sBuf.append("<option value='' selected>--ÇëÑ¡Ôñ--</option>");
+        sBuf.append("<option value='' selected>--è¯·é€‰æ‹©--</option>");
         for (i = 0; i < content.length; i++) {
           sBuf.append("<option value='").append(values[i]).append("'");
           if (CurrentValue.compareTo(values[i]) == 0) {
@@ -988,13 +988,13 @@ import java.util.Date;
       }
     } 
     
-  /** StrToTimestamp ¹¦ÄÜ£º½«×Ö·û´®×ª»»ÎªTimestamp ¡£
-   * <br>ÊäÈë²ÎÊı£ºString timestampStr ÉèÖÃÒª×ª»»µÄ×Ö·û´®
-   *              String pattern Òª×ª»»µÄformat
-   * <br>Êä³ö²ÎÊı£ºÈç¹û¸ñÊ½ÕıÈ··µ»Ø¸ñÊ½ºóµÄ×Ö·û´®¡£
-   *              ²»ÕıÈ··µ»ØÏµÍ³ÈÕÆÚ¡£
-   * <br>×÷Õß£º³Â×ÓÊà
-   * <br>Ê±¼ä£º2003-8-26
+  /** StrToTimestamp åŠŸèƒ½ï¼šå°†å­—ç¬¦ä¸²è½¬æ¢ä¸ºTimestamp ã€‚
+   * <br>è¾“å…¥å‚æ•°ï¼šString timestampStr è®¾ç½®è¦è½¬æ¢çš„å­—ç¬¦ä¸²
+   *              String pattern è¦è½¬æ¢çš„format
+   * <br>è¾“å‡ºå‚æ•°ï¼šå¦‚æœæ ¼å¼æ­£ç¡®è¿”å›æ ¼å¼åçš„å­—ç¬¦ä¸²ã€‚
+   *              ä¸æ­£ç¡®è¿”å›ç³»ç»Ÿæ—¥æœŸã€‚
+   * <br>ä½œè€…ï¼šé™ˆå­æ¢
+   * <br>æ—¶é—´ï¼š2003-8-26
    */
   public static Timestamp StrToTimestamp(String timestampStr,String pattern) throws ParseException {
     java.util.Date date = null;
@@ -1039,7 +1039,7 @@ import java.util.Date;
 	  return s;
   }
   
-  //add by tony 20100228 ×ª»»ÖĞÎÄ ¸ñÊ½±ØĞëÎª£º"yyyy-MM-dd HH:mm:ss"µÄÒ»²¿·Ö
+  //add by tony 20100228 è½¬æ¢ä¸­æ–‡ æ ¼å¼å¿…é¡»ä¸ºï¼š"yyyy-MM-dd HH:mm:ss"çš„ä¸€éƒ¨åˆ†
   public static String formatDateTimeCN(String date) throws ParseException {
 	  String s ="";
 	  try{
@@ -1050,31 +1050,31 @@ import java.util.Date;
 			  date = date.substring(0, date.indexOf("."));
 		  }
 		  if(date.length()==4){			//yyyy
-			  s = date+"Äê";
+			  s = date+"å¹´";
 		  }else if(date.length()==7){	//yyyy-MM
-			  s = date.replaceAll("-0", "-").replaceFirst("-", "Äê")+"ÔÂ";
+			  s = date.replaceAll("-0", "-").replaceFirst("-", "å¹´")+"æœˆ";
 		  }else if(date.length()==10){	//yyyy-MM-dd
-			  s = date.replaceAll("-0", "-").replaceFirst("-", "Äê").replaceFirst("-", "ÔÂ")+"ÈÕ";
+			  s = date.replaceAll("-0", "-").replaceFirst("-", "å¹´").replaceFirst("-", "æœˆ")+"æ—¥";
 		  }else if(date.length()==2){	//HH
-			  s = date+"Ê±";
+			  s = date+"æ—¶";
 		  }else if(date.length()==5){	//HH:mm
-			  s = date.replaceAll(":0", ":").replaceFirst(":", "Ê±")+"·Ö";
+			  s = date.replaceAll(":0", ":").replaceFirst(":", "æ—¶")+"åˆ†";
 		  }else if(date.length()==8){	//HH:mm:ss
-			  s = date.replaceAll(":0", ":").replaceFirst(":", "Ê±").replaceFirst(":", "·Ö")+"Ãë";
+			  s = date.replaceAll(":0", ":").replaceFirst(":", "æ—¶").replaceFirst(":", "åˆ†")+"ç§’";
 		  }else if(date.length()==13){	//yyyy-MM-dd HH
-			  s = date.replaceAll("-0", "-").replaceFirst("-", "Äê").replaceFirst("-", "ÔÂ").replaceAll(" 0", " ").replaceFirst(" ", "ÈÕ")+"Ê±";
+			  s = date.replaceAll("-0", "-").replaceFirst("-", "å¹´").replaceFirst("-", "æœˆ").replaceAll(" 0", " ").replaceFirst(" ", "æ—¥")+"æ—¶";
 		  }else if(date.length()==16){	//yyyy-MM-dd HH:mm
-			  s = date.replaceAll("-0", "-").replaceFirst("-", "Äê").replaceFirst("-", "ÔÂ").replaceAll(" 0", " ").replaceFirst(" ", "ÈÕ").replaceAll(":0", ":").replaceFirst(":", "Ê±")+"·Ö";
+			  s = date.replaceAll("-0", "-").replaceFirst("-", "å¹´").replaceFirst("-", "æœˆ").replaceAll(" 0", " ").replaceFirst(" ", "æ—¥").replaceAll(":0", ":").replaceFirst(":", "æ—¶")+"åˆ†";
 		  }else if(date.length()==19){	//yyyy-MM-dd HH:mm:ss
-			  s = date.replaceAll("-0", "-").replaceFirst("-", "Äê").replaceFirst("-", "ÔÂ").replaceAll(" 0", " ").replaceFirst(" ", "ÈÕ").replaceAll(":0", ":").replaceFirst(":", "Ê±").replaceFirst(":", "·Ö")+"Ãë";
+			  s = date.replaceAll("-0", "-").replaceFirst("-", "å¹´").replaceFirst("-", "æœˆ").replaceAll(" 0", " ").replaceFirst(" ", "æ—¥").replaceAll(":0", ":").replaceFirst(":", "æ—¶").replaceFirst(":", "åˆ†")+"ç§’";
 		  }
-		  s = s.replaceAll("0[Ê±·ÖÃë]", "");	//ÕıÔò 0Ê±0·Ö0ÃëµÄ¶¼Ìæ»»Îª¿Õ
+		  s = s.replaceAll("0[æ—¶åˆ†ç§’]", "");	//æ­£åˆ™ 0æ—¶0åˆ†0ç§’çš„éƒ½æ›¿æ¢ä¸ºç©º
 	  }catch(Exception e){ }
 	  
 	  return s;
   }
   
-  //add by tony 2011-07-26 ·µ»ØÓ¢ÎÄ¸ñÊ½ÈÕÆÚ oct.10.2011
+  //add by tony 2011-07-26 è¿”å›è‹±æ–‡æ ¼å¼æ—¥æœŸ oct.10.2011
   public static String formatDateEN(String date) throws ParseException {
 	  String s ="";
 	  int whichMonth = 1;
@@ -1116,19 +1116,19 @@ import java.util.Date;
 	  return s;
   }
 
-  //·µ»ØÄêÔÂ¸ñÊ½ 2010-7
+  //è¿”å›å¹´æœˆæ ¼å¼ 2010-7
   public String formatShortMonth(String strDate){
 	  return strDate.substring(0,7).replaceAll("-0", "-");
   }
   
-  //·µ»ØÄêÔÂ¸ñÊ½ 2010-07
+  //è¿”å›å¹´æœˆæ ¼å¼ 2010-07
   public String formatMonth(String strDate){
 	  return strDate.substring(0,7);
   }
   
   
   
-  //É¾³ı×îºó1¸ö×Ö·û
+  //åˆ é™¤æœ€å1ä¸ªå­—ç¬¦
   public static String delLastChar(String s){
     try{
       if(s.length()>0){
@@ -1140,7 +1140,7 @@ import java.util.Date;
     return s;
   }
   
-  //É¾³ı×îºólen¸ö×Ö·û
+  //åˆ é™¤æœ€ålenä¸ªå­—ç¬¦
   public static String delLastChars(String s,int len){
     try{
       if(s.length()>0){
@@ -1152,7 +1152,7 @@ import java.util.Date;
     return s;
   }
   
-  //Ìæ»»ÍøÒ³ÓÃ×Ö·û-ÅäºÏFCKEditorÊ¹ÓÃ .replaceAll("'","&apos;") //for viewpage
+  //æ›¿æ¢ç½‘é¡µç”¨å­—ç¬¦-é…åˆFCKEditorä½¿ç”¨ .replaceAll("'","&apos;") //for viewpage
   public String htmlReplaceAll(String s){
 	  try{
 		  StringBuffer sBuf = new StringBuffer();
@@ -1167,8 +1167,8 @@ import java.util.Date;
   //for viewpage by jstl/make html
   public static String htmlNewline(String s){
 	  try{
-		  //Èç²»Ìæ»»¿Õ¸ñ,html½âÊÍÊ±»á×Ô¶¯°Ñ¶à¸ö¿Õ¸ñÏÔÊ¾ÎªÒ»¸ö¿Õ¸ñ,ÕâÑùµ±ÎÒÃÇÍ¨¹ı¿Õ¸ñÀ´²¼¾ÖÊ±¾Í³öÏÖtextareaÖĞºÍhtmlÒ³ÃæÕ¹ÏÖ²»Ò»ÖÂµÄÇé¿ö tony
-		  //s.replaceAll(" ","&nbsp;") ²»ÄÜ½øĞĞ¿Õ¸ñµÄÌæ»»£¬·ñÔòÒ³ÃæÄÚÈİÖĞÈç¹ûÓĞ<img src="xxx.jpg" \>µÈ±êÇ©£¬ÄÚÈİ¾Í»áÏÔÊ¾ÂÒ£»<img&nbsp;src="xxx.jpg"nbsp;\>
+		  //å¦‚ä¸æ›¿æ¢ç©ºæ ¼,htmlè§£é‡Šæ—¶ä¼šè‡ªåŠ¨æŠŠå¤šä¸ªç©ºæ ¼æ˜¾ç¤ºä¸ºä¸€ä¸ªç©ºæ ¼,è¿™æ ·å½“æˆ‘ä»¬é€šè¿‡ç©ºæ ¼æ¥å¸ƒå±€æ—¶å°±å‡ºç°textareaä¸­å’Œhtmlé¡µé¢å±•ç°ä¸ä¸€è‡´çš„æƒ…å†µ tony
+		  //s.replaceAll(" ","&nbsp;") ä¸èƒ½è¿›è¡Œç©ºæ ¼çš„æ›¿æ¢ï¼Œå¦åˆ™é¡µé¢å†…å®¹ä¸­å¦‚æœæœ‰<img src="xxx.jpg" \>ç­‰æ ‡ç­¾ï¼Œå†…å®¹å°±ä¼šæ˜¾ç¤ºä¹±ï¼›<img&nbsp;src="xxx.jpg"nbsp;\>
 		  return s.replaceAll(" ","&nbsp;").replaceAll("\n","<br\\>");  
 	  }catch(Exception e){
 		  return "";
@@ -1176,14 +1176,14 @@ import java.util.Date;
   }
   
 
-  /** getPassString ¹¦ÄÜ£ºÓÃÓÚ×ª»»Îªºó¼¸Î»µÄÎª*¡£
-   * <br>ÊäÈë²ÎÊı£ºString strvalue ÉèÖÃÒª×ª»»µÄ×Ö·û´®
-   *              int Flag Î»Êı¡£
-   * <br>Êä³ö²ÎÊı£º¡£
-   * <br>×÷Õß£º·¶²¨
-   * <br>Ê±¼ä£º2006-8-7
-   * <br>´æÔÚÎÊÌâ£º
-   * <br>ÓÃ·¨£º
+  /** getPassString åŠŸèƒ½ï¼šç”¨äºè½¬æ¢ä¸ºåå‡ ä½çš„ä¸º*ã€‚
+   * <br>è¾“å…¥å‚æ•°ï¼šString strvalue è®¾ç½®è¦è½¬æ¢çš„å­—ç¬¦ä¸²
+   *              int Flag ä½æ•°ã€‚
+   * <br>è¾“å‡ºå‚æ•°ï¼šã€‚
+   * <br>ä½œè€…ï¼šèŒƒæ³¢
+   * <br>æ—¶é—´ï¼š2006-8-7
+   * <br>å­˜åœ¨é—®é¢˜ï¼š
+   * <br>ç”¨æ³•ï¼š
    *          <%=utilFuns.ConvertString("abcdef",3)%>
    */
   public static String getPassString( String strvalue, int Flag ) {
@@ -1209,15 +1209,15 @@ import java.util.Date;
     }
   }
   
- /** getPassString ¹¦ÄÜ£ºÓÃÓÚ×ª»»Îªºó¼¸Î»µÄÎª*¡£
- * <br>ÊäÈë²ÎÊı£ºString strvalue ÉèÖÃÒª×ª»»µÄ×Ö·û´®
- *              int Flag ÆğÎ»Êı¡£
- *              int sFlag Ä©Î»Êı¡£ 
- * <br>Êä³ö²ÎÊı£º¡£
- * <br>×÷Õß£º·¶²¨
- * <br>Ê±¼ä£º2006-8-7
- * <br>´æÔÚÎÊÌâ£º
- * <br>ÓÃ·¨£º
+ /** getPassString åŠŸèƒ½ï¼šç”¨äºè½¬æ¢ä¸ºåå‡ ä½çš„ä¸º*ã€‚
+ * <br>è¾“å…¥å‚æ•°ï¼šString strvalue è®¾ç½®è¦è½¬æ¢çš„å­—ç¬¦ä¸²
+ *              int Flag èµ·ä½æ•°ã€‚
+ *              int sFlag æœ«ä½æ•°ã€‚ 
+ * <br>è¾“å‡ºå‚æ•°ï¼šã€‚
+ * <br>ä½œè€…ï¼šèŒƒæ³¢
+ * <br>æ—¶é—´ï¼š2006-8-7
+ * <br>å­˜åœ¨é—®é¢˜ï¼š
+ * <br>ç”¨æ³•ï¼š
  *          <%=optionFuns.getPassString(String.valueOf(oi.next()),3)%>
  */
 public static String getPassString( String strvalue, int Flag, int sFlag ,int iPassLen ) {
@@ -1255,7 +1255,7 @@ public static String getPassString( String strvalue, int Flag, int sFlag ,int iP
   /* 
 	by czs 2006-8-17
 	OPTION:
-		È¡µÃ×Ö·û´®iStartPosÎ»ÖÃµ½iEndPosÎ»ÖÃ£¬½«ÖĞ¼äÕâ²¿·Ö×ª»»iPatternLen¸ösPattern
+		å–å¾—å­—ç¬¦ä¸²iStartPosä½ç½®åˆ°iEndPosä½ç½®ï¼Œå°†ä¸­é—´è¿™éƒ¨åˆ†è½¬æ¢iPatternLenä¸ªsPattern
 	EXSAMPLE:
 		getPatternString("CHEN ZISHU",5,7,"*",3)
 		RESULT: CHEN ***SHU
@@ -1307,14 +1307,14 @@ public static String getPassString( String strvalue, int Flag, int sFlag ,int iP
   }
 
   
-    /** getQQString ¹¦ÄÜ£ºÓÃÓÚ×ª»»Îªºó¼¸Î»µÄÎª*¡£
-* <br>ÊäÈë²ÎÊı£ºString strvalue ÉèÖÃÒª×ª»»µÄ×Ö·û´®
+    /** getQQString åŠŸèƒ½ï¼šç”¨äºè½¬æ¢ä¸ºåå‡ ä½çš„ä¸º*ã€‚
+* <br>è¾“å…¥å‚æ•°ï¼šString strvalue è®¾ç½®è¦è½¬æ¢çš„å­—ç¬¦ä¸²
 *               
-* <br>Êä³ö²ÎÊı£º¡£
-* <br>×÷Õß£º·¶²¨
-* <br>Ê±¼ä£º2006-8-7
-* <br>´æÔÚÎÊÌâ£º
-* <br>ÓÃ·¨£º
+* <br>è¾“å‡ºå‚æ•°ï¼šã€‚
+* <br>ä½œè€…ï¼šèŒƒæ³¢
+* <br>æ—¶é—´ï¼š2006-8-7
+* <br>å­˜åœ¨é—®é¢˜ï¼š
+* <br>ç”¨æ³•ï¼š
 *          <%=optionFuns.getQQString(String.valueOf(oi.next()))%>
 */
 public static String getQQString( String strvalue ) {
@@ -1325,7 +1325,7 @@ public static String getQQString( String strvalue ) {
 	  } else {
 	     QQ="<img src=\"http://wpa.qq.com/pa?p=1:"+strvalue
 	        +":4\">"
-	        +" <SPAN title=\"ÓĞÊÂ½ĞÎÒ!\" style=\"CURSOR: hand\""
+	        +" <SPAN title=\"æœ‰äº‹å«æˆ‘!\" style=\"CURSOR: hand\""
 	        +" onclick=\"window.open('http://wpa.qq.com/msgrd?V=1&amp;Uin="+strvalue
 	        +"&amp;Site=21pan&amp;Menu=yes')\">"+strvalue+"</SPAN>";
 	    }
@@ -1344,7 +1344,7 @@ public static String getQQString( String strvalue ) {
 		return this.getNoExistString(this.splitStr(allString, ","), existString);
 	}
 	
-	/* ·µ»ØexistStringÖĞµÄÃ¿¸ö×Ö´®²»ÔÚallStringÖĞµÄ */
+	/* è¿”å›existStringä¸­çš„æ¯ä¸ªå­—ä¸²ä¸åœ¨allStringä¸­çš„ */
 	public String getNoExistString(String[] allString, String existString){
 		existString = existString + ",";
 		if(allString==null&&allString.length==0){
@@ -1381,7 +1381,7 @@ public static String getQQString( String strvalue ) {
 	  
 //	  UtilFuns uf = new UtilFuns();
 //	  System.out.println(uf.getNoExistString("1,2,3", "1,2,3,4"));
-//	  System.out.println(uf.getNoExistString("°²È«,Éú²ú,ÓªÏú", "Éú²ú,ÓªÏú"));
+//	  System.out.println(uf.getNoExistString("å®‰å…¨,ç”Ÿäº§,è¥é”€", "ç”Ÿäº§,è¥é”€"));
 //	  System.out.println("finish!");
 	  
 //	  Set<String> set = new HashSet<String>();
@@ -1402,7 +1402,7 @@ public static String getQQString( String strvalue ) {
     System.out.println(getPatternString("CHEN ZISHU",8,0,".",3));
     */
     
-    //System.out.println(SysTime("yyyyÄêMMÔÂ"));
+    //System.out.println(SysTime("yyyyå¹´MMæœˆ"));
     //System.out.println(SysTime("yyyyMM"));
     //System.out.println(ConvertSpaceTD(""));
     //System.out.println(ConvertTD(""));
@@ -1487,34 +1487,34 @@ public static String getQQString( String strvalue ) {
 <script language=JavaScript>
 
   var today = new Date();
-  var strDate = (today.getFullYear() + "Äê" +
-(today.getMonth() + 1) + "ÔÂ" + today.getDate() + "ÈÕ ");
+  var strDate = (today.getFullYear() + "å¹´" +
+(today.getMonth() + 1) + "æœˆ" + today.getDate() + "æ—¥ ");
   var n_day = today.getDay();
   switch (n_day)
   {
   case 0:{
-  strDate = strDate + "ĞÇÆÚÈÕ"
+  strDate = strDate + "æ˜ŸæœŸæ—¥"
   }break;
   case 1:{
-  strDate = strDate + "ĞÇÆÚÒ»"
+  strDate = strDate + "æ˜ŸæœŸä¸€"
   }break;
   case 2:{
-  strDate = strDate + "ĞÇÆÚ¶ş"
+  strDate = strDate + "æ˜ŸæœŸäºŒ"
   }break;
   case 3:{
-  strDate = strDate + "ĞÇÆÚÈı"
+  strDate = strDate + "æ˜ŸæœŸä¸‰"
   }break;
   case 4:{
-  strDate = strDate + "ĞÇÆÚËÄ"
+  strDate = strDate + "æ˜ŸæœŸå››"
   }break;
   case 5:{
-  strDate = strDate + "ĞÇÆÚÎå"
+  strDate = strDate + "æ˜ŸæœŸäº”"
   }break;
   case 6:{
-  strDate = strDate + "ĞÇÆÚÁù"
+  strDate = strDate + "æ˜ŸæœŸå…­"
   }break;
   case 7:{
-  strDate = strDate + "ĞÇÆÚÈÕ"
+  strDate = strDate + "æ˜ŸæœŸæ—¥"
   }break;
   }
   document.write(strDate);

@@ -3,7 +3,7 @@ package com.xing.leaveSystem.utils;
 import java.io.Serializable;
 
 /**
- *	¸ÃÀà°üº¬ËùÓĞµÄ³£Á¿ĞÅÏ¢
+ *	è¯¥ç±»åŒ…å«æ‰€æœ‰çš„å¸¸é‡ä¿¡æ¯
  */
 public class CommonConstants implements Serializable{
 	/**
@@ -11,16 +11,16 @@ public class CommonConstants implements Serializable{
 	 */
 	private static final long serialVersionUID = -8479737895025428149L;
 	
-	/**³É¹¦Îª1*/
+	/**æˆåŠŸä¸º1*/
 	public  static final String SUCCESS="1";
 	
-	/**Ê§°ÜÎª0*/
+	/**å¤±è´¥ä¸º0*/
 	public  static final String FALSE="0";
 	
-	/**Î´Ìá½»*/
-	public static final String NOT_SUBMIT="Î´Ìá½»";
+	/**æœªæäº¤*/
+	public static final String NOT_SUBMIT="æœªæäº¤";
 	
-	/**ÉóºËÖĞ*/
-	public static final String AUDIT="ÉóºËÖĞ";
+	/**å®¡æ ¸ä¸­*/
+	public static final String AUDIT="å®¡æ ¸ä¸­";
 	
 }

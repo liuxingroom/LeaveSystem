@@ -82,27 +82,27 @@ public class UUIDBuild {
 	}
 
 	/**
-	 *	三种获取序列号的方式      可以用序列号作为�?��的id
+	 *	三种获取序列号的方式      可以用序列号作为开发的id
 	 *  方法二效率最高的
 	 */
 	public static void main(String[] str) {
 		Long startTime=System.currentTimeMillis();
 		Long endTime;
 		
-		//方法�?     得到�?��序号
+		//方法一      得到一个序号
 		for(int i=0;i<1;i++){
-			System.out.println(i+"序列�?--------"+getUUID());
+			System.out.println(i+"序列号---------"+getUUID());
 		}
 	
-		//方法�?
+		//方法二
 //		UUIDBuild uuidgens = new UUIDBuild();
 //		for (int i = 0; i < 10; i++) {
 //			System.out.println(i+"-----------"+uuidgens.generate());
 //		}
 		
 
-		//方法�?
-		// �?��得到多个序号
+		//方法三
+		// 一次得到多个序号
 //		String[] UUID_s = getUUID(10);
 //		for (int i = 0; i < UUID_s.length; i++) {
 //			System.out.println(i+"-------"+UUID_s[i]);
@@ -112,7 +112,7 @@ public class UUIDBuild {
 		
 	}
 
-	// 得到�?��序号
+	// 得到一个序号
 	public static String getUUID() {
 		String s = UUID.randomUUID().toString();
 		return s.substring(0, 8) + s.substring(9, 13) + s.substring(14, 18)
@@ -120,10 +120,10 @@ public class UUIDBuild {
 	}
 
 	/**
-	 * �?��得到多个序号
+	 * 一次得到多个序号
 	 * 
 	 * @param number
-	 *            int �?��获得的序号数�?
+	 *            int 需要获得的序号数量
 	 * @return String[] 序号数组
 	 */
 	public static String[] getUUID(int number) {

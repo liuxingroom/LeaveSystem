@@ -3,7 +3,7 @@ package com.xing.leaveSystem.utils;
 import java.io.Serializable;
 
 /**
- *  ¸ÃÀà°üº¬·µ»Ø½á¹ûµÄĞÅÏ¢ 
+ *  è¯¥ç±»åŒ…å«è¿”å›ç»“æœçš„ä¿¡æ¯ 
  */
 public class MessageObj implements Serializable{
 
@@ -12,10 +12,10 @@ public class MessageObj implements Serializable{
 	 */
 	private static final long serialVersionUID = -1634640967982025192L;
 
-	/**·µ»Ø½á¹ûµÄ±ê¼Ç*/
+	/**è¿”å›ç»“æœçš„æ ‡è®°*/
 	private String result;
 	
-	/**·µ»Ø½á¹ûµÄĞÅÏ¢*/
+	/**è¿”å›ç»“æœçš„ä¿¡æ¯*/
 	private String message;
 
 	public String getResult() {
@@ -34,12 +34,12 @@ public class MessageObj implements Serializable{
 		this.message = message;
 	}
 	
-	/**²Ù×÷³É¹¦*/
+	/**æ“ä½œæˆåŠŸ*/
 	public void setSuccess(){
 		this.result=CommonConstants.SUCCESS;
 	}
 	
-	/**²Ù×÷Ê§°Ü*/
+	/**æ“ä½œå¤±è´¥*/
 	public void setFail(){
 		this.result=CommonConstants.FALSE;
 	}
