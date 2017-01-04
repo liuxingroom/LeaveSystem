@@ -24,11 +24,6 @@
 		//获取选中的id
 		var strIds=[];
 		for(var i=0;i<selectRows.length;i++){
-			//只能将已经结束的请假流程归档
-			/* if(selectRows[i].status=="未提交" || selectRows[i].status=="审核中"){
-				$.messager.alert("系统提示","请选择已经结束的请假记录！");
-				return;
-			} */
 			strIds.push(selectRows[i].leaveId);
 		}
 		var ids=strIds.join(",");
