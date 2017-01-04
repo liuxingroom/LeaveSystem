@@ -68,6 +68,39 @@
 		},"json");
 	}
 	
+	/**将请假信息归档*/
+	function pigeinhole(){
+		//判断有没有选中数据  入股没有选中 则提示选中数据
+		var selectRows=$("#dg").datagrid("getSelections");
+		if(selectRows.length==0){
+			$.messager.alert("系统提示","请选择要归档的数据！");
+			return;
+		}
+		//获取选中的id
+		var strIds=[];
+		for(var i=0;i<selectRows.length;i++){
+			//只能将已经结束的请假流程归档
+			 if(selectRows[i].status=="未提交" || selectRows[i].status=="审核中"){
+				$.messager.alert("系统提示","请选择已经结束的请假记录！");
+				return;
+			}
+			strIds.push(selectRows[i].leaveId);
+		}
+		var ids=strIds.join(",");
+		$.messager.confirm("系统提示","您确定要归档这<font color=red>"+selectRows.length+"</font>条数据吗?",function(r){
+			if(r){
+				$.post("${pageContext.request.contextPath}/leave/pigeouthole.action",{ids:ids},function(result){
+					if(result.result=="1"){
+						$.messager.alert("系统提示","数据已经成功归档！");
+						$("#dg").datagrid("reload");
+					}else{
+						$.messager.alert("系统提示","数据归档失败，请联系管理员！");
+					}
+				},"json");
+			}
+		});
+	}
+	
 </script>
 </head>
 <body style="margin: 1px">
@@ -90,7 +123,7 @@
 <div id="tb">
  <div>
 	<a href="javascript:openLeaveAddDialog()" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增请假单</a>
-	<a href="javascript:openUserModifyDiglog()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">归档</a>
+	<a href="javascript:pigeinhole()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">归档</a>
  </div>
 </div>
 

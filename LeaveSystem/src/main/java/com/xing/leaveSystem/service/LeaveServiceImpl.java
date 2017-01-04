@@ -104,5 +104,12 @@ public class LeaveServiceImpl implements LeaveService{
 		Leave leave=leaveMapper.findById(leaveId);
 		return leave;
 	}
+
+	@Override
+	public MessageObj pigeinhole(String ids) {
+		
+		
+		return null;
+	}
 	
 }

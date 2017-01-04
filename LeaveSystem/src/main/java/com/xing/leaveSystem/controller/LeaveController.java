@@ -1,6 +1,5 @@
 package com.xing.leaveSystem.controller;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,18 +8,9 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.activiti.engine.impl.util.json.HTTPTokener;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-
-
-
-
-
-
 
 import com.xing.leaveSystem.entity.Leave;
 import com.xing.leaveSystem.entity.PageBean;
@@ -93,6 +83,17 @@ public class LeaveController {
 	@ResponseBody
 	public MessageObj startApply(String processinstanceId,String leaveId){
 		MessageObj obj=leaveService.startApply(processinstanceId,leaveId);
+		return obj;
+	}
+	
+	
+	/**
+	 * 将学生请假信息归档
+	 */
+	@RequestMapping("/pigeinhole")
+	@ResponseBody
+	public MessageObj pigeinhole(String ids){
+		MessageObj obj=leaveService.pigeinhole(ids);
 		return obj;
 	}
 	

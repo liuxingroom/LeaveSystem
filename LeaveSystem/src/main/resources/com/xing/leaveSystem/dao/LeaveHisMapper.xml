@@ -15,7 +15,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="processinstanceId" column="processInstance_id" jdbcType="VARCHAR"/>
 	</resultMap>
 	
+	<!-- 分页查询请假信息 -->
+	<select id="list" resultMap="LeaveResult">
+			select * from leave_system_his_leave
+	    <where>
+			<if test="userId!=null and userId!='' ">
+				 and user_id = #{userId}
+			</if>
+		</where>
+		order by createtime desc
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
 	
+	<!-- 获取请假的记录数 -->
+	<select id="getTotal" parameterType="Map" resultType="Long">
+		select count(*) from leave_system_his_leave
+		<where>
+			<if test="userId!=null and userId!='' ">
+				 and user_id = #{userId}
+			</if>
+		</where>
+	</select>
 	
 	
 </mapper>

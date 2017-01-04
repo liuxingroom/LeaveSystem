@@ -50,11 +50,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 获取请假的记录数 -->
 	<select id="getTotal" parameterType="Map" resultType="Long">
 		select count(*) from leave_system_leave
-		<!-- <where>
+		 <where>
 			<if test="userId!=null and userId!='' ">
-				 and userId = #{userId}
+				 and user_id = #{userId}
 			</if>
-		</where> -->
+		</where>
 	</select>
 	
 	<!--通过请假id来获取请假信息 -->

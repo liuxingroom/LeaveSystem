@@ -25,7 +25,6 @@
 			return;
 		}
 		var strIds=[];
-		console.log(selectRows)
 		for(var i=0;i<selectRows.length;i++){
 			strIds.push(selectRows[i].userId);
 		}
