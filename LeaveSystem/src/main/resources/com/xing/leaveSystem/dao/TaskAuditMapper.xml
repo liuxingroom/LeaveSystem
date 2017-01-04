@@ -3,13 +3,19 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xing.leaveSystem.dao.TaskAuditMapper">
-	<!-- <resultMap type="com.xing.leaveSystem.entity.Audit" id="AuditResult">
-		
-	</resultMap> -->
+	<resultMap type="com.xing.leaveSystem.entity.Audit" id="AuditResult">
+		<id property="auditId" column="audit_id" jdbcType="VARCHAR"/>
+		<result property="leaveId" column="leave_id" jdbcType="VARCHAR"/>
+		<result property="userId" column="user_id" jdbcType="VARCHAR"/>
+		<result property="auditInfo" column="audit_info" jdbcType="VARCHAR"/>
+		<result property="auditType" column="audit_type" jdbcType="VARCHAR"/>
+		<result property="status" column="status" jdbcType="VARCHAR"/>
+		<result property="createTime" column="createtime" jdbcType="TIMESTAMP"/>
+	</resultMap>
 	
 	<!-- 添加审核信息 -->
 	<insert id="add" parameterType="com.xing.leaveSystem.entity.Audit">
-		insert into leave_system_audit (audit_id,leave_id,user_id,audit_info,audit_type,createtime,status)
+		insert into leave_system_audit (audit_id,leave_id,user_id,audit_info,audit_type,status,createtime)
 		values
 		(
 			#{auditId,jdbcType=VARCHAR},
@@ -21,5 +27,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{createTime,jdbcType=TIMESTAMP}
 		)
 	</insert>
+	
+	
+	<!-- 通过请假流程的id来获取请假信息 -->
+	<select id="findAduitMessageByLeaveId" parameterType="com.xing.leaveSystem.entity.Audit" resultMap="AuditResult">
+		select * from leave_system_audit where leave_id=#{leaveId}
+	</select>
 	
 </mapper>

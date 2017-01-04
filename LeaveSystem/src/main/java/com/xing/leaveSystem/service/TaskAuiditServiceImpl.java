@@ -1,6 +1,7 @@
 package com.xing.leaveSystem.service;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -41,11 +42,17 @@ public class TaskAuiditServiceImpl implements TaskAuditService{
 		//获取流程实例信息
 		ProcessInstance instance=runtimeService.createProcessInstanceQuery().processInstanceId(processInstanceId).singleResult();
 		//获取请假单id
-		String leaveId=instance.getActivityId();
+		String leaveId=instance.getBusinessKey();
 		//设置请假单id
 		audit.setLeaveId(leaveId);
 		int resultTotal=taskAuditMapper.add(audit);
 		return resultTotal;
+	}
+
+	@Override
+	public List<Audit> findAduitMessageByLeaveId(String leaveId) {
+		List<Audit> auditList=taskAuditMapper.findAduitMessageByLeaveId(leaveId);
+		return auditList;
 	}
 	
 	

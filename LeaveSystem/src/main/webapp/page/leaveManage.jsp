@@ -16,7 +16,8 @@
 		if(row.status=='未提交'){
 			return "<a href=\"javascript:startApply('"+row.processinstanceId+"','"+row.leaveId+"')\">提交申请</a>";
 		}else if(row.status=='审核通过' || row.status=='审核未通过'){
-			return "<a href=''>查看历史批注</a>";
+			return "<a href='${pageContext.request.contextPath}/task/showAuditMessage.action?leaveId="+row.leaveId+"'>查看历史审核信息</a>";
+			/* return "<a href=\"javascript:showAuditMessage('"+row.leaveId+"')\">查看历史审核信息</a>"; */
 		}
 	}
 	

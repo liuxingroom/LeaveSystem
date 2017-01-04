@@ -342,4 +342,17 @@ public class TaskController {
 		model.addAttribute("taskList", taskList);
 		return "queryOrderTaskByPid";
 	}
+	
+	/**
+	 * 通过请假单id来获取审核信息
+	 * @param leaveId
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/showAuditMessage")
+	public String showAuditMessage(String leaveId,Model model){
+		List<Audit> auditList=taskAuditService.findAduitMessageByLeaveId(leaveId);
+		System.out.println(auditList);
+		return "showAuditMessage";
+	}
 }
