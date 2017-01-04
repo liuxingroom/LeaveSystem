@@ -52,6 +52,16 @@ public class LeaveHisController {
 	 * @param ids
 	 * @return
 	 */
+	@RequestMapping("/pigeouthole")
+	@ResponseBody
+	public MessageObj pigeouthole(String ids){
+		MessageObj obj=leaveHisService.pigeinhole(ids);
+		return obj;
+	}
+	
+	/**
+	 * 将学生请假信息归档
+	 */
 	@RequestMapping("/pigeinhole")
 	@ResponseBody
 	public MessageObj pigeinhole(String ids){

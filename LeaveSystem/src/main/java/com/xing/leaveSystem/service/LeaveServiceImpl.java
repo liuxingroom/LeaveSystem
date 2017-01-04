@@ -105,11 +105,5 @@ public class LeaveServiceImpl implements LeaveService{
 		return leave;
 	}
 
-	@Override
-	public MessageObj pigeinhole(String ids) {
-		
-		
-		return null;
-	}
 	
 }

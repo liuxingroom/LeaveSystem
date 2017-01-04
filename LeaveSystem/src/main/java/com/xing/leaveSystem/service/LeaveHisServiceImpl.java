@@ -35,4 +35,10 @@ public class LeaveHisServiceImpl implements LeaveHisService{
 		return null;
 	}
 	
+	@Override
+	public MessageObj pigeouthole(String ids) {
+		
+		
+		return null;
+	}
 }

@@ -27,5 +27,12 @@ public interface LeaveHisService {
 	 * @param ids
 	 * @return
 	 */
+	MessageObj pigeouthole(String ids);
+
+	/**
+	 * ½«Çë¼ÙÐÅÏ¢¹éµµ
+	 * @param ids
+	 * @return
+	 */
 	MessageObj pigeinhole(String ids);
 }

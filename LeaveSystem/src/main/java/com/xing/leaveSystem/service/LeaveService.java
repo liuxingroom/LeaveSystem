@@ -43,11 +43,5 @@ public interface LeaveService {
 	 */
 	Leave findLeaveById(String leaveId);
 
-	/**
-	 * ½«Çë¼ÙÐÅÏ¢¹éµµ
-	 * @param ids
-	 * @return
-	 */
-	MessageObj pigeinhole(String ids);
 
 }

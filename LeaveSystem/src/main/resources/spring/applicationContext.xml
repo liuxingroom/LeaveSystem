@@ -35,6 +35,19 @@
   		<property name="configLocation" value="classpath:mybatis/sqlMapConfig.xml"></property>
   	</bean>
   	
+  	<!--
+  		 配置spring jdbcTemplage  该对象是spring对jdbc进行简易的封装  比原生的jdbc好用  是一个对持久层轻量级框架
+  	 	使用：如果进行批量的增删该查时可以使用该dao     因为该dao较轻量级   而且执行速度快
+  	 -->
+  	 <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+  	 	<property name="dataSource" ref="dataSource"></property>
+  	 </bean>
+  	 
+  	 <!-- 注入操作jdbcTemplate的工具类 -->
+  	 <bean id="sqlDao" class="com.xing.leaveSystem.common.springdao.SqlDao">
+  	 	<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+  	 </bean>
+  	
   	<!-- 事务配置 -->
   	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
   		<property name="dataSource" ref="dataSource"></property>

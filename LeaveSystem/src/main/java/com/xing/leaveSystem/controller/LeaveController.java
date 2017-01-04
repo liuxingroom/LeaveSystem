@@ -86,15 +86,4 @@ public class LeaveController {
 		return obj;
 	}
 	
-	
-	/**
-	 * 将学生请假信息归档
-	 */
-	@RequestMapping("/pigeinhole")
-	@ResponseBody
-	public MessageObj pigeinhole(String ids){
-		MessageObj obj=leaveService.pigeinhole(ids);
-		return obj;
-	}
-	
 }
