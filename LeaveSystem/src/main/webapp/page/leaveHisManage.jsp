@@ -36,8 +36,8 @@
 			if(r){
 				$.post("${pageContext.request.contextPath}/leaveHis/pigeouthole.action",{ids:ids},function(result){
 					if(result.result=="1"){
-						$.messager.alert("系统提示","数据已经成功取消归档！");
 						$("#dg").datagrid("reload");
+						$.messager.alert("系统提示","数据已经成功取消归档！");
 					}else{
 						$.messager.alert("系统提示","数据取消归档失败，请联系管理员！");
 					}

@@ -89,10 +89,10 @@
 		var ids=strIds.join(",");
 		$.messager.confirm("系统提示","您确定要归档这<font color=red>"+selectRows.length+"</font>条数据吗?",function(r){
 			if(r){
-				$.post("${pageContext.request.contextPath}/leave/pigeinhole.action",{ids:ids},function(result){
+				$.post("${pageContext.request.contextPath}/leaveHis/pigeinhole.action",{ids:ids},function(result){
 					if(result.result=="1"){
-						$.messager.alert("系统提示","数据已经成功归档！");
 						$("#dg").datagrid("reload");
+						$.messager.alert("系统提示","数据已经成功归档！");
 					}else{
 						$.messager.alert("系统提示","数据归档失败，请联系管理员！");
 					}

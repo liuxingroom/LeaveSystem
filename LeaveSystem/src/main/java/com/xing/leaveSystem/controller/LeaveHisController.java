@@ -55,7 +55,7 @@ public class LeaveHisController {
 	@RequestMapping("/pigeouthole")
 	@ResponseBody
 	public MessageObj pigeouthole(String ids){
-		MessageObj obj=leaveHisService.pigeinhole(ids);
+		MessageObj obj=leaveHisService.pigeouthole(ids);
 		return obj;
 	}
 	
