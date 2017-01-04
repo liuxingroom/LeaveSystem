@@ -22,7 +22,7 @@
 
 	function formatAction(val,row){
 		var userId=$("#userId").val();
-		return "<a href=\"javascript:claimTask('"+row.id+"','"+userId+"')\">拾取任务</a>&nbsp;<a href='#'>查看当前流程图</a>";
+		return "<a href=\"javascript:claimTask('"+row.id+"','"+userId+"')\">拾取任务</a>";
 		
 	}
 	

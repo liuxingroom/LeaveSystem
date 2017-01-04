@@ -69,7 +69,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<trim suffixOverrides=",">
 				<if test="userId!=null and userId!=''">user_id=#{userId,jdbcType=VARCHAR},</if>
 				<if test="leaveName!=null and leaveName!=''">leavename=#{leaveName,jdbcType=VARCHAR},</if>
-				<if test="leaveDays!=null">leavedays=#{leaveDays,jdbcType=INTEGER},</if>
+				<if test="leaveDays!=0">leavedays=#{leaveDays,jdbcType=INTEGER},</if>
 				<if test="status!=null and status!=''">status=#{status,jdbcType=VARCHAR},</if>
 				<if test="leaveReason!=null and leaveReason!=''">leaveReason=#{leaveReason,jdbcType=VARCHAR},</if>
 				<if test="createTime!=null">createtime=#{createTime,jdbcType=TIMESTAMP},</if>
