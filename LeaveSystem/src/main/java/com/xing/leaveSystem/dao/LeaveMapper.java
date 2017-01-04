@@ -10,35 +10,35 @@ import com.xing.leaveSystem.entity.Leave;
 public interface LeaveMapper {
 
 	/**
-	 * Ìí¼ÓÇë¼ÙĞÅÏ¢
+	 * æ·»åŠ è¯·å‡ä¿¡æ¯
 	 * @param leave
 	 * @return
 	 */
 	int add(Leave leave);
 
 	/**
-	 * ·ÖÒ³²éÑ¯Çë¼ÙĞÅÏ¢
+	 * åˆ†é¡µæŸ¥è¯¢è¯·å‡ä¿¡æ¯
 	 * @param map
 	 * @return
 	 */
 	List<Leave> list(Map<String, Object> map);
 
 	/**
-	 * »ñÈ¡Çë¼ÙµÄ¼ÇÂ¼Êı
+	 * è·å–è¯·å‡çš„è®°å½•æ•°
 	 * @param map
 	 * @return
 	 */
 	long getTotal(Map<String, Object> map);
 
 	/**
-	 * Í¨¹ıÇë¼ÙidÀ´»ñÈ¡Çë¼ÙĞÅÏ¢
+	 * é€šè¿‡è¯·å‡idæ¥è·å–è¯·å‡ä¿¡æ¯
 	 * @param leaveId
 	 * @return
 	 */
 	Leave findById(@Param("leaveId")String leaveId);
 
 	/**
-	 * ¸üĞÂÇë¼Ùµ¥
+	 * æ›´æ–°è¯·å‡å•
 	 * @param leave
 	 */
 	public void update(Leave leave);

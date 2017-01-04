@@ -10,21 +10,21 @@ public class Audit implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -3585631307405689108L;
-	/**ÉóºËid*/
+	/**å®¡æ ¸id*/
 	private String auditId;  
-	/**Çë¼Ù¼ÇÂ¼id*/
+	/**è¯·å‡è®°å½•id*/
 	private String leaveId;
-	/**ÉóºËÈËid*/
+	/**å®¡æ ¸äººid*/
 	private String userId;
-	/**ÉóºËÄÚÈİ*/
+	/**å®¡æ ¸å†…å®¹*/
 	private String  auditInfo;
-	/**ÉóºËÀàĞÍ*/
+	/**å®¡æ ¸ç±»å‹*/
 	private String auditType;
-	/**ÉóºË×´Ì¬*/
+	/**å®¡æ ¸çŠ¶æ€*/
 	private String status;
-	/**ÉóºËÊ±¼ä*/
+	/**å®¡æ ¸æ—¶é—´*/
 	private Date createTime;
-	/**ÉóºËÊ±¼äÖ§¸¶´®±íÏÖĞÎÊ½*/
+	/**å®¡æ ¸æ—¶é—´æ”¯ä»˜ä¸²è¡¨ç°å½¢å¼*/
 	private String createTimeStr;
 	
 	public String getAuditId() {
@@ -70,7 +70,7 @@ public class Audit implements Serializable{
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	/**¸ñÊ½»¯Ê±¼ä£¨½«ÈÕÆÚ¶ÔÏó×ª»»³ÉÖ§¸¶´®£©*/
+	/**æ ¼å¼åŒ–æ—¶é—´ï¼ˆå°†æ—¥æœŸå¯¹è±¡è½¬æ¢æˆæ”¯ä»˜ä¸²ï¼‰*/
 	public String getCreateTimeStr() {
 		if(createTime!=null){
 			createTimeStr=new SimpleDateFormat("yyyy-MM-dd").format(createTime);

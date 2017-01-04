@@ -6,27 +6,27 @@ import com.xing.leaveSystem.entity.User;
 
 public interface LoginUserMapper {
 	/**
-	 * ÏòµÇÂ¼ÓÃ»§±íÖĞÌí¼ÓÊı¾İ
+	 * å‘ç™»å½•ç”¨æˆ·è¡¨ä¸­æ·»åŠ æ•°æ®
 	 * @param user
 	 * @return
 	 */
 	public int add(User user);
 
 	/**
-	 * ¸üĞÂµÇÂ¼ÓÃ»§±í
+	 * æ›´æ–°ç™»å½•ç”¨æˆ·è¡¨
 	 * @param user
 	 * @return
 	 */
 	public int update(User user);
 
 	/**
-	 * ¸ù¾İÓÃ»§idÀ´É¾³ıµÇÂ¼µÄÓÃ»§ĞÅÏ¢
+	 * æ ¹æ®ç”¨æˆ·idæ¥åˆ é™¤ç™»å½•çš„ç”¨æˆ·ä¿¡æ¯
 	 * @param userId
 	 */
 	public void delete(@Param("userId")String userId);
 
 	/**
-	 * Í¨¹ıÓÃ»§ÃûºÍÃÜÂëÀ´»ñÈ¡ÓÃ»§ĞÅÏ¢
+	 * é€šè¿‡ç”¨æˆ·åå’Œå¯†ç æ¥è·å–ç”¨æˆ·ä¿¡æ¯
 	 * @param user
 	 * @return
 	 */

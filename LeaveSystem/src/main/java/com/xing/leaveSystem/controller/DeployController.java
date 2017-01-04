@@ -3,7 +3,6 @@ package com.xing.leaveSystem.controller;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.ZipInputStream;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -24,7 +23,7 @@ import com.xing.leaveSystem.utils.MessageObj;
 import com.xing.leaveSystem.utils.ResultObj;
 
 /**
- *  Á÷³Ì²¿Êğ
+ *  æµç¨‹éƒ¨ç½²
  */
 @Controller
 @RequestMapping("/deploy")
@@ -42,11 +41,11 @@ public class DeployController {
 	public MessageObj deploy(MultipartFile deployFileBpmn,MultipartFile deployFilePng ,HttpSession session){
 		MessageObj obj=new MessageObj();
 		try {
-			//»ñÈ¡ÉÏ´«ÎÄ¼şbpmn ÎÄ¼şµÄĞÅÏ¢
+			//è·å–ä¸Šä¼ æ–‡ä»¶bpmn æ–‡ä»¶çš„ä¿¡æ¯
 			String resourceName_bpmn=deployFileBpmn.getOriginalFilename();
 			InputStream inputStream_bpmn=deployFileBpmn.getInputStream();
 			
-			//»ñÈ¡ÉÏ´«ÎÄ¼şpng  ÎÄ¼şĞÅÏ¢
+			//è·å–ä¸Šä¼ æ–‡ä»¶png  æ–‡ä»¶ä¿¡æ¯
 			String resourceName_png=deployFilePng.getOriginalFilename();
 			InputStream inputStream_png=deployFilePng.getInputStream();
 			
@@ -56,7 +55,7 @@ public class DeployController {
 					.addInputStream(resourceName_png, inputStream_png)
 					.deploy();
 		} catch (Exception e) {
-			logger.error("Á÷³Ì²¿ÊğÊ§°Ü");
+			logger.error("æµç¨‹éƒ¨ç½²å¤±è´¥");
 			obj.setFail();
 			e.printStackTrace();
 			return obj;
@@ -66,7 +65,7 @@ public class DeployController {
 	}
 	
 	/**
-	 * ²éÑ¯Á÷³Ì²¿ÊğĞÅÏ¢
+	 * æŸ¥è¯¢æµç¨‹éƒ¨ç½²ä¿¡æ¯
 	 * @param page
 	 * @param rows
 	 * @param s_name
@@ -81,25 +80,25 @@ public class DeployController {
 		if(s_name==null){
 			s_name="";
 		}
-		//²éÑ¯¹¤×÷Á÷ÏµÍ³ÖĞÁ÷³Ì²»ÊÇĞÅÏ¢
+		//æŸ¥è¯¢å·¥ä½œæµç³»ç»Ÿä¸­æµç¨‹ä¸æ˜¯ä¿¡æ¯
 		List<Deployment> departments=repositoryService.createDeploymentQuery()
-				.orderByDeploymenTime().desc()       //¸ù¾İ²¿ÊğÊ±¼ä½µË³ÅÅÁĞ
-				.deploymentNameLike("%"+s_name+"%")  //¸ù¾İ²¿ÊğÃû³ÆÄ£ºı²éÑ¯
-				.listPage(pageBean.getStart(), pageBean.getPageSize());//  ·µ»Ø´ø·ÖÒ³µÄ½á¹û¼¯ºÏ
+				.orderByDeploymenTime().desc()       //æ ¹æ®éƒ¨ç½²æ—¶é—´é™é¡ºæ’åˆ—
+				.deploymentNameLike("%"+s_name+"%")  //æ ¹æ®éƒ¨ç½²åç§°æ¨¡ç³ŠæŸ¥è¯¢
+				.listPage(pageBean.getStart(), pageBean.getPageSize());//  è¿”å›å¸¦åˆ†é¡µçš„ç»“æœé›†åˆ
 		
 		try {
-			//¿½±´Á÷³Ì²¿ÊğĞÅÏ¢
+			//æ‹·è´æµç¨‹éƒ¨ç½²ä¿¡æ¯
 			for(Deployment deployment:departments){
 				MyDeployment myDeployment=new MyDeployment();
 				BeanUtils.copyProperties(myDeployment, deployment);
 				dlist.add(myDeployment);
 			}
 		} catch (Exception e) {
-			logger.error("²¿ÊğĞÂ¸´ÖÆÊ§°Ü");
+			logger.error("éƒ¨ç½²æ–°å¤åˆ¶å¤±è´¥");
 			e.printStackTrace();
 		}
 		
-		//²éÑ¯¸Ã²¿ÊğĞÅÏ¢µÄ×Ü¼ÇÂ¼Êı
+		//æŸ¥è¯¢è¯¥éƒ¨ç½²ä¿¡æ¯çš„æ€»è®°å½•æ•°
 		long total=repositoryService.createDeploymentQuery().deploymentNameLike("%"+s_name+"%").count();
 		obj.setRows(dlist);
 		obj.setTotal(total);
@@ -107,7 +106,7 @@ public class DeployController {
 	}
 	
 	/**
-	 * ¸ù¾İÁ÷³Ì¶¨ÒåidÀ´É¾³ıÁ÷³Ì¶¨ÒåĞÅÏ¢
+	 * æ ¹æ®æµç¨‹å®šä¹‰idæ¥åˆ é™¤æµç¨‹å®šä¹‰ä¿¡æ¯
 	 * @param ids
 	 * @return
 	 */

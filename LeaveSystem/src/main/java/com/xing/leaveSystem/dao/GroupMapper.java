@@ -10,55 +10,55 @@ import com.xing.leaveSystem.entity.Group;
 public interface GroupMapper {
 
 	/**
-	 * ·ÖÒ³²éÑ¯½ÇÉ«ĞÅÏ¢
+	 * åˆ†é¡µæŸ¥è¯¢è§’è‰²ä¿¡æ¯
 	 * @param map
 	 * @return
 	 */
 	List<Group> find(Map<String, Object> map);
 
 	/**
-	 * »ñÈ¡½ÇÉ«ĞÅÏ¢µÄ×Ü¼ÇÂ¼Êı
+	 * è·å–è§’è‰²ä¿¡æ¯çš„æ€»è®°å½•æ•°
 	 * @param map
 	 * @return
 	 */
 	Long getTotal(Map<String, Object> map);
 
 	/**
-	 * Ìí¼Ó½ÇÉ«ĞÅÏ¢
+	 * æ·»åŠ è§’è‰²ä¿¡æ¯
 	 * @param group
 	 * @return
 	 */
 	int add(Group group);
 
 	/**
-	 * Í¨¹ı½ÇÉ«Ãû²éÑ¯½ÇÉ«ĞÅÏ¢
+	 * é€šè¿‡è§’è‰²åæŸ¥è¯¢è§’è‰²ä¿¡æ¯
 	 * @param groupName
 	 * @return
 	 */
 	Group findByGroupName(@Param("groupName")String groupName);
 
 	/**
-	 * ¸üĞÂ½ÇÉ«ĞÅÏ¢
+	 * æ›´æ–°è§’è‰²ä¿¡æ¯
 	 * @param group
 	 * @return
 	 */
 	int update(Group group);
 
 	/**
-	 * ¸ù¾İ½ÇÉ«idÀ´É¾³ı½ÇÉ«ĞÅÏ¢
+	 * æ ¹æ®è§’è‰²idæ¥åˆ é™¤è§’è‰²ä¿¡æ¯
 	 * @param id
 	 */
 	public void delete(@Param("id")String id);
 
 	/**
-	 * Í¨¹ıÓÃ»§idÀ´»ñÈ¡½ÇÉ«ĞÅÏ¢
+	 * é€šè¿‡ç”¨æˆ·idæ¥è·å–è§’è‰²ä¿¡æ¯
 	 * @param userId
 	 * @return
 	 */
 	List<Group> findGroupByUserId(@Param("userId")String userId);
 
 	/**
-	 * ²é¿´½ÇÉ«idÊÇ·ñ´æÔÚ
+	 * æŸ¥çœ‹è§’è‰²idæ˜¯å¦å­˜åœ¨
 	 * @param id
 	 * @return
 	 */

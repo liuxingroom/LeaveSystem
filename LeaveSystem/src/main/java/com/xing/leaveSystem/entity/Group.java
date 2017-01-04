@@ -8,9 +8,9 @@ public class Group implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 4280435379719970316L;
-	/**½ÇÉ«id*/
+	/**è§’è‰²id*/
 	private String id;
-	/**½ÇÉ«Ãû³Æ*/
+	/**è§’è‰²åç§°*/
 	private String name;
 	public String getId() {
 		return id;

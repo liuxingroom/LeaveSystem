@@ -34,7 +34,7 @@ public class MemberShipController {
 	LoginUserService loginUserService;
 	
 	/**
-	 * ¸üĞÂÓÃ»§È¨ÏŞ ÏÈÉ¾³ı ºóÅúÁ¿Ìí¼Ó
+	 * æ›´æ–°ç”¨æˆ·æƒé™ å…ˆåˆ é™¤ åæ‰¹é‡æ·»åŠ 
 	 * @param userId
 	 * @param groupsIds
 	 * @return
@@ -44,16 +44,16 @@ public class MemberShipController {
 	public MessageObj update(String userId,String groupsIds){
 		MessageObj obj=new MessageObj();
 		User user=null;
-		//É¾³ı±¾µØÊı¾İ¿âÖĞÓÃ»§ºÍ½ÇÉ«µÄ¹ØÏµ
+		//åˆ é™¤æœ¬åœ°æ•°æ®åº“ä¸­ç”¨æˆ·å’Œè§’è‰²çš„å…³ç³»
 		memberShipService.deleteAllGroupsByUserId(userId);
-		//²éÑ¯¹¤×÷Á÷ÏµÍ³ÖĞ¸ÃÓÃ»§¶ÔÓ¦µÄ½ÇÉ«ĞÅÏ¢
+		//æŸ¥è¯¢å·¥ä½œæµç³»ç»Ÿä¸­è¯¥ç”¨æˆ·å¯¹åº”çš„è§’è‰²ä¿¡æ¯
 		List<Group> groupList=identityService.createGroupQuery().groupMember(userId).list();
-		//É¾³ı¸Ã¹¤×÷Á÷ÏµÍ³ÖĞ¸ÄÓÃ»§ºÍ½ÇÉ«µÄ¹ØÁª¹ØÏµ
+		//åˆ é™¤è¯¥å·¥ä½œæµç³»ç»Ÿä¸­æ”¹ç”¨æˆ·å’Œè§’è‰²çš„å…³è”å…³ç³»
 		for(int i=0;i<groupList.size();i++){
 			identityService.deleteMembership(userId,groupList.get(i).getId() );
 		}
 		
-		/**ÏòÓÃ»§ÏµÍ³ºÍ¹¤×÷Á÷ÏµÍ³ÖĞÌí¼ÓÓÃ»§ºÍ½ÇÉ«µÄÏà¹ØĞÅÏ¢*/
+		/**å‘ç”¨æˆ·ç³»ç»Ÿå’Œå·¥ä½œæµç³»ç»Ÿä¸­æ·»åŠ ç”¨æˆ·å’Œè§’è‰²çš„ç›¸å…³ä¿¡æ¯*/
 		String gIds[] =groupsIds.split(",");
 		for(int i=0;i<gIds.length;i++){
 			MemberShip memberShip=new MemberShip();
@@ -61,20 +61,20 @@ public class MemberShipController {
 			memberShip.setGroupId(gIds[i]);
 			memberShipService.add(memberShip);
 			
-			//É¾³ı¹¤×÷Á÷ÖĞÓÃ»§½ÇÉ«µÄ¹ØÁª¹ØÏµ
+			//åˆ é™¤å·¥ä½œæµä¸­ç”¨æˆ·è§’è‰²çš„å…³è”å…³ç³»
 //			identityService.deleteMembership(userId, gIds[i]);
-			//Ìí¼Ó¹¤×÷Á÷ÖĞÓÃ»§½ÇÉ«µÄ¹ØÁª¹ØÏµ
+			//æ·»åŠ å·¥ä½œæµä¸­ç”¨æˆ·è§’è‰²çš„å…³è”å…³ç³»
 			String groupId=gIds[i];
 			identityService.createMembership(userId, gIds[i]);
 		}
-		/**¸üĞÂÓÃ»§±íÖĞgroups×Ö¶ÎĞÅÏ¢*/
-		//»ñÈ¡ÓÃ»§¶ÔÏó
+		/**æ›´æ–°ç”¨æˆ·è¡¨ä¸­groupså­—æ®µä¿¡æ¯*/
+		//è·å–ç”¨æˆ·å¯¹è±¡
 		user=userService.findUserById(userId);
-		//ÉèÖÃÓÃ»§ºÍ½ÇÉ«µÄ¹ØÏµ
+		//è®¾ç½®ç”¨æˆ·å’Œè§’è‰²çš„å…³ç³»
 		user.setGroups(groupsIds);
-		//¸üĞÂÓÃ»§ĞÅÏ¢
+		//æ›´æ–°ç”¨æˆ·ä¿¡æ¯
 		userService.update(user);
-		//¸üĞÂµÇÂ¼ÓÃ»§±íÖĞµÄĞÅÏ¢
+		//æ›´æ–°ç™»å½•ç”¨æˆ·è¡¨ä¸­çš„ä¿¡æ¯
 		loginUserService.update(user);
 		
 		obj.setSuccess();

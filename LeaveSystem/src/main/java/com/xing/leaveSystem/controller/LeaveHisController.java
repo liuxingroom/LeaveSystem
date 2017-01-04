@@ -17,6 +17,12 @@ import com.xing.leaveSystem.service.LeaveHisService;
 import com.xing.leaveSystem.utils.MessageObj;
 import com.xing.leaveSystem.utils.ResultObj;
 
+/**
+ *  该类主要操作
+ *  1、对历史请假信息的查询
+ *  2、请假信息的归档
+ *  3、对已经归档的信息  取消归档
+ */
 @Controller
 @RequestMapping("/leaveHis")
 public class LeaveHisController {
@@ -25,7 +31,7 @@ public class LeaveHisController {
 	LeaveHisService leaveHisService;
 	
 	/**
-	 * ��ҳ��ѯ�����Ϣ����
+	 * 分页查询请假信息集合
 	 */
 	@RequestMapping("/list")
 	@ResponseBody
@@ -34,9 +40,9 @@ public class LeaveHisController {
 		PageBean pageBean=new PageBean(Integer.parseInt(page),Integer.parseInt(rows));
 		Map<String,Object> map=new HashMap<String,Object>();
 		
-		//��ȡȥ��¼�˵���Ϣ
+		//获取去登录人的信息
 		String userId=(String) request.getSession().getAttribute("userId");
-		map.put("userId",userId); // �û���
+		map.put("userId",userId); // 用户名
 		map.put("start", pageBean.getStart());
 		map.put("size", pageBean.getPageSize());
 		List<Leave> leaveList=leaveHisService.find(map);
@@ -48,7 +54,7 @@ public class LeaveHisController {
 	
 	
 	/***
-	 * ȡ�����������Ϣ�鵵
+	 * 取消请假流程信息归档
 	 * @param ids
 	 * @return
 	 */
@@ -60,7 +66,7 @@ public class LeaveHisController {
 	}
 	
 	/**
-	 * ��ѧ�������Ϣ�鵵
+	 * 将学生请假信息归档
 	 */
 	@RequestMapping("/pigeinhole")
 	@ResponseBody

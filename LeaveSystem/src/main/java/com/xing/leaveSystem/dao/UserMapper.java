@@ -10,62 +10,62 @@ import com.xing.leaveSystem.entity.User;
 public interface UserMapper {
 	
 	/**
-	 * ¸ù¾İÓÃ»§Ãû·ÖÒ³²éÑ¯·ûºÏµÄÓÃ»§ĞÅÏ¢
+	 * æ ¹æ®ç”¨æˆ·ååˆ†é¡µæŸ¥è¯¢ç¬¦åˆçš„ç”¨æˆ·ä¿¡æ¯
 	 * @param map
 	 * @return
 	 */
 	List<User> find(Map<String, Object> map);
 
 	/**
-	 * »ñÈ¡·ÖÒ³²éÑ¯µÄ¼ÇÂ¼Êı
+	 * è·å–åˆ†é¡µæŸ¥è¯¢çš„è®°å½•æ•°
 	 * @param map
 	 * @return
 	 */
 	Long getTotal(Map<String, Object> map);
 	
 	/**
-	 * Ìí¼ÓÓÃ»§ĞÅÏ¢
+	 * æ·»åŠ ç”¨æˆ·ä¿¡æ¯
 	 * @param user
 	 * @return
 	 */
 	int add(User user);
 
 	/**
-	 * ¸üĞÂÓÃ»§ĞÅÏ¢
+	 * æ›´æ–°ç”¨æˆ·ä¿¡æ¯
 	 * @param user
 	 * @return
 	 */
 	int update(User user);
 
 	/**
-	 * Í¨¹ıÓÃ»§Ãû²éÕÒÓÃ»§ĞÅÏ¢
+	 * é€šè¿‡ç”¨æˆ·åæŸ¥æ‰¾ç”¨æˆ·ä¿¡æ¯
 	 * @param userName
 	 * @return
 	 */
 	User findByUserName(@Param("userName")String userName);
 
 	/**
-	 * Í¨¹ıÓÃ»§µÄidÀ´É¾³ıÆÕÍ¨ÓÃ»§µÄĞÅÏ¢
+	 * é€šè¿‡ç”¨æˆ·çš„idæ¥åˆ é™¤æ™®é€šç”¨æˆ·çš„ä¿¡æ¯
 	 * @param userId
 	 */
 	public void delete(@Param("userId")String userId);
 
 	/**
-	 * Í¨¹ıÓÃ»§idÀ´»ñÈ¡ÓÃ»§ĞÅÏ¢
+	 * é€šè¿‡ç”¨æˆ·idæ¥è·å–ç”¨æˆ·ä¿¡æ¯
 	 * @param userId
 	 * @return
 	 */
 	User findUserById(@Param("userId")String userId);
 
 	/**
-	 * Í¨¹ıÓÃ»§ÃûºÍÃÜÂëÀ´»ñÈ¡ÓÃ»§ĞÅÏ¢
+	 * é€šè¿‡ç”¨æˆ·åå’Œå¯†ç æ¥è·å–ç”¨æˆ·ä¿¡æ¯
 	 * @param user
 	 * @return
 	 */
 	User finUserByNameAndPwd(User user);
 
 	/**
-	 * Í¨¹ıÓÃ»§idºÍÃÜÂëÀ´ÅĞ¶ÏÓÃ»§ÊÇ·ñ´æÔÚ
+	 * é€šè¿‡ç”¨æˆ·idå’Œå¯†ç æ¥åˆ¤æ–­ç”¨æˆ·æ˜¯å¦å­˜åœ¨
 	 * @param user
 	 * @return
 	 */

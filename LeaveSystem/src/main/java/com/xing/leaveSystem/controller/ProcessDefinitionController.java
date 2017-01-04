@@ -22,7 +22,7 @@ import com.xing.leaveSystem.entity.PageBean;
 import com.xing.leaveSystem.utils.ResultObj;
 
 /**
- *  ²éÑ¯Á÷³Ì¶¨ÒåĞÅÏ¢µÄcontroller
+ *  æŸ¥è¯¢æµç¨‹å®šä¹‰ä¿¡æ¯çš„controller
  */
 @Controller
 @RequestMapping("/processDefinition")
@@ -33,7 +33,7 @@ public class ProcessDefinitionController {
 	RepositoryService repositoryService;
 	
 	/**
-	 * ·ÖÒ³²éÑ¯Á÷³Ì¶¨ÒåµÄĞÅÏ¢
+	 * åˆ†é¡µæŸ¥è¯¢æµç¨‹å®šä¹‰çš„ä¿¡æ¯
 	 * @param page
 	 * @param rows
 	 * @param s_name
@@ -45,17 +45,17 @@ public class ProcessDefinitionController {
 		ResultObj obj=new ResultObj();
 		List<MyProcessDefinition> plist=new ArrayList<MyProcessDefinition>();
 		PageBean pageBean=new PageBean(Integer.parseInt(page),Integer.parseInt(rows));
-		//ÅĞ¶Ï´«µİµÄ²ÎÊıÊÇ·ñÎª¿Õ
+		//åˆ¤æ–­ä¼ é€’çš„å‚æ•°æ˜¯å¦ä¸ºç©º
 		if(StringUtils.isEmpty(s_name)){
 			s_name="";
 		}
-		//²éÑ¯Á÷³Ì¶¨ÒåĞÅÏ¢
+		//æŸ¥è¯¢æµç¨‹å®šä¹‰ä¿¡æ¯
 		List<ProcessDefinition> processDefinitions=repositoryService.createProcessDefinitionQuery()
-				.orderByProcessDefinitionId().desc() // ¸ù¾İÁ÷³Ì¶¨Òåid½µĞòÅÅÁĞ
-				.processDefinitionNameLike("%"+s_name+"%")  //¸ù¾İÁ÷³Ì¶¨ÒåÃû×ÖÄ£ºı²éÑ¯
-				.listPage(pageBean.getStart(), pageBean.getPageSize());  //·ÖÒ³²éÑ¯½á¹û¼¯ºÏ
+				.orderByProcessDefinitionId().desc() // æ ¹æ®æµç¨‹å®šä¹‰idé™åºæ’åˆ—
+				.processDefinitionNameLike("%"+s_name+"%")  //æ ¹æ®æµç¨‹å®šä¹‰åå­—æ¨¡ç³ŠæŸ¥è¯¢
+				.listPage(pageBean.getStart(), pageBean.getPageSize());  //åˆ†é¡µæŸ¥è¯¢ç»“æœé›†åˆ
 		
-		//±éÀúÁ÷³Ì¶¨ÒåĞÅÏ¢
+		//éå†æµç¨‹å®šä¹‰ä¿¡æ¯
 		try {
 			for(ProcessDefinition definition:processDefinitions){
 				MyProcessDefinition myProcessDefinition=new MyProcessDefinition();
@@ -63,12 +63,12 @@ public class ProcessDefinitionController {
 				plist.add(myProcessDefinition);
 			}
 		} catch (Exception e) {
-			logger.error("Á÷³Ì¶¨ÒåĞÅÏ¢¸´ÖÆÊ§°Ü");
+			logger.error("æµç¨‹å®šä¹‰ä¿¡æ¯å¤åˆ¶å¤±è´¥");
 			e.printStackTrace();
 		}
-	   //¼ÆËãÁ÷³Ì¶¨ÒåµÄ¼ÇÂ¼Êı
+	   //è®¡ç®—æµç¨‹å®šä¹‰çš„è®°å½•æ•°
 	   long total=repositoryService.createProcessDefinitionQuery()
-					.processDefinitionNameLike("%"+s_name+"%")  //¸ù¾İÁ÷³Ì¶¨ÒåÃû×ÖÄ£ºı²éÑ¯
+					.processDefinitionNameLike("%"+s_name+"%")  //æ ¹æ®æµç¨‹å®šä¹‰åå­—æ¨¡ç³ŠæŸ¥è¯¢
 					.count();
 		obj.setRows(plist);
 		obj.setTotal(total);
@@ -78,17 +78,17 @@ public class ProcessDefinitionController {
 	}
 	
 	/**
-	 * ÏÔÊ¾¹¤×÷Á÷³ÌÍ¼Æ¬ĞÅÏ¢
-	 * @param deploymentId  ²¿Êğid
-	 * @param diagramResourceName  ÒªÏÔÊ¾µÄ×ÊÔ´Ãû
+	 * æ˜¾ç¤ºå·¥ä½œæµç¨‹å›¾ç‰‡ä¿¡æ¯
+	 * @param deploymentId  éƒ¨ç½²id
+	 * @param diagramResourceName  è¦æ˜¾ç¤ºçš„èµ„æºå
 	 * @param response
 	 * @throws Exception
 	 */
 	@RequestMapping("/showView")
 	public void showView(String deploymentId,String diagramResourceName,HttpServletResponse response)throws Exception{
-		//»ñÈ¡¹¤×÷Á÷³ÌÍ¼  ²¢×ª»»³ÉioÁ÷
+		//è·å–å·¥ä½œæµç¨‹å›¾  å¹¶è½¬æ¢æˆioæµ
 		InputStream inputStream=repositoryService.getResourceAsStream(deploymentId, diagramResourceName);
-		//Í¨¹ıresponse»ñÈ¡Êä³öÁ÷¶ÔÏó
+		//é€šè¿‡responseè·å–è¾“å‡ºæµå¯¹è±¡
 		OutputStream outputStream=response.getOutputStream();
 		int i=0;
 		byte [] b= new byte [1024];

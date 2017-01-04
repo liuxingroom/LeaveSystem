@@ -7,13 +7,13 @@ import com.xing.leaveSystem.entity.MemberShip;
 public interface MemberShipMapper {
 
 	/**
-	 * 根据用户id来删除所有的角色信息
+	 * 鏍规嵁鐢ㄦ埛id鏉ュ垹闄ゆ墍鏈夌殑瑙掕壊淇℃伅
 	 * @param userId
 	 */
 	public void deleteAllGroupsByUserId(@Param("userId")String userId);
 
 	/**
-	 * 添加用户和角色的关联关系
+	 * 娣诲姞鐢ㄦ埛鍜岃鑹茬殑鍏宠仈鍏崇郴
 	 * @param memberShip
 	 */
 	public void add(MemberShip memberShip);

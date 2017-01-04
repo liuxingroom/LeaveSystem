@@ -8,14 +8,14 @@ import com.xing.leaveSystem.entity.Leave;
 public interface LeaveHisMapper {
 
 	/**
-	 * 分页查询请假信息
+	 * 鍒嗛〉鏌ヨ璇峰亣淇℃伅
 	 * @param map
 	 * @return
 	 */
 	List<Leave> list(Map<String, Object> map);
 
 	/**
-	 * 获取请假的记录数
+	 * 鑾峰彇璇峰亣鐨勮褰曟暟
 	 * @param map
 	 * @return
 	 */

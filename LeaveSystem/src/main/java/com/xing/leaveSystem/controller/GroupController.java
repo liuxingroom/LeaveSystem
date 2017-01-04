@@ -30,7 +30,7 @@ public class GroupController {
 	
 	
 	/**
-	 * ·ÖÒ³²éÑ¯½ÇÉ«ĞÅÏ¢
+	 * åˆ†é¡µæŸ¥è¯¢è§’è‰²ä¿¡æ¯
 	 * @param page
 	 * @param rows
 	 * @return
@@ -40,54 +40,54 @@ public class GroupController {
 	public ResultObj list(String page,String rows){
 		ResultObj obj=new ResultObj();
 		PageBean pageBean=new PageBean(Integer.parseInt(page),Integer.parseInt(rows));
-		//·â×°²éÑ¯Ìõ¼ş
+		//å°è£…æŸ¥è¯¢æ¡ä»¶
 		Map<String,Object> map=new HashMap<String, Object>();
 		map.put("start", pageBean.getStart());
 		map.put("size", pageBean.getPageSize());
 		List<Group> groupList=groupService.find(map);
 		Long total=groupService.getTotal(map);
-		//·â×°Êı¾İ     ²¢·µ»Øµ½Ò³Ãæ
+		//å°è£…æ•°æ®     å¹¶è¿”å›åˆ°é¡µé¢
 		obj.setTotal(total);
 		obj.setRows(groupList);
 		return obj;
 	}
 	
 	/**
-	 * Ìí¼Ó»òĞŞ¸Ä½ÇÉ«
-	 * @param group  ·â×°½ÇÉ«ĞÅÏ¢µÄjavabean
-	 * @param flag   ²Ù×÷±ê¼Ç£¨ÓÃÓÚÇø·ÖÊÇÌí¼Ó¡°1¡±  »¹ÊÇĞŞ¸Ä¡°2¡±£©
+	 * æ·»åŠ æˆ–ä¿®æ”¹è§’è‰²
+	 * @param group  å°è£…è§’è‰²ä¿¡æ¯çš„javabean
+	 * @param flag   æ“ä½œæ ‡è®°ï¼ˆç”¨äºåŒºåˆ†æ˜¯æ·»åŠ â€œ1â€  è¿˜æ˜¯ä¿®æ”¹â€œ2â€ï¼‰
 	 * @return
 	 */
 	@RequestMapping("/save")
 	@ResponseBody
 	public MessageObj save(Group group,Integer flag){
 		MessageObj obj=new MessageObj();
-		//ÊÇ·ñ²Ù×÷³É¹¦µÄ±ê¼Ç
+		//æ˜¯å¦æ“ä½œæˆåŠŸçš„æ ‡è®°
 		int resultTotal=0;
 		if(flag==1){
 			resultTotal=groupService.add(group);
 		}else{
 			resultTotal=groupService.update(group);
 		}
-		//ÅĞ¶Ï²Ù×÷ÊÇ·ñ³É¹¦
-		if(resultTotal>0){//²Ù×÷³É¹¦
+		//åˆ¤æ–­æ“ä½œæ˜¯å¦æˆåŠŸ
+		if(resultTotal>0){//æ“ä½œæˆåŠŸ
 			obj.setSuccess();
-		}else{//²Ù×÷Ê§°Ü
+		}else{//æ“ä½œå¤±è´¥
 			obj.setFail();
 		}
 		return obj;
 	}
 	
 	/**
-	 * ²é¿´½ÇÉ«ÃûÊÇ·ñ´æÔÚ
-	 * @param groupName  ½ÇÉ«Ãû
+	 * æŸ¥çœ‹è§’è‰²åæ˜¯å¦å­˜åœ¨
+	 * @param groupName  è§’è‰²å
 	 * @return
 	 */
 	@RequestMapping("/existGroupName")
 	@ResponseBody
 	public MessageObj existGroupName(String groupName){
 		MessageObj obj=new MessageObj();
-		if(groupService.findByGroupName(groupName)!=null){//Èç¹û´æÔÚÏàÍ¬Ãû³ÆµÄ½ÇÉ«ĞÅÏ¢
+		if(groupService.findByGroupName(groupName)!=null){//å¦‚æœå­˜åœ¨ç›¸åŒåç§°çš„è§’è‰²ä¿¡æ¯
 			obj.setFail();
 			return obj;
 		}
@@ -96,13 +96,13 @@ public class GroupController {
 	}
 	
 	/**
-	 * ¸ù¾İ½ÇÉ«idÀ´É¾³ı½ÇÉ«ĞÅÏ¢
+	 * æ ¹æ®è§’è‰²idæ¥åˆ é™¤è§’è‰²ä¿¡æ¯
 	 */
 	@RequestMapping("/delete")
 	@ResponseBody
 	public MessageObj delete(String ids){
 		MessageObj obj=new MessageObj();
-		//·Ö¸ô½ÇÉ«id
+		//åˆ†éš”è§’è‰²id
 		String [] id=ids.split(",");
 		for(int i=0;i<id.length;i++){
 			groupService.delete(id[i]);
@@ -112,7 +112,7 @@ public class GroupController {
 	}
 	
 	/**
-	 * ¼ÓÔØËùÓĞµÄ½ÇÉ«ĞÅÏ¢
+	 * åŠ è½½æ‰€æœ‰çš„è§’è‰²ä¿¡æ¯
 	 * @return
 	 */
 	@RequestMapping("/listAllGroups")
@@ -126,7 +126,7 @@ public class GroupController {
 	
 	
 	/**
-	 * Í¨¹ıÓÃ»§idÀ´»ñÈ¡×éĞÅÏ¢
+	 * é€šè¿‡ç”¨æˆ·idæ¥è·å–ç»„ä¿¡æ¯
 	 * @return
 	 */
 	@RequestMapping("/findGroupByUserId")
@@ -147,7 +147,7 @@ public class GroupController {
 	}
 	
 	/**
-	 * ²éÑ¯ËùÓĞµÄ½ÇÉ«ĞÅÏ¢
+	 * æŸ¥è¯¢æ‰€æœ‰çš„è§’è‰²ä¿¡æ¯
 	 * @return
 	 */
 	@RequestMapping("/groupComboList")
@@ -156,7 +156,7 @@ public class GroupController {
 		Group group=new Group();
 		List<Group> groupList=new ArrayList<Group>();
 		group.setId("-1");
-		group.setName("ÇëÑ¡Ôñ½ÇÉ«");
+		group.setName("è¯·é€‰æ‹©è§’è‰²");
 		List<Group> groups=groupService.find(null);
 		groupList.add(group);
 		for(Group g:groups){
@@ -167,7 +167,7 @@ public class GroupController {
 	}
 	
 	/**
-	 * ²é¿´¸Ã½ÇÉ«idÊÇ·ñ´æÔÚ
+	 * æŸ¥çœ‹è¯¥è§’è‰²idæ˜¯å¦å­˜åœ¨
 	 * @param id
 	 * @return
 	 */
@@ -176,9 +176,9 @@ public class GroupController {
 	public  MessageObj existGroupID(String id){
 		MessageObj obj=new MessageObj();
 		Group group=groupService.finGroupById(id);
-		if(group!=null){//Èç¹û´æÔÚ
+		if(group!=null){//å¦‚æœå­˜åœ¨
 			obj.setSuccess();
-		}else{//Èç¹û²»´æÔÚ
+		}else{//å¦‚æœä¸å­˜åœ¨
 			obj.setFail();
 		}
 		return obj;

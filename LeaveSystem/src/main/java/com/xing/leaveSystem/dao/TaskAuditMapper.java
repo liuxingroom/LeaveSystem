@@ -5,7 +5,7 @@ import com.xing.leaveSystem.entity.Audit;
 public interface TaskAuditMapper {
 
 	/**
-	 * Ìí¼ÓÉóºËĞÅÏ¢
+	 * æ·»åŠ å®¡æ ¸ä¿¡æ¯
 	 * @param audit
 	 * @return
 	 */

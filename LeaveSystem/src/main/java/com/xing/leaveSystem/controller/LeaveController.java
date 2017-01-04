@@ -19,7 +19,7 @@ import com.xing.leaveSystem.utils.MessageObj;
 import com.xing.leaveSystem.utils.ResultObj;
 
 /**
- * Çë¼ÙÁ÷³Ì¹ÜÀí
+ * è¯·å‡æµç¨‹ç®¡ç†
  */
 @RequestMapping("/leave")
 @Controller
@@ -29,7 +29,7 @@ public class LeaveController {
 	LeaveService leaveService;
 	
 	/**
-	 * ·ÖÒ³²éÑ¯Çë¼ÙĞÅÏ¢¼¯ºÏ
+	 * åˆ†é¡µæŸ¥è¯¢è¯·å‡ä¿¡æ¯é›†åˆ
 	 */
 	@RequestMapping("/list")
 	@ResponseBody
@@ -38,9 +38,9 @@ public class LeaveController {
 		PageBean pageBean=new PageBean(Integer.parseInt(page),Integer.parseInt(rows));
 		Map<String,Object> map=new HashMap<String,Object>();
 		
-		//»ñÈ¡È¥µÇÂ¼ÈËµÄĞÅÏ¢
+		//è·å–å»ç™»å½•äººçš„ä¿¡æ¯
 		String userId=(String) request.getSession().getAttribute("userId");
-		map.put("userId",userId); // ÓÃ»§Ãû
+		map.put("userId",userId); // ç”¨æˆ·å
 		map.put("start", pageBean.getStart());
 		map.put("size", pageBean.getPageSize());
 		List<Leave> leaveList=leaveService.find(map);
@@ -53,7 +53,7 @@ public class LeaveController {
 	
 	
 	/**
-	 * ±£´æÇë¼ÙÁ÷³Ì
+	 * ä¿å­˜è¯·å‡æµç¨‹
 	 * @param leave
 	 * @param flag
 	 * @return
@@ -63,19 +63,19 @@ public class LeaveController {
 	public MessageObj save(Leave leave,Integer flag,HttpSession session){
 		MessageObj obj=new MessageObj();
 		int resultTotal=0;
-		//»ñÈ¡µÇÂ¼ÈËµÄĞÅÏ¢
+		//è·å–ç™»å½•äººçš„ä¿¡æ¯
 		String userId=(String) session.getAttribute("userId");
 		resultTotal=leaveService.add(leave,userId);
-		if(resultTotal>0){//²Ù×÷³É¹¦
+		if(resultTotal>0){//æ“ä½œæˆåŠŸ
 			obj.setSuccess();
-		}else{//²Ù×÷Ê§°Ü
+		}else{//æ“ä½œå¤±è´¥
 			obj.setFail();
 		}
 		return obj;
 	}
 	
 	/**
-	 * Ìá½»Çë¼Ùµ¥
+	 * æäº¤è¯·å‡å•
 	 * @param processinstanceId
 	 * @return
 	 */

@@ -67,7 +67,7 @@ public class TaskController {
 	 * 
 	 * @param page
 	 * @param rows
-	 * @param s_name  ÈÎÎñÃû³Æ£¨Í¨¹ı¸Ã²ÎÊıËÑË÷£©
+	 * @param s_name  ä»»åŠ¡åç§°ï¼ˆé€šè¿‡è¯¥å‚æ•°æœç´¢ï¼‰
 	 * @param userId
 	 * @return
 	 */
@@ -77,24 +77,24 @@ public class TaskController {
 		ResultObj obj=new ResultObj();
 		List<MyTask> taskList=new ArrayList<MyTask>();
 		List<Task>  list=null;
-		//ÅĞ¶ÏËÑË÷ĞÅÏ¢ÊÇ·ñÎª¿Õ
+		//åˆ¤æ–­æœç´¢ä¿¡æ¯æ˜¯å¦ä¸ºç©º
 		if(s_name==null){
 			s_name="";
 		}
 		PageBean pageBean=new PageBean(Integer.parseInt(page),Integer.parseInt(rows));
 		String processDefinitionKey=ResourceUtil.getValue("diagram.leavesystem", "studentLeaveProcess");
-		if(flag==1){//flag=1±íÊ¾¸ÃÈÎÎñÒÑ¾­Ê°È¡
+		if(flag==1){//flag=1è¡¨ç¤ºè¯¥ä»»åŠ¡å·²ç»æ‹¾å–
 			list=taskService.createTaskQuery().
-				//processDefinitionKey(processDefinitionKey).   //Í¨¹ıÁ÷³Ì¶¨ÒåµÄkeyÀ´²éÑ¯
-				taskAssignee(userId).           //Í¨¹ıÓÃ»§idÀ´²éÑ¯
-				taskNameLike("%"+s_name+"%").        //Í¨¹ıÈÎÎñÃûÀ´²éÑ¯
-				listPage(pageBean.getStart(), pageBean.getPageSize()); //·µ»Ø´ø·ÖÒ³µÄ½á¹û¼¯ºÏ
-		}else{//±íÊ¾¸ÃÈÎÎñ»¹Î´Ê°È¡
+				//processDefinitionKey(processDefinitionKey).   //é€šè¿‡æµç¨‹å®šä¹‰çš„keyæ¥æŸ¥è¯¢
+				taskAssignee(userId).           //é€šè¿‡ç”¨æˆ·idæ¥æŸ¥è¯¢
+				taskNameLike("%"+s_name+"%").        //é€šè¿‡ä»»åŠ¡åæ¥æŸ¥è¯¢
+				listPage(pageBean.getStart(), pageBean.getPageSize()); //è¿”å›å¸¦åˆ†é¡µçš„ç»“æœé›†åˆ
+		}else{//è¡¨ç¤ºè¯¥ä»»åŠ¡è¿˜æœªæ‹¾å–
 			list=taskService.createTaskQuery().
-				//processDefinitionKey(processDefinitionKey).   //Í¨¹ıÁ÷³Ì¶¨ÒåµÄkeyÀ´²éÑ¯
-				taskCandidateUser(userId).           //Í¨¹ıÓÃ»§idÀ´²éÑ¯
-				taskNameLike("%"+s_name+"%").        //Í¨¹ıÈÎÎñÃûÀ´²éÑ¯
-				listPage(pageBean.getStart(), pageBean.getPageSize()); //·µ»Ø´ø·ÖÒ³µÄ½á¹û¼¯ºÏ
+				//processDefinitionKey(processDefinitionKey).   //é€šè¿‡æµç¨‹å®šä¹‰çš„keyæ¥æŸ¥è¯¢
+				taskCandidateUser(userId).           //é€šè¿‡ç”¨æˆ·idæ¥æŸ¥è¯¢
+				taskNameLike("%"+s_name+"%").        //é€šè¿‡ä»»åŠ¡åæ¥æŸ¥è¯¢
+				listPage(pageBean.getStart(), pageBean.getPageSize()); //è¿”å›å¸¦åˆ†é¡µçš„ç»“æœé›†åˆ
 		}
 		
 		try {
@@ -104,7 +104,7 @@ public class TaskController {
 				taskList.add(myTask);
 			}
 		} catch (Exception e) {
-			logger.error("ÈÎÎñĞÅÏ¢¸´ÖÆÊ§°Ü");
+			logger.error("ä»»åŠ¡ä¿¡æ¯å¤åˆ¶å¤±è´¥");
 			e.printStackTrace();
 		} 
 		
@@ -115,7 +115,7 @@ public class TaskController {
 	}
 	
 	/***
-	 * Ê°È¡ÈÎÎñ
+	 * æ‹¾å–ä»»åŠ¡
 	 * @param taskId
 	 * @param userId
 	 * @return
@@ -124,13 +124,13 @@ public class TaskController {
 	@ResponseBody
 	public MessageObj claimTask(String taskId,String userId){
 		MessageObj obj=new MessageObj();
-		//²é¿´¸ÃÓÃ»§µÄÈÎÎñÊÇ·ñ´æÔÚ
+		//æŸ¥çœ‹è¯¥ç”¨æˆ·çš„ä»»åŠ¡æ˜¯å¦å­˜åœ¨
 		Task task=taskService.createTaskQuery()
 				.taskId(taskId)
 				.taskCandidateUser(userId)
 				.singleResult();
 		
-		if(task!=null){//Ê°È¡×éÈÎÎñ
+		if(task!=null){//æ‹¾å–ç»„ä»»åŠ¡
 			taskService.claim(taskId, userId);
 			obj.setSuccess();
 		}else{
@@ -140,7 +140,7 @@ public class TaskController {
 	}
 	
 	/**
-	 * Íê³ÉÉóºËÈÎÎñ
+	 * å®Œæˆå®¡æ ¸ä»»åŠ¡
 	 * @param userId
 	 * @param taskId
 	 * @return
@@ -162,7 +162,7 @@ public class TaskController {
 	}
 	
 	/**
-	 * ±£´æÉóºËĞÅÏ¢
+	 * ä¿å­˜å®¡æ ¸ä¿¡æ¯
 	 * @param audit
 	 * @return
 	 */
@@ -170,13 +170,13 @@ public class TaskController {
 	@ResponseBody
 	public MessageObj taskAuit(Audit audit,HttpSession session,String taskId){
 		MessageObj obj=new MessageObj();
-		//»ñÈ¡µ±Ç°µÇÂ¼ÈË
+		//è·å–å½“å‰ç™»å½•äºº
 		String userId=(String) session.getAttribute("userId");
 		int resultTotal=taskAuditService.add(audit,userId,taskId);
 		if(resultTotal>0){
-			if(audit.getStatus().equals("1")){//Èç¹ûÉóºË×´Ì¬Îª1     ±íÊ¾Í¨¹ı
+			if(audit.getStatus().equals("1")){//å¦‚æœå®¡æ ¸çŠ¶æ€ä¸º1     è¡¨ç¤ºé€šè¿‡
 				obj.setSuccess();
-			}else if(audit.getStatus().equals("0")){//Èç¹ûÎª0    ±íÊ¾ÉóºË²»Í¨¹ı
+			}else if(audit.getStatus().equals("0")){//å¦‚æœä¸º0    è¡¨ç¤ºå®¡æ ¸ä¸é€šè¿‡
 				obj.setFail();
 			}
 		}else{
@@ -186,7 +186,7 @@ public class TaskController {
 	}
 	
 	/**
-	 * ²é¿´ÀúÊ·ÈÎÎñ
+	 * æŸ¥çœ‹å†å²ä»»åŠ¡
 	 * @param userId
 	 * @return
 	 */
@@ -200,7 +200,7 @@ public class TaskController {
 	}
 	
 	/**
-	 *  ²é¿´µ±Ç°ÔËĞĞµÄÁ÷³ÌÊµÀıĞÅÏ¢
+	 *  æŸ¥çœ‹å½“å‰è¿è¡Œçš„æµç¨‹å®ä¾‹ä¿¡æ¯
 	 *  
 	 */
 	@RequestMapping("/queryActivityLeave")
@@ -208,48 +208,48 @@ public class TaskController {
 	public ResultObj queryActivityLeave(String processInstanceId){
 		ResultObj obj=new ResultObj();
 	
-		//´´½¨Ò³ÏÔÊ¾µÄÁ÷³ÌÊµÀıµÄ¼¯ºÏ
+		//åˆ›å»ºé¡µæ˜¾ç¤ºçš„æµç¨‹å®ä¾‹çš„é›†åˆ
 		List<MyProcessInstance> processInstances=new ArrayList<MyProcessInstance>();
-		//»ñÈ¡Á÷³Ì¶¨ÒåµÄkey
+		//è·å–æµç¨‹å®šä¹‰çš„key
 		String processDefinitionKey=ResourceUtil.getValue("diagram.leavesystem", "studentLeaveProcess");
-		//»ñÈ¡Á÷³ÌÊµÀı²éÑ¯¶ÔÏó
+		//è·å–æµç¨‹å®ä¾‹æŸ¥è¯¢å¯¹è±¡
 		ProcessInstanceQuery processInstanceQuery=runtimeService.createProcessInstanceQuery()
 				.processDefinitionKey(processDefinitionKey)
 				.orderByProcessInstanceId()
 				.desc();
 		
-		//Èç¹û´«µİÁ÷³ÌÊµÀıid²»Îª¿Õ   Ôò¸ù¾İÁ÷³ÌÊµÀıid
+		//å¦‚æœä¼ é€’æµç¨‹å®ä¾‹idä¸ä¸ºç©º   åˆ™æ ¹æ®æµç¨‹å®ä¾‹id
 		if(StringUtils.isNotEmpty(processInstanceId)){
 			processInstanceQuery.processInstanceId(processInstanceId);
 		}
-		//²éÑ¯Á÷³ÌÊµÀıĞÅÏ¢
+		//æŸ¥è¯¢æµç¨‹å®ä¾‹ä¿¡æ¯
 		List<ProcessInstance> list=processInstanceQuery.list();
 		
-		//±éÀúÁ÷³ÌÊµÀı¶ÔÏó·â×°Á÷³ÌÊµÀıĞÅÏ¢²¢´øµ½Ò³ÃæÏÔÊ¾
+		//éå†æµç¨‹å®ä¾‹å¯¹è±¡å°è£…æµç¨‹å®ä¾‹ä¿¡æ¯å¹¶å¸¦åˆ°é¡µé¢æ˜¾ç¤º
 		try {
 			for(ProcessInstance instance:list){
 				
 				MyProcessInstance myProcessInstance=new MyProcessInstance();
 				BeanUtils.copyProperties(myProcessInstance, instance);
-				//»ñÈ¡Á÷³ÌÊµÀı´´½¨Ê±¼ä
+				//è·å–æµç¨‹å®ä¾‹åˆ›å»ºæ—¶é—´
 				Date startTime=historyService.createHistoricProcessInstanceQuery().processInstanceId(myProcessInstance.getProcessInstanceId()).singleResult().getStartTime();
 				myProcessInstance.setName(instance.getName());
 				myProcessInstance.setStartTime(startTime);
-				//»ñÈ¡Çë¼ÙĞÅÏ¢
+				//è·å–è¯·å‡ä¿¡æ¯
 				Leave leave=leaveService.findLeaveById(instance.getBusinessKey());
-				//»ñÈ¡Çë¼ÙÈËµÄĞÅÏ¢
+				//è·å–è¯·å‡äººçš„ä¿¡æ¯
 				User user=userService.findUserById(leave.getUserId());
-				//ÉèÖÃÇë¼ÙÈËĞÅÏ¢
+				//è®¾ç½®è¯·å‡äººä¿¡æ¯
 				myProcessInstance.setUserName(user.getUserName());
-				//ÉèÖÃÇë¼ÙÔ­Òò
+				//è®¾ç½®è¯·å‡åŸå› 
 				myProcessInstance.setLeaveReason(leave.getLeaveReason());
-				//ÉèÖÃÇë¼ÙÊ±¼ä
+				//è®¾ç½®è¯·å‡æ—¶é—´
 				myProcessInstance.setLeaveDays(leave.getLeaveDays());
 				processInstances.add(myProcessInstance);
 				
 			}
 		} catch (Exception e) {
-			logger.error("Á÷³ÌÊµÀıĞÅÏ¢¸´ÖÆÊ§°Ü");
+			logger.error("æµç¨‹å®ä¾‹ä¿¡æ¯å¤åˆ¶å¤±è´¥");
 			e.printStackTrace();
 		} 
 		int total=processInstances.size();
@@ -259,44 +259,44 @@ public class TaskController {
 	}
 	
 	/**
-	 * ²éÑ¯ÒÑ¾­½áÊøµÄÁ÷³ÌÊµÀıĞÅÏ¢
+	 * æŸ¥è¯¢å·²ç»ç»“æŸçš„æµç¨‹å®ä¾‹ä¿¡æ¯
 	 */
 	@RequestMapping("/queryFinishedLeave")
 	@ResponseBody
 	public ResultObj queryFinishedLeave(String processInstanceId){
 		ResultObj obj=new ResultObj();
-		//´´½¨Ò³ÏÔÊ¾µÄÁ÷³ÌÊµÀıµÄ¼¯ºÏ
+		//åˆ›å»ºé¡µæ˜¾ç¤ºçš„æµç¨‹å®ä¾‹çš„é›†åˆ
 		List<MyProcessInstance> processInstances=new ArrayList<MyProcessInstance>();
-		//»ñÈ¡Á÷³Ì¶¨ÒåµÄkey
+		//è·å–æµç¨‹å®šä¹‰çš„key
 		String processDefinitionKey=ResourceUtil.getValue("diagram.leavesystem", "studentLeaveProcess");
 		
-		//»ñÈ¡Á÷³ÌÊµÀıÀúÊ·²éÑ¯¶ÔÏó
+		//è·å–æµç¨‹å®ä¾‹å†å²æŸ¥è¯¢å¯¹è±¡
 		HistoricProcessInstanceQuery historicProcessInstanceQuery =historyService.createHistoricProcessInstanceQuery()
 				.processDefinitionKey(processDefinitionKey)
 				.orderByProcessInstanceEndTime()
 				.desc()
 				.finished();
-		//»ñÈ¡ÀúÊ·Á÷³ÌÊµÀı¼¯ºÏ
+		//è·å–å†å²æµç¨‹å®ä¾‹é›†åˆ
 		List<HistoricProcessInstance> list= historicProcessInstanceQuery.list();
 		
 		try {
 			for(HistoricProcessInstance instance:list){
 				MyProcessInstance myProcessInstance=new MyProcessInstance();
 				BeanUtils.copyProperties(myProcessInstance, instance);
-				//»ñÈ¡Çë¼ÙĞÅÏ¢
+				//è·å–è¯·å‡ä¿¡æ¯
 				Leave leave=leaveService.findLeaveById(instance.getBusinessKey());
-				//»ñÈ¡Çë¼ÙÈËµÄĞÅÏ¢
+				//è·å–è¯·å‡äººçš„ä¿¡æ¯
 				User user=userService.findUserById(leave.getUserId());
-				//ÉèÖÃÇë¼ÙÈËĞÅÏ¢
+				//è®¾ç½®è¯·å‡äººä¿¡æ¯
 				myProcessInstance.setUserName(user.getUserName());
-				//ÉèÖÃÇë¼ÙÔ­Òò
+				//è®¾ç½®è¯·å‡åŸå› 
 				myProcessInstance.setLeaveReason(leave.getLeaveReason());
-				//ÉèÖÃÇë¼ÙÊ±¼ä
+				//è®¾ç½®è¯·å‡æ—¶é—´
 				myProcessInstance.setLeaveDays(leave.getLeaveDays());
 				processInstances.add(myProcessInstance);
 			}
 		} catch (Exception e) {
-			logger.error("ÀúÊ·Á÷³ÌÊµÀı¶ÔÏó¸´ÖÆÊ§°Ü");
+			logger.error("å†å²æµç¨‹å®ä¾‹å¯¹è±¡å¤åˆ¶å¤±è´¥");
 			e.printStackTrace();
 		}
 		
@@ -307,24 +307,24 @@ public class TaskController {
 	}
 	
 	/**
-	 * Í¨¹ıÁ÷³ÌÊµÀıidÀ´²é¿´Íê³ÉÈÎÎñĞÅÏ¢
+	 * é€šè¿‡æµç¨‹å®ä¾‹idæ¥æŸ¥çœ‹å®Œæˆä»»åŠ¡ä¿¡æ¯
 	 */
 	@RequestMapping("/findOrderTaskListByPid")
 	public String findOrderTaskListByPid(String processInstanceId,Model model){
 		List<MyTask> taskList=new ArrayList<MyTask>();
-		//»ñÈ¡Á÷³Ì¶¨ÒåµÄkey
+		//è·å–æµç¨‹å®šä¹‰çš„key
 		String processDefinitionKey=ResourceUtil.getValue("diagram.leavesystem", "studentLeaveProcess");
-		//»ñÈ¡ÀúÊ·ÈÎÎñ²éÑ¯¶ÔÏó
+		//è·å–å†å²ä»»åŠ¡æŸ¥è¯¢å¯¹è±¡
 		HistoricTaskInstanceQuery historicTaskInstanceQuery=historyService.createHistoricTaskInstanceQuery();
-		//ÉèÖÃ²éÑ¯¶ÔÏó£¨Á÷³Ì¶¨ÒåµÄkey£©
+		//è®¾ç½®æŸ¥è¯¢å¯¹è±¡ï¼ˆæµç¨‹å®šä¹‰çš„keyï¼‰
 		historicTaskInstanceQuery.processDefinitionKey(processDefinitionKey);
-		//ÉèÖÃ²éÑ¯¶ÔÏó£¨Á÷³ÌÊµÀıµÄid£©
+		//è®¾ç½®æŸ¥è¯¢å¯¹è±¡ï¼ˆæµç¨‹å®ä¾‹çš„idï¼‰
 		historicTaskInstanceQuery.processInstanceId(processInstanceId);
 		
-		//Ìí¼ÓÅÅĞò£¬°´ÕÕÈÎÎñÖ´ĞĞÊ±¼äÏÈºóÅÅĞò
+		//æ·»åŠ æ’åºï¼ŒæŒ‰ç…§ä»»åŠ¡æ‰§è¡Œæ—¶é—´å…ˆåæ’åº
 		historicTaskInstanceQuery.orderByHistoricActivityInstanceStartTime().asc();
 		
-		//»ñÈ¡Á÷³ÌÊµÀı¼¯ºÏ
+		//è·å–æµç¨‹å®ä¾‹é›†åˆ
 		List<HistoricTaskInstance> list=historicTaskInstanceQuery.list();
 		
 		try {
@@ -336,7 +336,7 @@ public class TaskController {
 				taskList.add(task);
 			}
 		} catch (Exception e) {
-			logger.error("ÀúÊ·ÈÎÎñ¸´ÖÆÊ§°Ü");
+			logger.error("å†å²ä»»åŠ¡å¤åˆ¶å¤±è´¥");
 			e.printStackTrace();
 		}
 		model.addAttribute("taskList", taskList);

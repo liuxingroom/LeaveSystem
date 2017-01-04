@@ -23,35 +23,35 @@ public class FlowController {
 	
 	@RequestMapping("/queryLeaveMap")
 	public String queryLeaveMap(Model model,String processInstanceId){
-		//¸ù¾İÁ÷³ÌÊµÀıid²éÑ¯³öÁ÷³ÌÊµÀıµÄ¶ÔÏó£¬´Ó¶ÔÏóÖĞ  »ñÈ¡Á÷³Ì¶¨Òåid  processDefinitionId
+		//æ ¹æ®æµç¨‹å®ä¾‹idæŸ¥è¯¢å‡ºæµç¨‹å®ä¾‹çš„å¯¹è±¡ï¼Œä»å¯¹è±¡ä¸­  è·å–æµç¨‹å®šä¹‰id  processDefinitionId
 		ProcessInstance processInstance=runtimeService.
 				createProcessInstanceQuery().
 				processInstanceId(processInstanceId).
 				singleResult();
 		
-		//»ñÈ¡Á÷³Ì¶¨ÒåµÄid
+		//è·å–æµç¨‹å®šä¹‰çš„id
 		String processDefinitionId=processInstance.getProcessDefinitionId();
 		
-		//Á÷³Ì²¿Êğid
+		//æµç¨‹éƒ¨ç½²id
 		String deploymentId=processInstance.getDeploymentId();
 		model.addAttribute("deploymentId", deploymentId);
 		
-		//¸ù¾İÁ÷³ÌÊµÀıµÄid£¨processInstanceId£©À´»ñÈ¡µ±Ç°½Úµã
+		//æ ¹æ®æµç¨‹å®ä¾‹çš„idï¼ˆprocessInstanceIdï¼‰æ¥è·å–å½“å‰èŠ‚ç‚¹
 		String activityId=processInstance.getActivityId();
 		
-		//¸ù¾İÁ÷³Ì¶¨Òåid²éÑ¯           Á÷³Ì¶¨ÒåµÄÊµÌå¶ÔÏó
+		//æ ¹æ®æµç¨‹å®šä¹‰idæŸ¥è¯¢           æµç¨‹å®šä¹‰çš„å®ä½“å¯¹è±¡
 		ProcessDefinitionEntity processDefinitionEntity=(ProcessDefinitionEntity) repositoryService.
 				getProcessDefinition(processDefinitionId);
 		
-		//ÏòÒ³Ãæ´«µİpngÍ¼Æ¬Ãû
+		//å‘é¡µé¢ä¼ é€’pngå›¾ç‰‡å
 		String diagramResourceName=processDefinitionEntity.getDiagramResourceName();
 		model.addAttribute("diagramResourceName", diagramResourceName);
-		//´ÓÁ÷³Ì¶¨Òå ÊµÌå¶ÔÏó²éÑ¯½áµãµÄ×ø±êºÍ¿í¸ß
+		//ä»æµç¨‹å®šä¹‰ å®ä½“å¯¹è±¡æŸ¥è¯¢ç»“ç‚¹çš„åæ ‡å’Œå®½é«˜
 		ActivityImpl activityImpl=processDefinitionEntity.findActivity(activityId);
-		int activity_x= activityImpl.getX();//×ø±ê
-		int activity_y = activityImpl.getY();//×ø±ê
-		int activity_width =  activityImpl.getWidth();//¿í
-		int activity_height = activityImpl.getHeight();//¸ß
+		int activity_x= activityImpl.getX();//åæ ‡
+		int activity_y = activityImpl.getY();//åæ ‡
+		int activity_width =  activityImpl.getWidth();//å®½
+		int activity_height = activityImpl.getHeight();//é«˜
 		
 		model.addAttribute("activity_x",activity_x);
 		model.addAttribute("activity_y", activity_y);

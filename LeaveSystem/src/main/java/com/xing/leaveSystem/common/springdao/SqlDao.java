@@ -15,8 +15,8 @@ import com.xing.leaveSystem.utils.UtilFuns;
 
 
 /*
- * 执行sql语句�?
- * 调用方法�?
+ * 执行sql语句类
+ * 调用方法：
  * 引入配置问题 
  * 
  */
@@ -42,7 +42,7 @@ public class SqlDao {
 		return i;
 	}
 	
-	//返回单�?
+	//返回单值
 	public String getSingleValue(String sql){
 		log.debug(sql);
 		StringBuffer sBuf = new StringBuffer();

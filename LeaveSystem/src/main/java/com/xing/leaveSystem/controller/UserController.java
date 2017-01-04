@@ -39,7 +39,7 @@ public class UserController {
 	LoginUserService loginUserService;
 	
 	/***
-	 * ÓÃ»§µÇÂ¼
+	 * ç”¨æˆ·ç™»å½•
 	 */
 	@RequestMapping("/login")
 	@ResponseBody
@@ -47,32 +47,32 @@ public class UserController {
 		MessageObj result=new  MessageObj();
 		List<Group> groups=null;
 		
-		//ÓÃ»§¼ÇÂ¼×é£¨½ÇÉ«£©Ãû
+		//ç”¨æˆ·è®°å½•ç»„ï¼ˆè§’è‰²ï¼‰å
 		String groupName="";
-		//¸ù¾İÓÃ»§ÃûºÍÃÜÂë²éÑ¯ÓÃ»§
+		//æ ¹æ®ç”¨æˆ·åå’Œå¯†ç æŸ¥è¯¢ç”¨æˆ·
 		User users=loginUserService.finUserByNameAndPwd(user);
-		//ÅĞ¶Ï¸ÃÓÃ»§ÊÇ·ñÓĞ¸ÃÈ¨ÏŞ  Èç¹ûÓĞµÇÂ¼³É¹¦
+		//åˆ¤æ–­è¯¥ç”¨æˆ·æ˜¯å¦æœ‰è¯¥æƒé™  å¦‚æœæœ‰ç™»å½•æˆåŠŸ
 		
 		if(users!=null && StringUtils.isNotEmpty(users.getGroups()) && users.getGroups().contains(groupId)){
 			StringBuffer buffer=new StringBuffer();
 			result.setSuccess();
 			groups=userService.findGroupByUserId(users.getUserId());
 			for(Group group:groups){
-				//Æ´½Ó½ÇÉ«Ãû
+				//æ‹¼æ¥è§’è‰²å
 				buffer.append(group.getName()+",");
 			}
 			groupName=buffer.substring(0, buffer.length()-1);
-			//ÉèÖÃ½ÇÉ«ĞÅÏ¢
+			//è®¾ç½®è§’è‰²ä¿¡æ¯
 			session.setAttribute("groupName", groupName);
-			//ÉèÖÃÓÃ»§ÒÑµÇÂ¼µÄ±ê¼Ç
+			//è®¾ç½®ç”¨æˆ·å·²ç™»å½•çš„æ ‡è®°
 			session.setAttribute("userId", users.getUserId());
-			//ÉèÖÃÓÃ»§Ãû±ê¼Ç
+			//è®¾ç½®ç”¨æˆ·åæ ‡è®°
 			session.setAttribute("userName", users.getUserName());
 			
-			//ÉèÖÃµÇÂ¼³É¹¦
+			//è®¾ç½®ç™»å½•æˆåŠŸ
 			result.setSuccess();
 			
-		}else{//Èç¹ûÃ»ÓĞµÇÂ¼Ê§°Ü
+		}else{//å¦‚æœæ²¡æœ‰ç™»å½•å¤±è´¥
 			result.setFail();
 		}
 		return result;
@@ -80,16 +80,16 @@ public class UserController {
 	
 	/**
 	 * 
-	 * @param page  µÚ¼¸Ò³
-	 * @param rows  ¼¸ÌõÊı¾İ
-	 * @param user  ·â×°²éÑ¯Ìõ¼şµÄJavabean
+	 * @param page  ç¬¬å‡ é¡µ
+	 * @param rows  å‡ æ¡æ•°æ®
+	 * @param user  å°è£…æŸ¥è¯¢æ¡ä»¶çš„Javabean
 	 * @return
 	 */
 	@RequestMapping("/list")
 	@ResponseBody
 	public ResultObj list(String page,String rows,User user)throws Exception{
 	    PageBean pageBean=new PageBean(Integer.parseInt(page),Integer.parseInt(rows));
-	    /*·â×°²éÑ¯Ìõ¼ş*/
+	    /*å°è£…æŸ¥è¯¢æ¡ä»¶*/
 	    Map<String, Object> map=new HashMap<String, Object>();
 	    map.put("userName", StringUtil.formatLike(user.getUserName()));
 	    map.put("start", pageBean.getStart());
@@ -97,7 +97,7 @@ public class UserController {
 		
 		List<User> userList=userService.find(map);
 		Long total=userService.getTotal(map);
-		//ÉèÖÃÊı¾İ¸ñÊ½
+		//è®¾ç½®æ•°æ®æ ¼å¼
 		ResultObj resultObj=new ResultObj();
 		resultObj.setRows(userList);
 		resultObj.setTotal(total);
@@ -105,9 +105,9 @@ public class UserController {
 	}
 	
 	/**
-	 * Ìí¼Ó»òĞŞ¸ÄÓÃ»§
-	 * @param user  ÓÃ»§ĞÅÏ¢·â×°µÄjavabean
-	 * @param flage ÅĞ¶Ï²Ù×÷µÄ±ê¼Ç  ¡°1¡±£ºÎªÌí¼Ó  ¡°2¡±Îª¸üĞÂ
+	 * æ·»åŠ æˆ–ä¿®æ”¹ç”¨æˆ·
+	 * @param user  ç”¨æˆ·ä¿¡æ¯å°è£…çš„javabean
+	 * @param flage åˆ¤æ–­æ“ä½œçš„æ ‡è®°  â€œ1â€ï¼šä¸ºæ·»åŠ   â€œ2â€ä¸ºæ›´æ–°
 	 * @return
 	 */
 	@RequestMapping("/save")
@@ -121,16 +121,16 @@ public class UserController {
 			resultTotal=userService.update(user);
 		}
 		
-		if(resultTotal>0){//Èç¹û²Ù×÷³É¹¦
+		if(resultTotal>0){//å¦‚æœæ“ä½œæˆåŠŸ
 			messageObj.setSuccess();
-		}else{//Èç¹û²Ù×÷Ê§°Ü
+		}else{//å¦‚æœæ“ä½œå¤±è´¥
 			messageObj.setFail();
 		}
 		return messageObj;
 	}
 	
 	/**
-	 * ÅĞ¶ÏÓÃ»§ÃûÊÇ·ñ´æÔÚ(±£Ö¤ÓÃ»§ÃûµÄÎ¨Ò»ĞÔ)
+	 * åˆ¤æ–­ç”¨æˆ·åæ˜¯å¦å­˜åœ¨(ä¿è¯ç”¨æˆ·åçš„å”¯ä¸€æ€§)
 	 * @param userName
 	 * @return
 	 */
@@ -138,9 +138,9 @@ public class UserController {
 	@ResponseBody
 	public MessageObj existUserName(String userName){
 		MessageObj obj=new MessageObj();
-		if(userService.findByUserName(userName)==null){//Èç¹û²»´æÔÚÉèÖÃÊ§°Ü
+		if(userService.findByUserName(userName)==null){//å¦‚æœä¸å­˜åœ¨è®¾ç½®å¤±è´¥
 			obj.setFail();
-		}else{//Èç¹û´æÔÚÉèÖÃ³É¹¦
+		}else{//å¦‚æœå­˜åœ¨è®¾ç½®æˆåŠŸ
 			obj.setSuccess();
 		}
 		
@@ -148,7 +148,7 @@ public class UserController {
 	}
 	
 	/***
-	 * ¸ù¾İÓÃ»§id£¨userId£© ºÍÃÜÂëÅĞ¶ÏÓÃ»§ÊÇ·ñ´æÔÚ
+	 * æ ¹æ®ç”¨æˆ·idï¼ˆuserIdï¼‰ å’Œå¯†ç åˆ¤æ–­ç”¨æˆ·æ˜¯å¦å­˜åœ¨
 	 */
 	@RequestMapping("/existUserIdPwd")
 	@ResponseBody
@@ -165,7 +165,7 @@ public class UserController {
 	}
 	
 	/**
-	 * ¸ù¾İÓÃ»§idÀ´É¾³ıÓÃ»§ĞÅÏ¢
+	 * æ ¹æ®ç”¨æˆ·idæ¥åˆ é™¤ç”¨æˆ·ä¿¡æ¯
 	 * @param ids
 	 * @return
 	 */
@@ -182,10 +182,10 @@ public class UserController {
 	}
 	
 	/**
-	 * ·ÖÒ³²éÑ¯ÓÃ»§½ÇÉ«ĞÅÏ¢
-	 * @param page  µ±Ç°Ò³
-	 * @param rows  µ±Ç°Ò³µÄ¼ÇÂ¼Êı
-	 * @param user  ·â×°²éÑ¯Ìõ¼şµÄbean
+	 * åˆ†é¡µæŸ¥è¯¢ç”¨æˆ·è§’è‰²ä¿¡æ¯
+	 * @param page  å½“å‰é¡µ
+	 * @param rows  å½“å‰é¡µçš„è®°å½•æ•°
+	 * @param user  å°è£…æŸ¥è¯¢æ¡ä»¶çš„bean
 	 * @return
 	 */
 	@RequestMapping("/listWithGroups")
@@ -193,20 +193,20 @@ public class UserController {
 	public ResultObj listWithGroups(String page,String rows,User user){
 		ResultObj obj=new ResultObj();
 		PageBean pageBean=new PageBean(Integer.parseInt(page),Integer.parseInt(rows));
-		//·â×°²éÑ¯Ìõ¼ş
+		//å°è£…æŸ¥è¯¢æ¡ä»¶
 		Map<String,Object> map=new HashMap<String,Object>();
-		map.put("userName",StringUtil.formatLike(user.getUserName())); // ²éÑ¯ÓÃ»§Ãû»ñÈ¡
+		map.put("userName",StringUtil.formatLike(user.getUserName())); // æŸ¥è¯¢ç”¨æˆ·åè·å–
 		map.put("start", pageBean.getStart());
 		map.put("size", pageBean.getPageSize());
 		List<User> userList=userService.find(map);
 		for(User users:userList){
 			StringBuffer  buffer=new StringBuffer();
-			//¸ù¾İÓÃ»§id»ñÈ¡½ÇÉ«ĞÅÏ¢
+			//æ ¹æ®ç”¨æˆ·idè·å–è§’è‰²ä¿¡æ¯
 			List<Group> groupList=groupService.findGroupByUserId(users.getUserId());
-			for(Group group:groupList){//±éÀú½ÇÉ«ĞÅÏ¢
+			for(Group group:groupList){//éå†è§’è‰²ä¿¡æ¯
 				buffer.append(group.getName()+",");
 			}
-			if(buffer.length()>0){//É¾³ı½ÇÉ«Æ´×°ºóµÄ¶ººÅ
+			if(buffer.length()>0){//åˆ é™¤è§’è‰²æ‹¼è£…åçš„é€—å·
 				users.setGroups(buffer.deleteCharAt(buffer.length()-1).toString());
 			}else{
 				users.setGroups(buffer.toString());
@@ -219,7 +219,7 @@ public class UserController {
 	}
 	
 	/***
-	 * ÍË³öµÇÂ¼
+	 * é€€å‡ºç™»å½•
 	 * @param session
 	 * @param response
 	 * @param request
@@ -232,26 +232,26 @@ public class UserController {
 		MessageObj obj=new MessageObj();
 		System.out.println(session.getAttribute("userId"));
 		if(StringUtils.isNotEmpty((String) session.getAttribute("userId"))){
-			//Çå³ısessionĞÅÏ¢
+			//æ¸…é™¤sessionä¿¡æ¯
 			session.invalidate();
-			//ÉèÖÃÍË³öµÇÂ¼²Ù×÷³É¹¦
+			//è®¾ç½®é€€å‡ºç™»å½•æ“ä½œæˆåŠŸ
 			obj.setSuccess();
 		}else{
-			//ÍË³öµÇÂ¼Ê§°Ü
+			//é€€å‡ºç™»å½•å¤±è´¥
 			obj.setFail();
 		}
 		return obj;
 	}
 	
 	/***
-	 * ĞŞ¸ÄÓÃ»§ĞÅÏ¢
+	 * ä¿®æ”¹ç”¨æˆ·ä¿¡æ¯
 	 */
 	@RequestMapping("/updateUser")
 	@ResponseBody
 	public MessageObj updateUser(HttpSession session,String password,String password1,String password2){
 		MessageObj obj=new MessageObj();
 		User user=null;
-		//ÅĞ¶Ï  ĞÂ¸üĞÂµÄÃÜÂë²»ÄÜºÍÖ®Ç°µÄÃÜÂëÏàÍ¬   ÇÒĞÂÃÜÂëºÍÈ·ÈÏÃÜÂëÏàÍ¬
+		//åˆ¤æ–­  æ–°æ›´æ–°çš„å¯†ç ä¸èƒ½å’Œä¹‹å‰çš„å¯†ç ç›¸åŒ   ä¸”æ–°å¯†ç å’Œç¡®è®¤å¯†ç ç›¸åŒ
 		if(!password.equals(password1) && !password.equals(password2) && password1.equals(password2)){
 			user=new User();
 			String userId=(String) session.getAttribute("userId");
