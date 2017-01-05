@@ -11,11 +11,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="auditType" column="audit_type" jdbcType="VARCHAR"/>
 		<result property="status" column="status" jdbcType="VARCHAR"/>
 		<result property="createTime" column="createtime" jdbcType="TIMESTAMP"/>
+		<result property="taskId" column="task_id" jdbcType="VARCHAR"/>
 	</resultMap>
 	
 	<!-- 添加审核信息 -->
 	<insert id="add" parameterType="com.xing.leaveSystem.entity.Audit">
-		insert into leave_system_audit (audit_id,leave_id,user_id,audit_info,audit_type,status,createtime)
+		insert into leave_system_audit (audit_id,leave_id,user_id,audit_info,audit_type,status,createtime,task_id)
 		values
 		(
 			#{auditId,jdbcType=VARCHAR},
@@ -24,7 +25,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{auditInfo,jdbcType=VARCHAR},
 			#{auditType,jdbcType=VARCHAR},
 			#{status,jdbcType=VARCHAR},
-			#{createTime,jdbcType=TIMESTAMP}
+			#{createTime,jdbcType=TIMESTAMP},
+			#{taskId,jdbcType=VARCHAR}
 		)
 	</insert>
 	

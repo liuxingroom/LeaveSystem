@@ -352,7 +352,7 @@ public class TaskController {
 	@RequestMapping("/showAuditMessage")
 	public String showAuditMessage(String leaveId,Model model){
 		List<Audit> auditList=taskAuditService.findAduitMessageByLeaveId(leaveId);
-		System.out.println(auditList);
+		model.addAttribute("auditList", auditList);
 		return "showAuditMessage";
 	}
 }

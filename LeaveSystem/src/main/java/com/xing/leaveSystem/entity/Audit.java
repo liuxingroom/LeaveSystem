@@ -16,6 +16,8 @@ public class Audit implements Serializable{
 	private String leaveId;
 	/**审核人id*/
 	private String userId;
+	/**审核人的名称*/
+	private String userName;
 	/**审核内容*/
 	private String  auditInfo;
 	/**审核类型*/
@@ -26,7 +28,24 @@ public class Audit implements Serializable{
 	private Date createTime;
 	/**审核时间支付串表现形式*/
 	private String createTimeStr;
+	/**当前任务id*/
+	private String taskId;
+	/**历史任务名*/
+	private String taskName;
 	
+	
+	public String getTaskName() {
+		return taskName;
+	}
+	public void setTaskName(String taskName) {
+		this.taskName = taskName;
+	}
+	public String getTaskId() {
+		return taskId;
+	}
+	public void setTaskId(String taskId) {
+		this.taskId = taskId;
+	}
 	public String getAuditId() {
 		return auditId;
 	}
@@ -79,6 +98,12 @@ public class Audit implements Serializable{
 	}
 	public void setCreateTimeStr(String createTimeStr) {
 		this.createTimeStr = createTimeStr;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	
 	
