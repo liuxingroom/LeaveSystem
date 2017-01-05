@@ -178,7 +178,7 @@
 </div>
 <div region="west" style="width: 200px;" title="导航菜单" split="true">
 	<div class="easyui-accordion" data-options="fit:true,border:false">
-	     <%--  <c:if test="${fn:contains(groupName,'管理员')==true}"> --%>
+	     <c:if test="${fn:contains(groupName,'管理员')==true}">
 			<div title="基础数据管理" data-options="selected:true,iconCls:'icon-item'" style="padding: 10px">
 				<a href="javascript:openTab('用户管理','userManage.jsp','icon-user')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-user'" style="width: 150px">用户管理</a>
 				<a href="javascript:openTab('角色管理','groupManage.jsp','icon-role')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-role'" style="width: 150px">角色管理</a>
@@ -188,25 +188,25 @@
 				<a href="javascript:openTab('流程部署管理','deployManage.jsp','icon-deploy')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-deploy'" style="width: 150px;">流程部署管理</a>
 				<a href="javascript:openTab('流程定义管理','processDefinitionManage.jsp','icon-definition')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-definition'" style="width: 150px;">流程定义管理</a>
 			</div>
-		 <%-- </c:if> --%>
-		<%--  <c:if test="${fn:contains(groupName,'学生')==false}"> --%>
+	     </c:if>
+	    <c:if test="${fn:contains(groupName,'学生')==false}">
 			<div title="任务管理" data-options="iconCls:'icon-task'" style="padding:10px">
 				<a href="javascript:openTab('拾取待办任务','daibanManage.jsp','icon-daiban')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-daiban'" style="width: 150px;">拾取待办任务</a>
 				<a href="javascript:openTab('处理待办任务','chuliManage.jsp','icon-daiban')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-daiban'" style="width: 150px;">处理待办任务</a>
 				<!-- <a href="javascript:openTab('已办任务管理','yibanManage.jsp','icon-yiban')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-yiban'" style="width: 150px;">已办任务管理</a>
 				<a href="javascript:openTab('历史任务管理','lishiManage.jsp','icon-lishi')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-lishi'" style="width: 150px;">历史任务管理</a> -->
 			</div>
-		<%--  </c:if> --%>
+	    </c:if>
 		<div title="流程监控"  data-options="iconCls:'icon-system'" style="padding:10px">
 			<a href="javascript:openTab('当前运行流程务管理','yunxingManage.jsp','icon-yiban')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-yiban'" style="width: 150px;">当前运行流程务管理</a>
 			<a href="javascript:openTab('已结束管理','jieshuManage.jsp','icon-lishi')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-yiban'" style="width: 150px;">已结束管理</a>
 		</div>
-		<%-- <c:if test="${fn:contains(groupName,'学生')==true}"> --%>
+		<c:if test="${fn:contains(groupName,'学生')==true}">
 			<div title="业务管理"  data-options="iconCls:'icon-yewu'" style="padding:10px">
 				<a href="javascript:openTab('请假申请','leaveManage.jsp','icon-apply')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-apply'" style="width: 150px">请假申请</a>
 				<a href="javascript:openTab('请假历史信息查询','leaveHisManage.jsp','icon-apply')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-apply'" style="width: 150px">请假历史信息查询</a>
 			</div>
-	    <%-- </c:if> --%>
+	    </c:if>
 		<div title="系统管理"  data-options="iconCls:'icon-system'" style="padding:10px">
 			<a href="javascript:openPasswordModifyDialog()" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-modifyPassword'" style="width: 150px;">修改密码</a>
 			<a href="javascript:logout()" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-exit'" style="width: 150px;">安全退出</a>

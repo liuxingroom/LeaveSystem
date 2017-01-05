@@ -53,26 +53,31 @@ public class UserController {
 		User users=loginUserService.finUserByNameAndPwd(user);
 		//判断该用户是否有该权限  如果有登录成功
 		
-		if(users!=null && StringUtils.isNotEmpty(users.getGroups()) && users.getGroups().contains(groupId)){
-			StringBuffer buffer=new StringBuffer();
-			result.setSuccess();
-			groups=userService.findGroupByUserId(users.getUserId());
-			for(Group group:groups){
-				//拼接角色名
-				buffer.append(group.getName()+",");
+		if(users!=null){
+			if(StringUtils.isNotEmpty(users.getGroups()) && users.getGroups().contains(groupId)){
+				StringBuffer buffer=new StringBuffer();
+				result.setSuccess();
+				groups=userService.findGroupByUserId(users.getUserId());
+				for(Group group:groups){
+					//拼接角色名
+					buffer.append(group.getName()+",");
+				}
+				groupName=buffer.substring(0, buffer.length()-1);
+				//设置角色信息
+				session.setAttribute("groupName", groupName);
+				//设置用户已登录的标记
+				session.setAttribute("userId", users.getUserId());
+				//设置用户名标记
+				session.setAttribute("userName", users.getUserName());
+				
+				//设置登录成功
+				result.setSuccess();
+			}else{
+				result.setMessage("角色错误");
+				result.setFail();
 			}
-			groupName=buffer.substring(0, buffer.length()-1);
-			//设置角色信息
-			session.setAttribute("groupName", groupName);
-			//设置用户已登录的标记
-			session.setAttribute("userId", users.getUserId());
-			//设置用户名标记
-			session.setAttribute("userName", users.getUserName());
-			
-			//设置登录成功
-			result.setSuccess();
-			
 		}else{//如果没有登录失败
+			result.setMessage("用户名或密码错误");
 			result.setFail();
 		}
 		return result;

@@ -87,7 +87,7 @@ public class GroupController {
 	@ResponseBody
 	public MessageObj existGroupName(String groupName){
 		MessageObj obj=new MessageObj();
-		if(groupService.findByGroupName(groupName)!=null){//如果存在相同名称的角色信息
+		if(groupService.findByGroupName(groupName)==null){//如果存在相同名称的角色信息
 			obj.setFail();
 			return obj;
 		}

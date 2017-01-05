@@ -27,7 +27,7 @@
 				if(data.result=='1'){
 					window.location.href="${pageContext.request.contextPath}/main.jsp";
 				}else{
-					$.messager.alert("系统提示",data.errorInfo);
+					$.messager.alert("系统提示",data.message);
 					return;
 				}
 			}

@@ -18,13 +18,15 @@
     <sequenceFlow id="flow3" name="通过" sourceRef="usertask2" targetRef="exclusivegateway1">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${msg=='通过'}]]></conditionExpression>
     </sequenceFlow>
-    <sequenceFlow id="flow4" name="大于3天" sourceRef="exclusivegateway1" targetRef="usertask3">
+    <sequenceFlow id="flow4" name="小于3天" sourceRef="exclusivegateway1" targetRef="usertask3">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${days<3}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="flow5" name="3天到7天" sourceRef="exclusivegateway1" targetRef="usertask4">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${days>=3 && days<=7}]]></conditionExpression>
     </sequenceFlow>
-    <sequenceFlow id="flow6" name="大于7天" sourceRef="exclusivegateway1" targetRef="usertask5"></sequenceFlow>
+    <sequenceFlow id="flow6" name="大于7天" sourceRef="exclusivegateway1" targetRef="usertask5">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${days>7}]]></conditionExpression>
+    </sequenceFlow>
     <sequenceFlow id="flow7" sourceRef="usertask3" targetRef="endevent1"></sequenceFlow>
     <sequenceFlow id="flow8" sourceRef="usertask4" targetRef="endevent1"></sequenceFlow>
     <sequenceFlow id="flow9" sourceRef="usertask5" targetRef="endevent1"></sequenceFlow>
@@ -78,7 +80,7 @@
         <omgdi:waypoint x="500.0" y="67.0"></omgdi:waypoint>
         <omgdi:waypoint x="630.0" y="67.0"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="14.0" width="42.0" x="531.0" y="51.0"></omgdc:Bounds>
+          <omgdc:Bounds height="14.0" width="100.0" x="531.0" y="51.0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
@@ -93,7 +95,7 @@
         <omgdi:waypoint x="500.0" y="207.0"></omgdi:waypoint>
         <omgdi:waypoint x="630.0" y="207.0"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="14.0" width="42.0" x="531.0" y="187.0"></omgdc:Bounds>
+          <omgdc:Bounds height="14.0" width="100.0" x="531.0" y="187.0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
