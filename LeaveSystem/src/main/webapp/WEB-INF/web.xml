@@ -49,9 +49,9 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
-	<!-- 添加session清空时间（过20分钟session清空） -->
+	<!-- 添加session清空时间（过30分钟session清空） -->
 	<session-config>
-		<session-timeout>20</session-timeout>
+		<session-timeout>30</session-timeout>
 	</session-config>
 	
 	<!-- 默认要跳转的页面 -->
