@@ -189,7 +189,7 @@
 				<a href="javascript:openTab('流程定义管理','processDefinitionManage.jsp','icon-definition')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-definition'" style="width: 150px;">流程定义管理</a>
 			</div>
 	     </c:if>
-	    <c:if test="${fn:contains(groupName,'学生')==false}">
+	    <c:if test="${fn:contains(groupName,'学生')==false && fn:contains(groupName,'管理员')==false}">
 			<div title="任务管理" data-options="iconCls:'icon-task'" style="padding:10px">
 				<a href="javascript:openTab('拾取待办任务','daibanManage.jsp','icon-daiban')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-daiban'" style="width: 150px;">拾取待办任务</a>
 				<a href="javascript:openTab('处理待办任务','chuliManage.jsp','icon-daiban')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-daiban'" style="width: 150px;">处理待办任务</a>
