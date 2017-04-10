@@ -36,4 +36,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from leave_system_audit where leave_id=#{leaveId}
 	</select>
 	
+	<!-- 通过任务的id来获取请假的详细信息 -->
+	<select id="findAduitMessageByTaskId" resultMap="AuditResult">
+		select * from leave_system_audit where task_id=#{taskId}
+	</select>
+	
+	
 </mapper>

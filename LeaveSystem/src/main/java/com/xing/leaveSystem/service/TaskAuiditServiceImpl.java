@@ -74,6 +74,12 @@ public class TaskAuiditServiceImpl implements TaskAuditService{
 		}
 		return auditList;
 	}
+
+	@Override
+	public Audit findAduitMessageByTaskId(String taskId) {
+		Audit audit=taskAuditMapper.findAduitMessageByTaskId(taskId);
+		return audit;
+	}
 	
 	
 }

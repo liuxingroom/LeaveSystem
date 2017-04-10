@@ -31,6 +31,16 @@ public class MyTask implements Serializable{
 	private String taskDefinitionKey;
 	/**判断任务是否拾取的标记0  代表未拾取  1代笔拾取*/
 	private boolean flag;
+	/**审核详细信息*/
+	private String auditMessage;
+	
+	
+	public String getAuditMessage() {
+		return auditMessage;
+	}
+	public void setAuditMessage(String auditMessage) {
+		this.auditMessage = auditMessage;
+	}
 	public String getId() {
 		return id;
 	}

@@ -94,7 +94,8 @@
  		<th field="cb" checkbox="true" align="center"></th>
  		<th field="userId" width="80" align="center">权限id</th>
  		<th field="userName" width="50" align="center">用户名</th>
- 		<th field="password" width="80" align="center">密码</th>
+ 		<th field="password" width="80" align="center" >密码</th>
+ 		<!-- <th field="password" width="80" align="center"  hidden="true">密码</th> -->
  		<th field="email" width="100" align="center">邮箱</th>
  		<th field="groups" width="150" align="center">拥有权限</th>
  	</tr>

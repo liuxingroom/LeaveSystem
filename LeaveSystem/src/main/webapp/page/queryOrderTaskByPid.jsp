@@ -24,6 +24,7 @@
 					<td>任务id</td>
 					<td>任务名称</td>
 					<td>负责人</td>
+					<td>审核信息</td>
 					<td>任务标识</td>
 					<td>开始时间</td>
 					<td>结束时间</td>
@@ -34,6 +35,7 @@
 						<td class=category>${order.id}</td>
 						<td class=category>${order.name }</td>
 						<td class=category>${order.userName}</td>
+						<td class=category>${order.auditMessage}</td>
 						<td class=category>${order.taskDefinitionKey}</td>
 						<td class=category><fmt:formatDate value="${order.createTime}"
 								pattern="yyyy-MM-dd hh:mm:ss" /></td>

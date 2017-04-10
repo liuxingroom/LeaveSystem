@@ -33,58 +33,58 @@
 		<dependency>
 	  		<groupId>org.springframework</groupId>
 	  		<artifactId>spring-core</artifactId>
-	  		<version>4.1.7.RELEASE</version>
+	  		<version>3.2.6.RELEASE</version>
 	  	</dependency>
 	  	<dependency>
 	  		<groupId>org.springframework</groupId>
 	  		<artifactId>spring-beans</artifactId>
-	  		<version>4.1.7.RELEASE</version>
+	  		<version>3.2.6.RELEASE</version>
 	  	</dependency>
 	  	<dependency>
 	         <groupId>org.springframework</groupId>
 	         <artifactId>spring-tx</artifactId>
-	         <version>4.1.7.RELEASE</version>
+	         <version>3.2.6.RELEASE</version>
 	        </dependency>
 	  	<dependency>
 	  		<groupId>org.springframework</groupId>
 	  		<artifactId>spring-context</artifactId>
-	  		<version>4.1.7.RELEASE</version>
+	  		<version>3.2.6.RELEASE</version>
 	  	</dependency>
 	  	<dependency>
 	  		<groupId>org.springframework</groupId>
 	  		<artifactId>spring-context-support</artifactId>
-	  		<version>4.1.7.RELEASE</version>
+	  		<version>3.2.6.RELEASE</version>
 	  	</dependency>
 	  	
 	  	<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
-			<version>4.1.7.RELEASE</version>
+			<version>3.2.6.RELEASE</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>4.1.7.RELEASE</version>
+			<version>3.2.6.RELEASE</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aop</artifactId>
-			<version>4.1.7.RELEASE</version>
+			<version>3.2.6.RELEASE</version>
 		</dependency>
 		
 		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aspects</artifactId>
-			<version>4.1.7.RELEASE</version>
+			<version>3.2.6.RELEASE</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
-			<version>4.1.7.RELEASE</version>
+			<version>3.2.6.RELEASE</version>
 		</dependency>
 	  
 		  <dependency>
@@ -227,6 +227,12 @@
 			<version>${json.version}</version>
 		</dependency>
 		<!-- json end -->
+		
+		<!-- <dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>6.0.29</version>
+		</dependency> -->
   </dependencies>
   
   <build>  

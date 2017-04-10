@@ -333,7 +333,11 @@ public class TaskController {
 				User user=userService.findUserById(instance.getAssignee());
 				task.setUserName(user.getUserName());
 				BeanUtils.copyProperties(task, instance);
-				taskList.add(task);
+			    Audit audit=taskAuditService.findAduitMessageByTaskId(task.getId());
+			    if(audit!=null){
+			    	task.setAuditMessage(audit.getAuditInfo());
+			    }
+			    taskList.add(task);
 			}
 		} catch (Exception e) {
 			logger.error("历史任务复制失败");

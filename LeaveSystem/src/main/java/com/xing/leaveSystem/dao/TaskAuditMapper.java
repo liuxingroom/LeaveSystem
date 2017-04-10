@@ -2,6 +2,8 @@ package com.xing.leaveSystem.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.xing.leaveSystem.entity.Audit;
 
 public interface TaskAuditMapper {
@@ -20,6 +22,13 @@ public interface TaskAuditMapper {
 	 * @return
 	 */
 	List<Audit> findAduitMessageByLeaveId(String leaveId);
+
+	/**
+	 * 通过任务id来获取审核信息
+	 * @param taskId
+	 * @return
+	 */
+	Audit findAduitMessageByTaskId(@Param("taskId")String taskId);
 
 	
 

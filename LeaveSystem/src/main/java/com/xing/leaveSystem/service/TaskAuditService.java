@@ -21,4 +21,11 @@ public interface TaskAuditService {
 	 */
 	List<Audit> findAduitMessageByLeaveId(String leaveId);
 
+	/**
+	 * 通过任务id来获取审核信息
+	 * @param taskId
+	 * @return
+	 */
+	Audit findAduitMessageByTaskId(String taskId);
+
 }
