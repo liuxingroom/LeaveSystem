@@ -191,10 +191,10 @@
 				<a href="javascript:openTab('流程定义详细信息','processDefinitionManage.jsp','icon-definition')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-definition'" style="width: 150px;">流程定义详细信息</a>
 			</div>
 	      <%-- </c:if> --%>
-	     	 <div title="统计管理"  data-options="iconCls:'icon-flow'" style="padding:10px;">
+	     <!-- 	 <div title="统计管理"  data-options="iconCls:'icon-flow'" style="padding:10px;">
 				<a href="javascript:openTab('请假记录统计','tongJiManage.jsp','icon-deploy')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-deploy'" style="width: 150px;">请假记录统计</a>
-				<!-- <a href="javascript:openTab('流程定义详细信息','processDefinitionManage.jsp','icon-definition')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-definition'" style="width: 150px;">流程定义详细信息</a> -->
-			</div>
+				<a href="javascript:openTab('流程定义详细信息','processDefinitionManage.jsp','icon-definition')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-definition'" style="width: 150px;">流程定义详细信息</a>
+			</div> -->
 	      
 	    <%--  <c:if test="${fn:contains(groupName,'学生')==false && fn:contains(groupName,'管理员')==false}">  --%>
 			<div title="任务管理" data-options="iconCls:'icon-task'" style="padding:10px">
