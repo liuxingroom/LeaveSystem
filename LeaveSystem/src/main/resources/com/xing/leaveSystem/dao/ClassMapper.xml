@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xing.leaveSystem.dao.ClassMapper">
+	<resultMap type="com.xing.leaveSystem.entity.Class" id="ClassResult">
+		<id  property="classId" column="class_id" jdbcType="VARCHAR"/>
+		<result property="className" column="class_name" jdbcType="VARCHAR"/>
+		<result property="grade" column="grade" jdbcType="VARCHAR"/>
+		<result property="classNum" column="class_num" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<!-- 分页查询专业信息 -->
+	<select id="find" parameterType="Map" resultMap="ClassResult">
+		select * from leave_system_class
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
+	
+	<!-- 获取专业信息的总记录数 -->
+	<select id="getTotal" resultType="Long">
+		select count(*) from leave_system_class
+	</select>
+	
+	<!-- 通过专业名来判断该专业是否存在 -->
+	<select id="existClassName" resultMap="ClassResult">
+		select * from leave_system_class where class_name=#{className}
+	</select>
+	
+	
+	<!-- 添加专业信息 -->
+ 	<insert id="add" parameterType="com.xing.leaveSystem.entity.Class">
+		insert into leave_system_class(class_id,class_name,grade,class_num) values
+		(
+			<trim suffixOverrides=",">
+				<if test="classId !=null and classId !=''">#{classId,jdbcType=VARCHAR},</if>
+				<if test="className !=null and className !=''">#{className,jdbcType=VARCHAR},</if>
+				<if test="grade !=null and grade !=''">#{grade,jdbcType=VARCHAR},</if>
+				<if test="classNum !=null and classNum !=''">#{classNum,jdbcType=VARCHAR},</if>
+			</trim>
+			
+		)
+	</insert>
+	
+	<!-- 更新专业信息 -->
+ 	<update id="update" parameterType="com.xing.leaveSystem.entity.Class">
+		update leave_system_class
+		<set>
+			<trim suffixOverrides=",">
+				<if test="className !=null and className !=''">class_name=#{className,jdbcType=VARCHAR},</if>
+				<if test="grade !=null and grade !=''">grade=#{grade,jdbcType=VARCHAR},</if>
+				<if test="classNum !=null and classNum !=''">class_num=#{classNum,jdbcType=VARCHAR},</if>
+			</trim>
+		</set>
+		<where>
+			class_id=#{classId}
+		</where>
+	</update>
+	
+	<!-- 根据专业id来删除专业信息 -->
+ 	<delete id="delete" >
+		delete from leave_system_class 
+		<where>
+			class_id=#{id}
+		</where>
+	</delete>
+	
+	
+	<!-- 通过角色名查看角色信息 -->
+<!-- 	<select id="findByGroupName" resultMap="GroupResult">
+		select * from leave_system_group where name=#{groupName}
+	</select> -->
+	
+	
+	
+	
+	
+	<!-- 通过用户id来获取角色信息 -->
+<!-- 	<select id="findGroupByUserId" resultMap="GroupResult">
+		SELECT p.group_id,name FROM leave_system_group g 
+		LEFT JOIN leave_system_membership p ON  g.group_id=p.group_id 
+		WHERE p.user_id=#{userId}
+	</select> -->
+	
+	<!-- 查看该角色id是否存在 -->
+<!-- 	<select id="finGroupById" resultMap="GroupResult">
+		select * from leave_system_group where group_id=#{id}
+	</select> -->
+</mapper>

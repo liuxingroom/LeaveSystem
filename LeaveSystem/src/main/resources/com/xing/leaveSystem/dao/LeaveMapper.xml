@@ -19,10 +19,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 保存请假单信息 -->
 	<insert id="add" parameterType="com.xing.leaveSystem.entity.Leave">
-		insert into leave_system_leave(leave_id,user_id,leavename,leavedays,status,leaveReason,createtime,endtime,processInstance_id) values
+		insert into leave_system_leave(leave_id,user_id,class_id,leavename,leavedays,status,leaveReason,createtime,endtime,processInstance_id) values
 		(
 			#{leaveId,jdbcType=VARCHAR},
 			#{userId,jdbcType=VARCHAR},
+		    #{classId,jdbcType=VARCHAR},
 			#{leaveName,jdbcType=VARCHAR},
 			#{leaveDays,jdbcType=INTEGER},
 			#{status,jdbcType=VARCHAR},

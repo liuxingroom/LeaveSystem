@@ -37,6 +37,16 @@ public class Leave implements Serializable{
 	private String endTimeStr;
 	/**请假记录所对应的流程实例id*/
 	private  String  processinstanceId;
+	/**专业id*/
+	private String classId;
+	
+	
+	public String getClassId() {
+		return classId;
+	}
+	public void setClassId(String classId) {
+		this.classId = classId;
+	}
 	public String getLeaveId() {
 		return leaveId;
 	}

@@ -139,6 +139,12 @@
  				</td>
  			</tr>
  			<tr>
+ 				<td>专业：</td>
+ 				<td>
+ 					<input  id="classId" name="classId" class="easyui-combobox" style="width: 200px" data-options="panelHeight:'auto',valueField:'classId',textField:'className',url:'${pageContext.request.contextPath}/class/classComboList.action'" value="-1"/>
+ 				</td>
+ 			</tr>
+ 			<tr>
  				<td valign="top">请假原因：</td>
  				<td>
  					<%-- <input type="hidden" name="user.id" value="${currentMemberShip.user.id }"/> --%>

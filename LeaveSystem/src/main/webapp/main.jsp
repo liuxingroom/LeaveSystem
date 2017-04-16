@@ -183,12 +183,19 @@
 				<a href="javascript:openTab('用户管理','userManage.jsp','icon-user')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-user'" style="width: 150px">用户管理</a>
 				<a href="javascript:openTab('角色管理','groupManage.jsp','icon-role')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-role'" style="width: 150px">角色管理</a>
 				<a href="javascript:openTab('用户权限管理','authManage.jsp','icon-power')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-power'" style="width: 150px">用户权限管理</a>
+				<a href="javascript:openTab('专业管理','classManage.jsp','icon-power')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-power'" style="width: 150px">专业管理</a>
+				
 			</div>
 			<div title="流程管理"  data-options="iconCls:'icon-flow'" style="padding:10px;">
 				<a href="javascript:openTab('流程部署管理','deployManage.jsp','icon-deploy')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-deploy'" style="width: 150px;">流程部署管理</a>
 				<a href="javascript:openTab('流程定义详细信息','processDefinitionManage.jsp','icon-definition')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-definition'" style="width: 150px;">流程定义详细信息</a>
 			</div>
 	      <%-- </c:if> --%>
+	     	 <div title="统计管理"  data-options="iconCls:'icon-flow'" style="padding:10px;">
+				<a href="javascript:openTab('请假记录统计','tongJiManage.jsp','icon-deploy')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-deploy'" style="width: 150px;">请假记录统计</a>
+				<!-- <a href="javascript:openTab('流程定义详细信息','processDefinitionManage.jsp','icon-definition')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-definition'" style="width: 150px;">流程定义详细信息</a> -->
+			</div>
+	      
 	    <%--  <c:if test="${fn:contains(groupName,'学生')==false && fn:contains(groupName,'管理员')==false}">  --%>
 			<div title="任务管理" data-options="iconCls:'icon-task'" style="padding:10px">
 				<a href="javascript:openTab('拾取待办任务','daibanManage.jsp','icon-daiban')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-daiban'" style="width: 150px;">拾取待办任务</a>

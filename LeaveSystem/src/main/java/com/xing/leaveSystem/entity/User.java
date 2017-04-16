@@ -18,7 +18,16 @@ public class User  implements Serializable{
 	private String password; //密码
 	private String email;    //邮箱
 	private String groups;   // 用户所有的角色 多个角色之间用逗号隔开(使用冗余字段来表示，  省去了对象的关联)
+	private String classId;  //专业
 	
+	
+	
+	public String getClassId() {
+		return classId;
+	}
+	public void setClassId(String classId) {
+		this.classId = classId;
+	}
 	public String getUserId() {
 		return userId;
 	}
